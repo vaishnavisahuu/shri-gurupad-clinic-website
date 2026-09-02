@@ -50,6 +50,8 @@
           slides.forEach((slide, index) => {
             slide.src = images[index];
             slide.alt = "Shri Gurupad clinic";
+            slide.style.transform = "rotate(-1.2deg) scale(1.04)";
+            slide.style.transformOrigin = "center center";
           });
           const heroCopy = wrap.closest(".hero")?.querySelector(".hero-copy-block");
           if (heroCopy) {
