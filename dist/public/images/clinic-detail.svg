@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-label="Clinic interior illustration">
+  <rect width="1200" height="820" fill="#f6efe4"/>
+  <rect x="140" y="140" width="920" height="520" rx="28" fill="#e7d4a9" opacity="0.55"/>
+  <rect x="240" y="210" width="240" height="330" rx="18" fill="#174d36"/>
+  <rect x="510" y="210" width="420" height="120" rx="16" fill="#fffaf1" opacity="0.9"/>
+  <rect x="510" y="360" width="420" height="180" rx="16" fill="#f0c777" opacity="0.9"/>
+  <path d="M285 506c0-25 18-45 40-45h110c23 0 40 20 40 45v34H285v-34z" fill="#f6efe4" opacity="0.88"/>
+  <circle cx="355" cy="277" r="52" fill="#f6efe4" opacity="0.88"/>
+  <path d="M555 268h160v34H555zm0 58h210v34H555zm0 60h190v34H555z" fill="#174d36" opacity="0.82"/>
+  <path d="M545 432h210v52H545zm40 64h135v42H585z" fill="#fffaf1" opacity="0.8"/>
+  <path d="M250 650c120-78 230-116 350-116 153 0 252 39 350 118" fill="none" stroke="#669067" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+</svg>

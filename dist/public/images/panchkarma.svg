@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-label="Panchkarma therapy illustration">
+  <rect width="1200" height="820" fill="#f1e7d3"/>
+  <rect x="0" y="630" width="1200" height="190" fill="#d7b36d" opacity="0.25"/>
+  <rect x="170" y="180" width="860" height="430" rx="24" fill="#fffaf1" stroke="#d9b56d" stroke-width="4"/>
+  <path d="M260 472h680v48H260z" fill="#c79a4b" opacity="0.75"/>
+  <rect x="390" y="250" width="420" height="210" rx="28" fill="#d9b56d" opacity="0.8"/>
+  <path d="M520 275h150v35H520zm-18 50h186v34H502zm-22 52h230v36H480z" fill="#fffaf1" opacity="0.9"/>
+  <circle cx="690" cy="368" r="58" fill="#f0dca9"/>
+  <path d="M640 470c40-22 83-28 131-23l58 94H612l28-71z" fill="#7b9d72" opacity="0.8"/>
+  <path d="M270 620c90-84 173-128 278-128 122 0 223 58 334 122" fill="none" stroke="#7f9d56" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
+  <g fill="#6b8a5a" opacity="0.8">
+    <rect x="300" y="534" width="30" height="110"/>
+    <rect x="355" y="508" width="24" height="136"/>
+    <rect x="840" y="524" width="30" height="120"/>
+    <rect x="890" y="500" width="26" height="144"/>
+  </g>
+</svg>
