@@ -14,6 +14,60 @@
     <link rel="stylesheet" crossorigin href="/assets/index-CEATttqm.css">
   </head>
   <body>
+    <script>
+      (() => {
+        const images = [
+          "/images/gurupad_ai_1.jpeg",
+          "/images/gurupad_ai_2.jpeg",
+          "/images/gurupad_ai_3.jpeg",
+          "/images/gurupad_ai_4.jpeg",
+          "/images/gurupad_ai_5.jpeg",
+        ];
+        const setupHero = () => {
+          const wrap = document.querySelector(".hero-media-wrap");
+          if (!wrap) return window.setTimeout(setupHero, 100);
+          const slides = [...wrap.querySelectorAll(".hero-media")];
+          const overlay = wrap.querySelector(".hero-brand-overlay");
+          if (overlay) {
+            overlay.style.cssText = "position:absolute;left:clamp(1rem,5vw,3.5rem);bottom:clamp(1.5rem,8vw,4rem);z-index:3;display:block;width:max-content;max-width:calc(100% - 2rem);padding:1rem 1.25rem;border-left:3px solid #b9d58a;border-radius:0 8px 8px 0;background:rgba(12,45,38,.82);color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.2);box-sizing:border-box;backdrop-filter:blur(5px)";
+            overlay.replaceChildren();
+            ["SHRI GURUPAD", "Dr. Ashish Choyal", "B.A.M.S., M.D. (Panchakarma)"].forEach((text, index) => {
+              const line = document.createElement("span");
+              line.textContent = text;
+              line.style.cssText = `display:block!important;color:${index === 2 ? "#e4f2cf" : "#fff"}!important;margin-top:${index ? ".2rem" : "0"};font-family:Manrope,sans-serif;font-size:${index === 0 ? "clamp(1.1rem,2.2vw,1.8rem)" : index === 1 ? "clamp(.85rem,1.35vw,1.05rem)" : "clamp(.65rem,1vw,.8rem)"};font-weight:${index === 0 ? "800" : "600"};letter-spacing:${index === 0 ? ".16em" : ".03em"};line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,.5)`;
+              overlay.appendChild(line);
+            });
+          }
+          images.slice(slides.length).forEach((src) => {
+            const slide = document.createElement("img");
+            slide.className = "hero-media";
+            slide.src = src;
+            slide.alt = "Shri Gurupad clinic";
+            slide.loading = "lazy";
+            wrap.insertBefore(slide, overlay);
+            slides.push(slide);
+          });
+          slides.forEach((slide, index) => {
+            slide.src = images[index];
+            slide.alt = "Shri Gurupad clinic";
+          });
+          const heroCopy = wrap.closest(".hero")?.querySelector(".hero-copy-block");
+          if (heroCopy) {
+            const heading = heroCopy.querySelector("h1");
+            const button = heroCopy.querySelector("button");
+            if (heading) heading.textContent = "Consultation & Panchakarma Center";
+            if (button) button.textContent = "Book Appointment";
+          }
+          let active = 0;
+          window.setInterval(() => {
+            slides[active].classList.remove("is-active");
+            active = (active + 1) % slides.length;
+            slides[active].classList.add("is-active");
+          }, 2000);
+        };
+        setupHero();
+      })();
+    </script>
     <script id="manus-runtime">window.__MANUS_HOST_DEV__ = false;
 (function(){"use strict";var Mr={exports:{}},Kn={};/**
  * @license React
