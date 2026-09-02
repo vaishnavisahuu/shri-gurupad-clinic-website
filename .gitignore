@@ -6,6 +6,13 @@
 dist/
 build/
 *.dist
+!dist/
+!dist/public/
+!dist/public/index.html
+!dist/public/assets/
+!dist/public/assets/*
+!dist/public/images/
+!dist/public/images/gurupad_ai_*.jpeg
 
 # Environment variables
 .env
