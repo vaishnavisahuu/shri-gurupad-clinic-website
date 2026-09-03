@@ -165,6 +165,72 @@
               document.head.appendChild(assessmentStyle);
               if (oldAbout) oldAbout.remove();
               gallery.insertAdjacentElement("afterend", assessment);
+              const skinCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Skin Disorders");
+              if (skinCard && !skinCard.querySelector(".skin-disorders-image")) {
+                const skinImage = document.createElement("img");
+                skinImage.className = "skin-disorders-image";
+                skinImage.src = "/images/skin.png";
+                skinImage.alt = "Ayurvedic skin disorders care";
+                skinImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                const skinImageFrame = document.createElement("div");
+                skinImageFrame.className = "skin-disorders-image-frame";
+                skinImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                skinImageFrame.appendChild(skinImage);
+                skinCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", skinImageFrame);
+              }
+              const boneCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Bone & Joint Disorders");
+              if (boneCard && !boneCard.querySelector(".bone-joint-image")) {
+                const boneImage = document.createElement("img");
+                boneImage.className = "bone-joint-image";
+                boneImage.src = "/images/back and joints.png";
+                boneImage.alt = "Ayurvedic bone and joint care";
+                boneImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                const boneImageFrame = document.createElement("div");
+                boneImageFrame.className = "bone-joint-image-frame";
+                boneImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                boneImageFrame.appendChild(boneImage);
+                boneCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", boneImageFrame);
+              }
+              const migraineCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Migraine");
+              if (migraineCard && !migraineCard.querySelector(".migraine-image")) {
+                const migraineImage = document.createElement("img");
+                migraineImage.className = "migraine-image";
+                migraineImage.src = "/images/migrane.png";
+                migraineImage.alt = "Ayurvedic migraine care";
+                migraineImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                const migraineImageFrame = document.createElement("div");
+                migraineImageFrame.className = "migraine-image-frame";
+                migraineImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                migraineImageFrame.appendChild(migraineImage);
+                migraineCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", migraineImageFrame);
+              }
+              const bloodPressureCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Blood Pressure");
+              if (bloodPressureCard && !bloodPressureCard.querySelector(".blood-pressure-image")) {
+                const bloodPressureImage = document.createElement("img");
+                bloodPressureImage.className = "blood-pressure-image";
+                bloodPressureImage.src = "/images/blood pressure.png";
+                bloodPressureImage.alt = "Ayurvedic blood pressure care";
+                bloodPressureImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                const bloodPressureImageFrame = document.createElement("div");
+                bloodPressureImageFrame.className = "blood-pressure-image-frame";
+                bloodPressureImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                bloodPressureImageFrame.appendChild(bloodPressureImage);
+                bloodPressureCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", bloodPressureImageFrame);
+              }
+              [skinCard, boneCard, migraineCard, bloodPressureCard].forEach((card) => {
+                if (!card) return;
+                const imageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame");
+                const head = card.querySelector(".treatment-card__head");
+                if (imageFrame && head) {
+                  head.parentElement.insertBefore(imageFrame, head);
+                  const body = document.createElement("div");
+                  body.className = "treatment-card-body";
+                  body.style.cssText = "padding:1.25rem 1.35rem 1.4rem;background:#fff";
+                  [...card.children].filter((child) => child !== imageFrame).forEach((child) => body.appendChild(child));
+                  card.appendChild(body);
+                }
+                card.style.cssText += ";padding:0;background:#fff;border:1px solid #c8ddca;border-radius:14px;box-shadow:0 12px 28px rgba(35,82,54,.12);overflow:hidden";
+              });
               const assessmentImages = [...assessment.querySelectorAll(".assessment-image")];
               assessmentImages.forEach((image) => { image.style.objectFit = "contain"; });
               let assessmentIndex = 0;
