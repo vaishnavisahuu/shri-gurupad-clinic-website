@@ -130,13 +130,14 @@
               if (galleryDescription) galleryDescription.textContent = "A curated view of Shri Gurupad clinic.";
               const viewer = gallery.querySelector(".gallery-viewer");
               const image = gallery.querySelector(".gallery-current-image");
+              image.style.objectFit = "contain";
               const counter = gallery.querySelector(".gallery-counter");
               if (counter) counter.remove();
               const files = [
-                { name: "Clinic image 1", url: "/images/gurupad_ai_2.jpeg" },
-                { name: "Clinic image 2", url: "/images/gurupad_ai_3.jpeg" },
-                { name: "Clinic image 3", url: "/images/gurupad_ai_4.jpeg" },
-                { name: "Clinic image 4", url: "/images/gurupad_ai_5.jpeg" },
+                { name: "Bone and joint disorders", url: "/images/back and joints.png" },
+                { name: "Blood pressure care", url: "/images/blood pressure.png" },
+                { name: "Migraine care", url: "/images/migrane.png" },
+                { name: "Skin disorders care", url: "/images/skin.png" },
               ];
               let current = 0;
               const render = () => {
@@ -157,14 +158,15 @@
               const assessment = document.createElement("section");
               assessment.className = "assessment-section";
               assessment.setAttribute("aria-label", "Rooted in Ayurveda");
-              assessment.style.cssText = "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,5rem);align-items:center;padding:clamp(3rem,8vw,6rem) clamp(1.25rem,6vw,5rem);background:#fbf7f1;color:#173f38";
+              assessment.style.cssText = "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,6vw,5rem);align-items:center;box-sizing:border-box;width:100%;padding:clamp(3rem,8vw,6rem) clamp(1.25rem,6vw,5rem);background:#fbf7f1;color:#173f38";
               assessment.innerHTML = '<div style="max-width:31rem"><p style="margin:0 0 .7rem;color:#b0802d;font-family:Manrope,sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase">OUR APPROACH</p><h2 style="margin:0;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.02">Rooted in Ayurveda.<br><em style="color:#b0802d">Guided by assessment.</em></h2><div style="width:5rem;height:1px;margin:1.35rem 0;background:#c8ae7d"></div><p style="margin:0;color:#4a554f;font-family:Manrope,sans-serif;font-size:clamp(.88rem,1.5vw,1rem);line-height:1.7">Personalized care begins with listening closely, understanding your needs, and creating a thoughtful path toward lasting wellness.</p></div><div class="assessment-viewer" style="position:relative;min-height:clamp(15rem,34vw,27rem);overflow:hidden;border-radius:14px;background:#e8ddcf;box-shadow:0 18px 40px rgba(55,43,25,.16)"><img class="assessment-image is-active" src="/images/gurupad_ai_2.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_3.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_4.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_5.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"></div>';
               const assessmentStyle = document.createElement("style");
-              assessmentStyle.textContent = "@media (max-width:700px){.assessment-section{grid-template-columns:1fr!important;gap:1.75rem!important;padding:2.75rem 1.25rem 3.5rem!important}.assessment-section h2{font-size:clamp(2rem,10vw,3rem)!important}.assessment-viewer{min-height:18rem!important}}";
+              assessmentStyle.textContent = "@media (max-width:480px){.assessment-section{grid-template-columns:1fr 1fr!important;gap:1rem!important;padding:2.25rem .75rem 3rem!important}.assessment-section h2{font-size:clamp(1.35rem,7vw,2.4rem)!important}.assessment-section p:last-child{font-size:clamp(.7rem,2.8vw,1rem)!important;line-height:1.55!important}.assessment-viewer{min-height:0!important;aspect-ratio:3/2}}";
               document.head.appendChild(assessmentStyle);
               if (oldAbout) oldAbout.remove();
               gallery.insertAdjacentElement("afterend", assessment);
               const assessmentImages = [...assessment.querySelectorAll(".assessment-image")];
+              assessmentImages.forEach((image) => { image.style.objectFit = "contain"; });
               let assessmentIndex = 0;
               window.setInterval(() => {
                 assessmentImages[assessmentIndex].style.opacity = "0";
