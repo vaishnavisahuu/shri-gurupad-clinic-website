@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta name="theme-color" content="#174D36" />
-    <meta name="description" content="श्री गुरुपाद मल्टीस्पेशालिटी क्लीनिक | परामर्श & पंचकर्म सेंटर, डॉ. आशीष चोयल, B.A.M.S., M.D. (पंचकर्म)." />
-    <meta name="keywords" content="श्री गुरुपाद, मल्टीस्पेशालिटी क्लीनिक, परामर्श, पंचकर्म सेंटर, डॉ. आशीष चोयल, आयुर्वेदिक इलाज इंदौर" />
-    <title>श्री गुरुपाद | मल्टीस्पेशालिटी क्लीनिक | परामर्श & पंचकर्म सेंटर</title>
+    <meta name="description" content="Shri Gurupad Multispeciality Clinic | Consultation & Panchakarma Center, Dr. Ashish Choyal, B.A.M.S., M.D. (Panchakarma)." />
+    <meta name="keywords" content="Shri Gurupad, multispeciality clinic, consultation, Panchakarma center, Dr. Ashish Choyal, Ayurvedic treatment Indore" />
+    <title>Shri Gurupad | Multispeciality Clinic | Consultation & Panchakarma Center</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;700;800&display=swap" rel="stylesheet" />
@@ -17,7 +17,6 @@
     <script>
       (() => {
         const images = [
-          "/images/gurupad_ai_1.jpeg",
           "/images/gurupad_ai_2.jpeg",
           "/images/gurupad_ai_3.jpeg",
           "/images/gurupad_ai_4.jpeg",
@@ -26,6 +25,27 @@
         const setupHero = () => {
           const wrap = document.querySelector(".hero-media-wrap");
           if (!wrap) return window.setTimeout(setupHero, 100);
+          const removePanchkarmaDiagram = () => {
+            document.querySelectorAll("img[src*='panchkarma'], img[alt*='Panchkarma'], img[alt*='panchkarma']").forEach((image) => image.remove());
+          };
+          const removeBrokenDoctorSection = () => {
+            document.querySelectorAll("img[alt*='doctor in his clinic office' i]").forEach((image) => {
+              const section = image.closest("section");
+              if (section) section.remove();
+              else image.remove();
+            });
+          };
+          removePanchkarmaDiagram();
+          removeBrokenDoctorSection();
+          new MutationObserver(() => {
+            removePanchkarmaDiagram();
+            removeBrokenDoctorSection();
+          }).observe(document.body, { childList: true, subtree: true });
+          wrap.style.height = "clamp(28rem, 94vw, 45rem)";
+          wrap.style.paddingTop = "0";
+          wrap.style.overflow = "hidden";
+          wrap.style.borderBottomRightRadius = "75% 16%";
+          wrap.style.clipPath = "none";
           const slides = [...wrap.querySelectorAll(".hero-media")];
           const overlay = wrap.querySelector(".hero-brand-overlay");
           if (overlay) {
@@ -52,20 +72,114 @@
             slide.alt = "Shri Gurupad clinic";
             slide.style.transform = "rotate(-1.2deg) scale(1.04)";
             slide.style.transformOrigin = "center center";
+            slide.style.zIndex = "1";
+            slide.style.transition = "opacity 1.5s ease-in-out";
           });
+          wrap.style.backgroundImage = `url("${images[0]}")`;
+          wrap.style.backgroundPosition = "center";
+          wrap.style.backgroundSize = "cover";
           const heroCopy = wrap.closest(".hero")?.querySelector(".hero-copy-block");
           if (heroCopy) {
-            const heading = heroCopy.querySelector("h1");
-            const button = heroCopy.querySelector("button");
-            if (heading) heading.textContent = "Consultation & Panchakarma Center";
-            if (button) button.textContent = "Book Appointment";
+            const brandOverlay = wrap.querySelector(".hero-brand-overlay");
+            if (brandOverlay) brandOverlay.style.display = "none";
+            wrap.appendChild(heroCopy);
+            heroCopy.innerHTML = '<p style="margin:0 0 .55rem;color:#d9ae4f;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.2vw,.85rem);font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.7)">AYURVEDA &nbsp;•&nbsp; PANCHAKARMA</p><h2 style="margin:0 0 .5rem;color:#fff;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.65rem,4.5vw,3rem);font-weight:400;line-height:1.02;text-shadow:0 2px 12px rgba(0,0,0,.75)">Root-Cause Care.<br>Natural Healing.</h2><p style="margin:0 0 .65rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.7rem,1.3vw,.92rem);line-height:1.35;text-shadow:0 2px 10px rgba(0,0,0,.7)">Personalized Ayurvedic treatments<br>for lasting wellness.</p><p style="margin:0;color:#e4bd63;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.15rem,2.5vw,1.7rem);font-style:italic;line-height:1">Meet <span style="color:#d9ae4f;font-family:Manrope,sans-serif;font-size:.9em;font-style:normal">⌁</span></p><p style="margin:.45rem 0 0;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.8rem,1.4vw,1rem);line-height:1">Dr.</p><p style="margin:0;color:#fff;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.35rem,6vw,4rem);font-weight:800;line-height:.88;text-shadow:0 2px 14px rgba(0,0,0,.8)">Ashish<br><span style="color:#e4bd63">Choyal</span></p><p style="margin:.55rem 0 .65rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.1vw,.85rem);font-weight:700;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,.7)">B.A.M.S., M.D. (Panchakarma)</p><p style="margin:0 0 .8rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.1vw,.82rem);line-height:1.35;text-shadow:0 2px 10px rgba(0,0,0,.7)">Steady expertise. Personal attention.<br>Root-cause focused Ayurvedic care.</p><button type="button" style="position:relative;z-index:5;display:inline-flex!important;width:auto!important;min-width:0!important;padding:.62rem 1rem!important;font-size:.75rem!important">Book Appointment</button>';
+            heroCopy.style.cssText = "position:absolute!important;left:clamp(1rem,5vw,3.5rem)!important;right:auto!important;top:auto!important;bottom:clamp(.7rem,3vw,2rem)!important;z-index:4!important;width:min(92%,32rem)!important;max-width:32rem!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#fff!important;text-align:left!important;transform:scale(.78)!important;transform-origin:bottom left!important;text-shadow:0 2px 12px rgba(0,0,0,.7)!important";
+            const doctorName = heroCopy.querySelectorAll("p")[4];
+            if (doctorName) {
+              doctorName.style.cssText += ";font-size:clamp(3.2rem,8vw,5.2rem)!important;font-weight:900!important;line-height:.84!important;text-shadow:0 2px 14px rgba(0,0,0,.8)!important";
+              const surname = doctorName.querySelector("span");
+              if (surname) surname.style.cssText += ";font-weight:900!important;color:#e4bd63!important";
+            }
+            const supportingCopy = heroCopy.querySelectorAll("p")[6];
+            if (supportingCopy) supportingCopy.remove();
+            const appointmentButton = heroCopy.querySelector("button");
+            if (appointmentButton) {
+              appointmentButton.style.cssText += ";background:transparent!important;border:1px solid rgba(255,255,255,.9)!important;color:#fff!important;border-radius:7px!important;box-shadow:none!important;font-weight:700!important";
+              appointmentButton.addEventListener("click", () => {
+                const headerButton = document.querySelector("header button");
+                if (headerButton) headerButton.click();
+                else window.location.hash = "contact";
+              });
+            }
+          }
+          const hero = wrap.closest(".hero");
+          const highlights = document.querySelector('[aria-label="Clinic highlights"]');
+          if (hero && highlights) hero.insertAdjacentElement("afterend", highlights);
+          if (hero && !document.querySelector(".restored-clinic-intro")) {
+            const intro = document.createElement("section");
+            intro.className = "restored-clinic-intro";
+            intro.setAttribute("aria-label", "Clinic introduction");
+            intro.style.cssText = "padding:1.25rem 1.25rem 1.5rem;background:#f8f3ed;color:#173f38;text-align:center";
+            intro.innerHTML = '<p style="margin:0;color:#174d36;font-family:DM Serif Display,Georgia,serif;font-size:1.15rem;letter-spacing:.12em;font-weight:700">SHRI GURUPAD</p><p style="margin:.25rem 0 .7rem;color:#a17735;font-family:Manrope,sans-serif;font-size:.7rem;letter-spacing:.18em;font-weight:800">MULTISPECIALITY CLINIC</p><p style="margin:0;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.05;font-weight:400">Dr. Ashish Choyal</p><p style="margin:.35rem 0 .8rem;color:#6d634e;font-family:Manrope,sans-serif;font-size:.85rem;letter-spacing:.04em;font-weight:700">B.A.M.S., M.D. (Panchakarma)</p><div style="margin:0 auto .75rem;width:5rem;border-top:1px solid #c7b58f;position:relative"><span style="position:absolute;left:50%;top:-.7rem;transform:translateX(-50%);padding:0 .45rem;background:#f8f3ed;color:#a17735;font-size:1rem">⌁</span></div><p style="max-width:34rem;margin:0 auto;font-family:Manrope,sans-serif;font-size:.9rem;line-height:1.55;color:#343c38">We provide authentic Ayurvedic treatments<br>with a holistic approach to restore balance,<br>relieve ailments and promote long-term wellness.</p>';
+            intro.style.cssText = "position:relative;overflow:hidden;padding:clamp(2.5rem,8vw,4.5rem) 1.25rem clamp(6.5rem,17vw,8.5rem);background:linear-gradient(135deg,#fbf8f2 0%,#f4ecdf 100%);color:#173f38;text-align:center;border-top:1px solid rgba(180,150,100,.2)";
+            intro.innerHTML = '<div style="position:absolute;top:-5rem;left:-4rem;width:14rem;height:14rem;border:1px solid rgba(177,140,67,.18);border-radius:50%"></div><div style="position:absolute;right:-6rem;bottom:-7rem;width:19rem;height:19rem;border:1px solid rgba(23,77,54,.12);border-radius:50%"></div><div style="position:relative;max-width:42rem;margin:0 auto"><p style="margin:0 0 .65rem;color:#b0802d;font-family:Manrope,sans-serif;font-size:.7rem;letter-spacing:.24em;font-weight:800">AUTHENTIC AYURVEDIC CARE</p><p style="margin:0;color:#174d36;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.35rem,3.5vw,1.9rem);letter-spacing:.14em;font-weight:700;line-height:1.1">SHRI GURUPAD</p><p style="margin:.45rem 0 1.8rem;color:#a17735;font-family:Manrope,sans-serif;font-size:clamp(.68rem,1.4vw,.82rem);letter-spacing:.22em;font-weight:800">MULTISPECIALITY CLINIC</p><div style="height:1px;width:5.5rem;margin:0 auto 1.5rem;background:#c8ae7d;position:relative"><span style="position:absolute;left:50%;top:-.75rem;transform:translateX(-50%);padding:0 .65rem;background:#f7efe4;color:#a17735;font-size:1.2rem;line-height:1">⌁</span></div><div style="display:inline-block;min-width:min(100%,30rem);padding:1.35rem 1.5rem 1.45rem;border:1px solid rgba(161,119,53,.32);border-radius:12px;background:rgba(255,255,255,.48);box-shadow:0 12px 28px rgba(88,63,27,.08)"><p style="margin:0;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.25rem,7vw,4rem);font-weight:800;line-height:.95;letter-spacing:.01em">Dr. Ashish Choyal</p><p style="margin:.7rem 0 0;color:#86662f;font-family:Manrope,sans-serif;font-size:clamp(.72rem,1.4vw,.95rem);letter-spacing:.06em;font-weight:800">B.A.M.S., M.D. (Panchakarma)</p></div><p style="max-width:37rem;margin:1.6rem auto 0;color:#343c38;font-family:Manrope,sans-serif;font-size:clamp(.82rem,1.7vw,1rem);line-height:1.7">We provide authentic Ayurvedic treatments<br>with a holistic approach to restore balance,<br>relieve ailments and promote long-term wellness.</p></div>';
+            (highlights || hero).insertAdjacentElement("afterend", intro);
+            if (!document.querySelector(".uploaded-gallery")) {
+              const gallery = document.createElement("section");
+              gallery.className = "uploaded-gallery";
+              gallery.setAttribute("aria-label", "Clinic Gallery");
+              gallery.style.cssText = "padding:2.5rem 1.25rem 6rem;background:#f5ede2;text-align:center;color:#173f38";
+              gallery.innerHTML = '<div style="max-width:42rem;margin:0 auto"><p style="margin:0;color:#b0802d;font-family:Manrope,sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase">CLINIC GALLERY</p><h2 style="margin:.45rem 0 .4rem;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:400">Moments of healing</h2><p style="margin:0 auto 1.35rem;color:#5b625d;font-family:Manrope,sans-serif;font-size:.85rem;line-height:1.5">Upload your clinic images and view them one by one.</p><label style="display:inline-flex;align-items:center;justify-content:center;padding:.7rem 1.1rem;border:1px solid #174d36;border-radius:7px;background:#174d36;color:#fff;font-family:Manrope,sans-serif;font-size:.8rem;font-weight:700;cursor:pointer"><input class="gallery-upload-input" type="file" accept="image/*" multiple style="position:absolute;width:1px;height:1px;opacity:0">Upload Images</label><div class="gallery-viewer" style="display:none;margin:1.5rem auto 0;max-width:34rem"><div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#e8ddcf;box-shadow:0 14px 30px rgba(55,43,25,.14)"><img class="gallery-current-image" alt="Uploaded clinic gallery image" style="display:block;width:100%;height:100%;object-fit:cover"><button class="gallery-prev" type="button" aria-label="Previous image" style="position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:2.3rem;height:2.3rem;border:0;border-radius:50%;background:rgba(23,63,56,.86);color:#fff;font-size:1.25rem;cursor:pointer">&#8249;</button><button class="gallery-next" type="button" aria-label="Next image" style="position:absolute;right:.7rem;top:50%;transform:translateY(-50%);width:2.3rem;height:2.3rem;border:0;border-radius:50%;background:rgba(23,63,56,.86);color:#fff;font-size:1.25rem;cursor:pointer">&#8250;</button></div><p class="gallery-counter" style="margin:.7rem 0 0;color:#86662f;font-family:Manrope,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em"></p></div></div>';
+              (highlights || hero).insertAdjacentElement("afterend", gallery);
+              gallery.innerHTML = gallery.innerHTML.replace("Upload your clinic images and view them one by one.", "A curated view of Shri Gurupad clinic.");
+              const input = gallery.querySelector(".gallery-upload-input");
+              const uploadLabel = input?.closest("label");
+              if (uploadLabel) uploadLabel.remove();
+              const galleryDescription = gallery.querySelector("p");
+              if (galleryDescription) galleryDescription.textContent = "A curated view of Shri Gurupad clinic.";
+              const viewer = gallery.querySelector(".gallery-viewer");
+              const image = gallery.querySelector(".gallery-current-image");
+              const counter = gallery.querySelector(".gallery-counter");
+              if (counter) counter.remove();
+              const files = [
+                { name: "Clinic image 1", url: "/images/gurupad_ai_2.jpeg" },
+                { name: "Clinic image 2", url: "/images/gurupad_ai_3.jpeg" },
+                { name: "Clinic image 3", url: "/images/gurupad_ai_4.jpeg" },
+                { name: "Clinic image 4", url: "/images/gurupad_ai_5.jpeg" },
+              ];
+              let current = 0;
+              const render = () => {
+                const item = files[current];
+                if (!item) return;
+                image.src = item.url;
+                image.alt = item.name;
+                viewer.style.display = "block";
+              };
+              render();
+              gallery.querySelector(".gallery-prev").addEventListener("click", () => {
+                if (files.length) { current = (current - 1 + files.length) % files.length; render(); }
+              });
+              gallery.querySelector(".gallery-next").addEventListener("click", () => {
+                if (files.length) { current = (current + 1) % files.length; render(); }
+              });
+              const oldAbout = document.querySelector("#about");
+              const assessment = document.createElement("section");
+              assessment.className = "assessment-section";
+              assessment.setAttribute("aria-label", "Rooted in Ayurveda");
+              assessment.style.cssText = "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,5rem);align-items:center;padding:clamp(3rem,8vw,6rem) clamp(1.25rem,6vw,5rem);background:#fbf7f1;color:#173f38";
+              assessment.innerHTML = '<div style="max-width:31rem"><p style="margin:0 0 .7rem;color:#b0802d;font-family:Manrope,sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase">OUR APPROACH</p><h2 style="margin:0;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.02">Rooted in Ayurveda.<br><em style="color:#b0802d">Guided by assessment.</em></h2><div style="width:5rem;height:1px;margin:1.35rem 0;background:#c8ae7d"></div><p style="margin:0;color:#4a554f;font-family:Manrope,sans-serif;font-size:clamp(.88rem,1.5vw,1rem);line-height:1.7">Personalized care begins with listening closely, understanding your needs, and creating a thoughtful path toward lasting wellness.</p></div><div class="assessment-viewer" style="position:relative;min-height:clamp(15rem,34vw,27rem);overflow:hidden;border-radius:14px;background:#e8ddcf;box-shadow:0 18px 40px rgba(55,43,25,.16)"><img class="assessment-image is-active" src="/images/gurupad_ai_2.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_3.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_4.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_5.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"></div>';
+              const assessmentStyle = document.createElement("style");
+              assessmentStyle.textContent = "@media (max-width:700px){.assessment-section{grid-template-columns:1fr!important;gap:1.75rem!important;padding:2.75rem 1.25rem 3.5rem!important}.assessment-section h2{font-size:clamp(2rem,10vw,3rem)!important}.assessment-viewer{min-height:18rem!important}}";
+              document.head.appendChild(assessmentStyle);
+              if (oldAbout) oldAbout.remove();
+              gallery.insertAdjacentElement("afterend", assessment);
+              const assessmentImages = [...assessment.querySelectorAll(".assessment-image")];
+              let assessmentIndex = 0;
+              window.setInterval(() => {
+                assessmentImages[assessmentIndex].style.opacity = "0";
+                assessmentIndex = (assessmentIndex + 1) % assessmentImages.length;
+                assessmentImages[assessmentIndex].style.opacity = "1";
+              }, 3000);
+            }
           }
           let active = 0;
           window.setInterval(() => {
             slides[active].classList.remove("is-active");
             active = (active + 1) % slides.length;
             slides[active].classList.add("is-active");
-          }, 2000);
+            wrap.style.backgroundImage = `url("${images[active]}")`;
+          }, 3000);
         };
         setupHero();
       })();
