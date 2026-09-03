@@ -161,10 +161,16 @@
               assessment.style.cssText = "display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,6vw,5rem);align-items:center;box-sizing:border-box;width:100%;padding:clamp(3rem,8vw,6rem) clamp(1.25rem,6vw,5rem);background:#fbf7f1;color:#173f38";
               assessment.innerHTML = '<div style="max-width:31rem"><p style="margin:0 0 .7rem;color:#b0802d;font-family:Manrope,sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase">OUR APPROACH</p><h2 style="margin:0;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.02">Rooted in Ayurveda.<br><em style="color:#b0802d">Guided by assessment.</em></h2><div style="width:5rem;height:1px;margin:1.35rem 0;background:#c8ae7d"></div><p style="margin:0;color:#4a554f;font-family:Manrope,sans-serif;font-size:clamp(.88rem,1.5vw,1rem);line-height:1.7">Personalized care begins with listening closely, understanding your needs, and creating a thoughtful path toward lasting wellness.</p></div><div class="assessment-viewer" style="position:relative;min-height:clamp(15rem,34vw,27rem);overflow:hidden;border-radius:14px;background:#e8ddcf;box-shadow:0 18px 40px rgba(55,43,25,.16)"><img class="assessment-image is-active" src="/images/gurupad_ai_2.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_3.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_4.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"><img class="assessment-image" src="/images/gurupad_ai_5.jpeg" alt="Ayurvedic clinic care" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out"></div>';
               const assessmentStyle = document.createElement("style");
-              assessmentStyle.textContent = "@media (max-width:480px){.assessment-section{grid-template-columns:1fr 1fr!important;gap:1rem!important;padding:2.25rem .75rem 3rem!important}.assessment-section h2{font-size:clamp(1.35rem,7vw,2.4rem)!important}.assessment-section p:last-child{font-size:clamp(.7rem,2.8vw,1rem)!important;line-height:1.55!important}.assessment-viewer{min-height:0!important;aspect-ratio:3/2}}";
+              assessmentStyle.textContent = "#about .about-grid{grid-template-columns:1fr!important}#about .about-main--full{grid-column:1/-1!important}@media (max-width:480px){.assessment-section{grid-template-columns:1fr 1fr!important;gap:1rem!important;padding:2.25rem .75rem 3rem!important}.assessment-section h2{font-size:clamp(1.35rem,7vw,2.4rem)!important}.assessment-section p:last-child{font-size:clamp(.7rem,2.8vw,1rem)!important;line-height:1.55!important}.assessment-viewer{min-height:0!important;aspect-ratio:3/2}}";
               document.head.appendChild(assessmentStyle);
-              if (oldAbout) oldAbout.remove();
-              gallery.insertAdjacentElement("afterend", assessment);
+              document.querySelector("#about .doctor-card-featured")?.remove();
+              const planCard = [...document.querySelectorAll("#approach .principle-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "A plan you can understand");
+              if (planCard) {
+                planCard.style.cssText += ";background:linear-gradient(145deg,#174d36,#236b4d);border:1px solid #174d36;border-radius:14px;box-shadow:0 16px 32px rgba(23,77,54,.2);color:#fff;transform:translateY(-4px)";
+                planCard.querySelector(".principle-card__top")?.style.setProperty("color", "#e4bd63");
+                planCard.querySelector("h3")?.style.setProperty("color", "#fff");
+                planCard.querySelector("p")?.style.setProperty("color", "#e6f1e5");
+              }
               const skinCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Skin Disorders");
               if (skinCard && !skinCard.querySelector(".skin-disorders-image")) {
                 const skinImage = document.createElement("img");
@@ -217,9 +223,35 @@
                 bloodPressureImageFrame.appendChild(bloodPressureImage);
                 bloodPressureCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", bloodPressureImageFrame);
               }
-              [skinCard, boneCard, migraineCard, bloodPressureCard].forEach((card) => {
+              const diabetesCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Diabetes");
+              if (diabetesCard && !diabetesCard.querySelector(".diabetes-image")) {
+                const diabetesImage = document.createElement("img");
+                diabetesImage.className = "diabetes-image";
+                diabetesImage.src = "/images/diabetes.png";
+                diabetesImage.alt = "Ayurvedic diabetes care";
+                diabetesImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                const diabetesImageFrame = document.createElement("div");
+                diabetesImageFrame.className = "diabetes-image-frame";
+                diabetesImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                diabetesImageFrame.appendChild(diabetesImage);
+                diabetesCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", diabetesImageFrame);
+              }
+              const digestiveCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Digestive Disorders");
+              if (digestiveCard && !digestiveCard.querySelector(".digestive-image")) {
+                const digestiveImage = document.createElement("img");
+                digestiveImage.className = "digestive-image";
+                digestiveImage.src = "/images/digestive_disorders.png";
+                digestiveImage.alt = "Ayurvedic digestive disorders care";
+                digestiveImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                const digestiveImageFrame = document.createElement("div");
+                digestiveImageFrame.className = "digestive-image-frame";
+                digestiveImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                digestiveImageFrame.appendChild(digestiveImage);
+                digestiveCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", digestiveImageFrame);
+              }
+              [skinCard, boneCard, migraineCard, bloodPressureCard, diabetesCard, digestiveCard].forEach((card) => {
                 if (!card) return;
-                const imageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame");
+                const imageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame, .diabetes-image-frame, .digestive-image-frame");
                 const head = card.querySelector(".treatment-card__head");
                 if (imageFrame && head) {
                   head.parentElement.insertBefore(imageFrame, head);
@@ -229,6 +261,13 @@
                   [...card.children].filter((child) => child !== imageFrame).forEach((child) => body.appendChild(child));
                   card.appendChild(body);
                 }
+                const cardImageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame, .diabetes-image-frame, .digestive-image-frame");
+                if (cardImageFrame) {
+                  cardImageFrame.style.marginTop = "0";
+                  cardImageFrame.style.aspectRatio = "2.1 / 1";
+                }
+                const cardBody = card.querySelector(".treatment-card-body");
+                if (cardBody) cardBody.style.padding = ".9rem 1.1rem 1rem";
                 card.style.cssText += ";padding:0;background:#fff;border:1px solid #c8ddca;border-radius:14px;box-shadow:0 12px 28px rgba(35,82,54,.12);overflow:hidden";
               });
               const assessmentImages = [...assessment.querySelectorAll(".assessment-image")];
