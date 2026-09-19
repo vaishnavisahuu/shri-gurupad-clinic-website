@@ -35,6 +35,68 @@
       <span class="root-cause-leaf root-cause-leaf-bottom" aria-hidden="true"></span>
     </section>`;
 
+  const PanchkarmaJourney = () => {
+    const treatments = [
+      { number: "01", name: "VAMANA", subtitle: "Therapeutic Emesis", description: "A traditional Panchkarma stage presented within a carefully guided Ayurvedic therapy plan.", image: "/images/gurupad_ai_2.jpeg" },
+      { number: "02", name: "VIRECHANA", subtitle: "Therapeutic Ayurvedic Cleansing", description: "A traditional Ayurvedic cleansing stage included within a personalized Panchkarma path.", image: "/images/gurupad_ai_3.jpeg" },
+      { number: "03", name: "NASYA", subtitle: "Nasal Ayurvedic Therapy", description: "A concise introduction to Nasya as part of a carefully guided traditional therapy plan.", image: "/images/gurupad_ai_4.jpeg" },
+      { number: "04", name: "BASTI", subtitle: "Medicated Ayurvedic Therapy", description: "A structured medicated Ayurvedic therapy stage, guided around individual wellness needs.", image: "/images/gurupad_ai_5.jpeg" },
+      { number: "05", name: "ABHYANGA", subtitle: "Ayurvedic Oil Massage", description: "A guided Ayurvedic oil massage presented in a calm, traditional therapy setting.", image: "/images/one.jpeg" },
+      { number: "06", name: "SHIRODHARA", subtitle: "Ayurvedic Oil Flow Therapy", description: "A focused Ayurvedic oil flow therapy stage delivered with quiet attention and care.", image: "/images/two.jpeg" },
+    ];
+    const section = document.createElement("section");
+    section.className = "panchkarma-journey";
+    section.id = "panchkarma-journey";
+    section.setAttribute("aria-labelledby", "panchkarma-journey-heading");
+    section.innerHTML = `
+      <div class="panchkarma-journey-inner">
+        <div class="panchkarma-journey-header">
+          <p class="panchkarma-journey-eyebrow">OUR PANCHKARMA JOURNEY</p>
+          <h2 id="panchkarma-journey-heading">Traditional Therapies. Personalized Care.</h2>
+          <p>Discover our approach to Panchkarma through carefully guided Ayurvedic therapies designed around individual wellness needs.</p>
+        </div>
+        <div class="panchkarma-timeline">
+          <div class="panchkarma-timeline-line" aria-hidden="true"></div>
+          ${treatments.map((treatment) => `
+            <article class="panchkarma-stage" data-stage-number="${treatment.number}">
+              <div class="panchkarma-stage-marker">${treatment.number}</div>
+              <div class="panchkarma-stage-image-wrap">
+                <img class="panchkarma-stage-image" src="${treatment.image}" alt="${treatment.name} — ${treatment.subtitle}" loading="lazy" />
+              </div>
+              <div class="panchkarma-stage-copy">
+                <p class="panchkarma-stage-number">${treatment.number}</p>
+                <h3>${treatment.name}</h3>
+                <h4>${treatment.subtitle}</h4>
+                <p>${treatment.description}</p>
+                <a href="#contact">Explore Treatment <span aria-hidden="true">→</span></a>
+              </div>
+            </article>`).join("")}
+        </div>
+      </div>`;
+    return section;
+  };
+
+  const addPanchkarmaJourney = () => {
+    const button = document.querySelector(".show-all-treatments");
+    if (!button || document.querySelector(".panchkarma-journey")) return;
+    const section = PanchkarmaJourney();
+    const journeyHeader = section.querySelector(".panchkarma-journey-header");
+    journeyHeader.innerHTML = `
+      <img class="panchkarma-journey-heading-image" src="/images/journey-heading.png" alt="The Five Purifications, showing Vamana, Virechana, Nasya Karma, Kati Basti, Abhyanga, Leech Therapy, and Shirodhara" />`;
+    button.insertAdjacentElement("afterend", section);
+    const stages = [...section.querySelectorAll(".panchkarma-stage")];
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      stages.forEach((stage) => stage.classList.add("is-active"));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-active");
+      });
+    }, { threshold: 0.42 });
+    stages.forEach((stage) => observer.observe(stage));
+  };
+
   const renderClinicIntro = () => {
     removeExtraSpecialistSection();
     const intro = document.querySelector(".restored-clinic-intro");
@@ -76,6 +138,10 @@
                 </div>
               </article>
             </div>
+            <div class="clinic-cta-actions" aria-label="Profile and appointment actions">
+              <a class="clinic-cta clinic-cta-profile" href="#about">Full Profile <span aria-hidden="true">→</span></a>
+              <button class="clinic-cta clinic-cta-book" type="button">Book Now</button>
+            </div>
           </div>
         </div>
       </div>`;
@@ -88,10 +154,11 @@
     .uploaded-gallery { padding-bottom: 0 !important; opacity: 0; transform: translateY(5rem); }
     .show-all-treatments { display: block; width: fit-content; margin: 1.5rem auto 0; padding: .75rem 1.2rem; border: 1px solid #174d36; border-radius: 999px; background: #174d36; color: #fff; font: 700 .78rem/1 Manrope, sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .2s ease, transform .2s ease; }
     .show-all-treatments:hover { background: #b0802d; transform: translateY(-2px); }
-    .treatment-card { min-height: 0 !important; }
-    .treatment-card [class*="image-frame"] { aspect-ratio: 2.35 / 1 !important; }
-    .treatment-card-body { padding: .65rem .8rem .7rem !important; }
-    .treatment-card__head { margin-bottom: .35rem !important; }
+    .treatment-card { width: 95% !important; min-height: 0 !important; justify-self: center; }
+    .treatment-card [class*="image-frame"] { display: block !important; margin-bottom: 0 !important; aspect-ratio: 2.35 / 1 !important; }
+    .treatment-card [class*="image-frame"] img { display: block !important; }
+    .treatment-card-body { margin-top: 0 !important; padding: .45rem .8rem .7rem !important; }
+    .treatment-card__head { display: none !important; }
     .treatment-card p { margin-bottom: .4rem !important; line-height: 1.4 !important; }
     .treatment-card .treatment-card__tags { margin-bottom: .45rem !important; }
     .clinic-intro-inner { position: relative; max-width: 52rem; margin: 0 auto; }
@@ -136,13 +203,59 @@
     .clinic-education-item h3 { margin: .1rem 0 .25rem; color: #173f38; font: 800 clamp(.9rem, 1.7vw, 1.05rem)/1.3 Manrope, sans-serif; }
     .clinic-education-item h3 strong { color: #174d36; }
     .clinic-education-item p { margin: 0; color: #718078; font: clamp(.78rem, 1.4vw, .88rem)/1.55 Manrope, sans-serif; }
+    .clinic-cta-actions { display: flex; justify-content: center; gap: .8rem; margin-top: 1.8rem; }
+    .clinic-cta { display: inline-flex; min-width: 10.5rem; min-height: 3.25rem; align-items: center; justify-content: center; padding: .85rem 1.35rem; border: 1px solid transparent; border-radius: 999px; font: 800 .82rem/1 Manrope, sans-serif; letter-spacing: .04em; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, filter .2s ease; }
+    .clinic-cta:hover { transform: translateY(-3px); box-shadow: 0 9px 18px rgba(23,63,56,.16); filter: brightness(1.04); }
+    .clinic-cta:focus-visible { outline: 3px solid rgba(176,128,45,.55); outline-offset: 3px; }
+    .clinic-cta-profile { background: #174d35; color: #fff; }
+    .clinic-cta-profile span { margin-left: .45rem; font-size: 1.1em; }
+    .clinic-cta-book { background: #d6a849; color: #173f38; }
+    .panchkarma-journey { padding: clamp(4.5rem, 9vw, 7rem) 1.25rem; background: #faf9f4; }
+    .panchkarma-journey-inner { max-width: 68rem; margin: 0 auto; }
+    .panchkarma-journey-header { max-width: 40rem; margin: 0 auto clamp(3rem, 7vw, 5rem); text-align: center; }
+    .panchkarma-journey-eyebrow { margin: 0 0 .75rem; color: #b0802d; font: 800 .68rem/1.3 Manrope, sans-serif; letter-spacing: .22em; }
+    .panchkarma-journey-header h2 { margin: 0 0 .85rem; color: #174d35; font: 400 clamp(2rem, 4.5vw, 3.15rem)/1.05 "DM Serif Display", Georgia, serif; }
+    .panchkarma-journey-header > p:last-child { margin: 0; color: #68776e; font: clamp(.88rem, 1.5vw, 1rem)/1.7 Manrope, sans-serif; }
+    .panchkarma-journey-heading-image { display: block; width: 100%; height: auto; border-radius: 22px; box-shadow: 0 12px 28px rgba(23,77,53,.08); }
+    .panchkarma-timeline { position: relative; display: grid; gap: clamp(3rem, 8vw, 6rem); }
+    .panchkarma-timeline-line { position: absolute; top: 2rem; bottom: 2rem; left: 50%; width: 1px; background: rgba(23,77,53,.18); transform: translateX(-50%); }
+    .panchkarma-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; opacity: .42; transition: opacity .75s ease; }
+    .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap { grid-column: 3; grid-row: 1; }
+    .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 1; grid-row: 1; text-align: right; }
+    .panchkarma-stage-marker { z-index: 1; display: grid; width: 3.2rem; height: 3.2rem; place-items: center; border: 1px solid rgba(23,77,53,.25); border-radius: 50%; background: #faf9f4; color: #829087; font: 800 .72rem/1 Manrope, sans-serif; letter-spacing: .06em; transition: background .5s ease, color .5s ease, border-color .5s ease, transform .5s ease; }
+    .panchkarma-stage-image-wrap { overflow: hidden; aspect-ratio: 1.5 / 1; border-radius: 22px; background: #e8f0e2; box-shadow: 0 14px 28px rgba(23,77,53,.1); }
+    .panchkarma-stage-image { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .82; transform: scale(1.04); transition: opacity .8s ease, transform 1s cubic-bezier(.2,.75,.3,1); }
+    .panchkarma-stage-copy { transform: translateY(1.25rem); transition: opacity .75s ease, transform .75s ease; }
+    .panchkarma-stage-number { margin: 0 0 .5rem; color: #b0802d; font: 800 .7rem/1 Manrope, sans-serif; letter-spacing: .2em; }
+    .panchkarma-stage-copy h3 { margin: 0; color: #174d35; font: 400 clamp(1.6rem, 3vw, 2.45rem)/1 "DM Serif Display", Georgia, serif; letter-spacing: .04em; }
+    .panchkarma-stage-copy h4 { margin: .55rem 0 .7rem; color: #52645a; font: 800 clamp(.8rem, 1.4vw, .95rem)/1.35 Manrope, sans-serif; }
+    .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: 26rem; margin: 0 0 1rem; color: #718078; font: clamp(.82rem, 1.4vw, .94rem)/1.65 Manrope, sans-serif; }
+    .panchkarma-stage-copy a { color: #174d35; font: 800 .76rem/1 Manrope, sans-serif; letter-spacing: .05em; text-decoration: none; }
+    .panchkarma-stage-copy a span { margin-left: .3rem; transition: margin-left .2s ease; }
+    .panchkarma-stage-copy a:hover span { margin-left: .55rem; }
+    .panchkarma-stage.is-active { opacity: 1; }
+    .panchkarma-stage.is-active .panchkarma-stage-marker { border-color: #174d35; background: #174d35; color: #fff; transform: scale(1.08); }
+    .panchkarma-stage.is-active .panchkarma-stage-image { opacity: 1; transform: scale(1); }
+    .panchkarma-stage.is-active .panchkarma-stage-copy { transform: translateY(0); }
     @media (max-width: 560px) { .clinic-specialist-copy { padding: 1.25rem; } .clinic-doctor-image { width: min(100%, 17rem); } .root-cause-card { grid-template-columns: 1fr; gap: .9rem; padding: 1.25rem; } .root-cause-copy { padding: 0; border-left: 0; } .root-cause-icon { width: 3.7rem; height: 3.7rem; } .root-cause-copy h2 { font-size: 1.45rem; } }
+    @media (max-width: 560px) { .clinic-cta-actions { flex-direction: column; align-items: center; gap: .65rem; } .clinic-cta { width: min(100%, 13rem); min-height: 3rem; } }
+    @media (max-width: 700px) { .panchkarma-journey { overflow-x: hidden; padding-inline: 1rem; } .panchkarma-journey-header { max-width: 100%; } .panchkarma-journey-heading-image { width: 100%; max-width: 100%; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-timeline-line { top: 1.5rem; bottom: 1.5rem; left: 1.25rem; } .panchkarma-stage, .panchkarma-stage:nth-of-type(even) { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; align-items: start; } .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 2; grid-row: auto; text-align: left; } .panchkarma-stage-marker { width: 2.5rem; height: 2.5rem; } .panchkarma-stage-image-wrap { grid-column: 2; grid-row: 1; aspect-ratio: 1.35 / 1; border-radius: 18px; } .panchkarma-stage-copy { grid-column: 2; grid-row: 2; } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: none; } }
+    @media (prefers-reduced-motion: reduce) { .panchkarma-stage, .panchkarma-stage-copy, .panchkarma-stage-image { transition: none; } }
   `;
   document.head.appendChild(style);
 
   const observeScrollSections = () => {
     removeExtraSpecialistSection();
     addTreatmentsButton();
+    addPanchkarmaJourney();
+    const bookButton = document.querySelector(".clinic-cta-book");
+    const appointmentButton = [...document.querySelectorAll("button")].find((button) =>
+      button.textContent.trim().toLowerCase() === "book appointment"
+    );
+    if (bookButton && appointmentButton && bookButton.dataset.appointmentWired !== "true") {
+      bookButton.dataset.appointmentWired = "true";
+      bookButton.addEventListener("click", () => appointmentButton.click());
+    }
     const sections = [...document.querySelectorAll(".clinic-specialist, .uploaded-gallery")];
     if (!sections.length) return false;
     sections.forEach((section) => {
