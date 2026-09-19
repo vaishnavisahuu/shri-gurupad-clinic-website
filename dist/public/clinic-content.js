@@ -37,12 +37,12 @@
 
   const PanchkarmaJourney = () => {
     const treatments = [
-      { number: "01", name: "VAMANA", subtitle: "Therapeutic Emesis", description: "A traditional Panchkarma stage presented within a carefully guided Ayurvedic therapy plan.", image: "/images/gurupad_ai_2.jpeg" },
-      { number: "02", name: "VIRECHANA", subtitle: "Therapeutic Ayurvedic Cleansing", description: "A traditional Ayurvedic cleansing stage included within a personalized Panchkarma path.", image: "/images/gurupad_ai_3.jpeg" },
-      { number: "03", name: "NASYA", subtitle: "Nasal Ayurvedic Therapy", description: "A concise introduction to Nasya as part of a carefully guided traditional therapy plan.", image: "/images/gurupad_ai_4.jpeg" },
-      { number: "04", name: "BASTI", subtitle: "Medicated Ayurvedic Therapy", description: "A structured medicated Ayurvedic therapy stage, guided around individual wellness needs.", image: "/images/gurupad_ai_5.jpeg" },
-      { number: "05", name: "ABHYANGA", subtitle: "Ayurvedic Oil Massage", description: "A guided Ayurvedic oil massage presented in a calm, traditional therapy setting.", image: "/images/one.jpeg" },
-      { number: "06", name: "SHIRODHARA", subtitle: "Ayurvedic Oil Flow Therapy", description: "A focused Ayurvedic oil flow therapy stage delivered with quiet attention and care.", image: "/images/two.jpeg" },
+      { number: "01", name: "VAMANA", subtitle: "Therapeutic Emesis", description: "A traditional Panchkarma therapy involving carefully supervised therapeutic emesis as part of a personalized Ayurvedic treatment plan.", image: "/images/gurupad_ai_2.jpeg" },
+      { number: "02", name: "VIRECHANA", subtitle: "Therapeutic Ayurvedic Cleansing", description: "A traditional Panchkarma therapy involving controlled therapeutic purgation to support the elimination of accumulated doshas.", image: "/images/gurupad_ai_3.jpeg" },
+      { number: "03", name: "NASYA", subtitle: "Nasal Ayurvedic Therapy", description: "A traditional Ayurvedic therapy in which carefully selected medicated oils or preparations are administered through the nasal passages.", image: "/images/gurupad_ai_4.jpeg" },
+      { number: "04", name: "BASTI", subtitle: "Medicated Ayurvedic Therapy", description: "A localized Ayurvedic therapy where warm medicated oil is gently retained over the lower back to support comfort and relaxation.", image: "/images/gurupad_ai_5.jpeg" },
+      { number: "05", name: "ABHYANGA", subtitle: "Ayurvedic Oil Massage", description: "A traditional full-body Ayurvedic massage using warm herbal oils selected according to individual needs and Ayurvedic assessment.", image: "/images/one.jpeg" },
+      { number: "06", name: "SHIRODHARA", subtitle: "Ayurvedic Oil Flow Therapy", description: "A classical Ayurvedic therapy in which a gentle, continuous stream of warm medicated oil or selected liquids is poured over the forehead.", image: "/images/two.jpeg" },
     ];
     const section = document.createElement("section");
     section.className = "panchkarma-journey";
@@ -82,7 +82,7 @@
     const section = PanchkarmaJourney();
     const journeyHeader = section.querySelector(".panchkarma-journey-header");
     journeyHeader.innerHTML = `
-      <img class="panchkarma-journey-heading-image" src="/images/journey-heading.png" alt="The Five Purifications, showing Vamana, Virechana, Nasya Karma, Kati Basti, Abhyanga, Leech Therapy, and Shirodhara" />`;
+      <img class="panchkarma-journey-heading-image" src="/images/journey-heading-new.png" alt="The Five Purifications, showing Vamana, Virechana, Nasya Karma, Kati Basti, Abhyanga, Leech Therapy, and Shirodhara" />`;
     button.insertAdjacentElement("afterend", section);
     const stages = [...section.querySelectorAll(".panchkarma-stage")];
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
@@ -95,6 +95,23 @@
       });
     }, { threshold: 0.42 });
     stages.forEach((stage) => observer.observe(stage));
+  };
+
+  const ExploreAllPanchkarmaButton = () => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "explore-panchkarma-cta-section";
+    wrapper.innerHTML = `
+      <a class="explore-panchkarma-cta" href="/treatments.html">
+        <span>Explore All Panchkarma Therapies</span>
+        <span class="explore-panchkarma-cta-arrow" aria-hidden="true">→</span>
+      </a>`;
+    return wrapper;
+  };
+
+  const addPanchkarmaCta = () => {
+    const section = document.querySelector("#panchkarma");
+    if (!section || document.querySelector(".explore-panchkarma-cta-section")) return;
+    section.insertAdjacentElement("afterend", ExploreAllPanchkarmaButton());
   };
 
   const renderClinicIntro = () => {
@@ -211,12 +228,18 @@
     .clinic-cta-profile span { margin-left: .45rem; font-size: 1.1em; }
     .clinic-cta-book { background: #d6a849; color: #173f38; }
     .panchkarma-journey { padding: clamp(4.5rem, 9vw, 7rem) 1.25rem; background: #faf9f4; }
-    .panchkarma-journey-inner { max-width: 68rem; margin: 0 auto; }
-    .panchkarma-journey-header { max-width: 40rem; margin: 0 auto clamp(3rem, 7vw, 5rem); text-align: center; }
+    .panchkarma-journey-inner { max-width: 78rem; margin: 0 auto; }
+    .panchkarma-journey-header { max-width: 64rem; margin: 0 auto clamp(3rem, 7vw, 5rem); text-align: center; }
     .panchkarma-journey-eyebrow { margin: 0 0 .75rem; color: #b0802d; font: 800 .68rem/1.3 Manrope, sans-serif; letter-spacing: .22em; }
     .panchkarma-journey-header h2 { margin: 0 0 .85rem; color: #174d35; font: 400 clamp(2rem, 4.5vw, 3.15rem)/1.05 "DM Serif Display", Georgia, serif; }
     .panchkarma-journey-header > p:last-child { margin: 0; color: #68776e; font: clamp(.88rem, 1.5vw, 1rem)/1.7 Manrope, sans-serif; }
     .panchkarma-journey-heading-image { display: block; width: 100%; height: auto; border-radius: 22px; box-shadow: 0 12px 28px rgba(23,77,53,.08); }
+    .explore-panchkarma-cta-section { display: flex; justify-content: center; padding: 2.5rem 1.25rem; background: #0f4a2e; }
+    .explore-panchkarma-cta { display: inline-flex; width: min(100%, 32rem); min-height: 3.6rem; align-items: center; justify-content: center; gap: .45rem; padding: 1rem 2rem; border-radius: 999px; background: #d8b45a; color: #123d2a; box-shadow: 0 8px 20px rgba(216,180,90,.18); font: 800 clamp(.82rem, 1.5vw, 1rem)/1.2 Manrope, sans-serif; text-align: center; text-decoration: none; transition: background-color .28s ease, box-shadow .28s ease, transform .28s ease; }
+    .explore-panchkarma-cta:hover { background: #e4c875; box-shadow: 0 12px 25px rgba(216,180,90,.28); transform: translateY(-3px); }
+    .explore-panchkarma-cta:focus-visible { outline: 3px solid rgba(216,180,90,.55); outline-offset: 4px; }
+    .explore-panchkarma-cta-arrow { display: inline-block; transition: transform .28s ease; }
+    .explore-panchkarma-cta:hover .explore-panchkarma-cta-arrow { transform: translateX(4px); }
     .panchkarma-timeline { position: relative; display: grid; gap: clamp(3rem, 8vw, 6rem); }
     .panchkarma-timeline-line { position: absolute; top: 2rem; bottom: 2rem; left: 50%; width: 1px; background: rgba(23,77,53,.18); transform: translateX(-50%); }
     .panchkarma-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; opacity: .42; transition: opacity .75s ease; }
@@ -239,7 +262,9 @@
     .panchkarma-stage.is-active .panchkarma-stage-copy { transform: translateY(0); }
     @media (max-width: 560px) { .clinic-specialist-copy { padding: 1.25rem; } .clinic-doctor-image { width: min(100%, 17rem); } .root-cause-card { grid-template-columns: 1fr; gap: .9rem; padding: 1.25rem; } .root-cause-copy { padding: 0; border-left: 0; } .root-cause-icon { width: 3.7rem; height: 3.7rem; } .root-cause-copy h2 { font-size: 1.45rem; } }
     @media (max-width: 560px) { .clinic-cta-actions { flex-direction: column; align-items: center; gap: .65rem; } .clinic-cta { width: min(100%, 13rem); min-height: 3rem; } }
+    @media (min-width: 701px) and (max-width: 1100px) { .panchkarma-journey { padding-inline: clamp(1.5rem, 4vw, 3rem); } .panchkarma-journey-inner { max-width: 64rem; } .panchkarma-journey-header { max-width: 58rem; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-stage { grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr); gap: 1.5rem; } .panchkarma-stage-copy h3 { font-size: clamp(1.7rem, 3vw, 2.2rem); } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { font-size: .9rem; } .panchkarma-stage-image-wrap { aspect-ratio: 1.35 / 1; } }
     @media (max-width: 700px) { .panchkarma-journey { overflow-x: hidden; padding-inline: 1rem; } .panchkarma-journey-header { max-width: 100%; } .panchkarma-journey-heading-image { width: 100%; max-width: 100%; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-timeline-line { top: 1.5rem; bottom: 1.5rem; left: 1.25rem; } .panchkarma-stage, .panchkarma-stage:nth-of-type(even) { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; align-items: start; } .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 2; grid-row: auto; text-align: left; } .panchkarma-stage-marker { width: 2.5rem; height: 2.5rem; } .panchkarma-stage-image-wrap { grid-column: 2; grid-row: 1; aspect-ratio: 1.35 / 1; border-radius: 18px; } .panchkarma-stage-copy { grid-column: 2; grid-row: 2; } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: none; } }
+    @media (max-width: 560px) { .explore-panchkarma-cta-section { padding: 2rem 1rem; } .explore-panchkarma-cta { width: 90%; min-height: 3.25rem; padding-inline: 1rem; white-space: nowrap; } }
     @media (prefers-reduced-motion: reduce) { .panchkarma-stage, .panchkarma-stage-copy, .panchkarma-stage-image { transition: none; } }
   `;
   document.head.appendChild(style);
@@ -248,6 +273,7 @@
     removeExtraSpecialistSection();
     addTreatmentsButton();
     addPanchkarmaJourney();
+    addPanchkarmaCta();
     const bookButton = document.querySelector(".clinic-cta-book");
     const appointmentButton = [...document.querySelectorAll("button")].find((button) =>
       button.textContent.trim().toLowerCase() === "book appointment"
