@@ -19,6 +19,22 @@
     grid.insertAdjacentElement("afterend", button);
   };
 
+  const RootCauseCard = () => `
+    <section class="root-cause-card" aria-labelledby="root-cause-heading">
+      <div class="root-cause-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" role="img">
+          <path d="M12 30h24M16 30c0 5 3.5 8 8 8s8-3 8-8M18 30V19h12v11M21 19v-4h6v4M10 30h28" />
+          <path d="M32 12c4 1 6 4 5 8-4 0-7-2-7-6 0-1 1-2 2-2Z" />
+        </svg>
+      </div>
+      <div class="root-cause-copy">
+        <h2 id="root-cause-heading">We look beyond the symptoms to understand the root cause.</h2>
+        <p>With Panchkarma therapies, we help restore balance, support natural healing, and guide your body toward lasting wellness.</p>
+      </div>
+      <span class="root-cause-leaf root-cause-leaf-top" aria-hidden="true"></span>
+      <span class="root-cause-leaf root-cause-leaf-bottom" aria-hidden="true"></span>
+    </section>`;
+
   const renderClinicIntro = () => {
     removeExtraSpecialistSection();
     const intro = document.querySelector(".restored-clinic-intro");
@@ -43,7 +59,23 @@
             <p class="clinic-credentials">B.A.M.S., M.D. (Panchakarma)</p>
             <p class="clinic-description">We provide authentic Ayurvedic treatments with a holistic approach to restore balance, relieve ailments and promote long-term wellness.</p>
             <h2>Care guided by experience and compassion.</h2>
-            <p>Dr. Ashish Choyal combines classical Ayurvedic wisdom with a thoughtful, personalized approach to Panchakarma and everyday wellness. Every consultation begins with listening, assessment and a care plan designed around you.</p>
+            ${RootCauseCard()}
+            <div class="clinic-education" aria-label="Dr. Ashish Choyal's education and clinic">
+              <article class="clinic-education-item">
+                <div class="clinic-education-icon" aria-hidden="true">🎓</div>
+                <div>
+                  <h3>Professor — R.N.K. Ayurved Medical College, Indore</h3>
+                  <p>Teaching and practicing Ayurvedic medicine at one of MP's premier institutions</p>
+                </div>
+              </article>
+              <article class="clinic-education-item">
+                <div class="clinic-education-icon" aria-hidden="true">🌿</div>
+                <div>
+                  <h3>Founder — <strong>SHRI GURUPAD MULTISPECIALITY CLINIC</strong></h3>
+                  <p>Established a center of excellence in Panchkarma in Madhya Pradesh</p>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </div>`;
@@ -80,7 +112,7 @@
     .clinic-card-mark { color: #b0802d; font: 1.25rem/1 Georgia, serif; }
     .clinic-card-specialist { margin: 0 0 .55rem; color: #b0802d; font: 800 .68rem/1.3 Manrope, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
     @keyframes clinic-card-rise { from { opacity: 0; transform: translateY(5rem); } to { opacity: 1; transform: translateY(0); } }
-    .clinic-specialist.is-visible, .uploaded-gallery.is-visible { animation: clinic-card-rise 1.35s cubic-bezier(.2,.75,.3,1) both; }
+    .clinic-specialist.is-visible, .uploaded-gallery.is-visible { animation: clinic-card-rise .45s cubic-bezier(.2,.75,.3,1) both; }
     @media (prefers-reduced-motion: reduce) { .clinic-specialist, .uploaded-gallery { opacity: 1; transform: none; animation: none; } }
     .clinic-doctor-name { margin: 0; color: #173f38; font: 800 clamp(1.8rem, 4vw, 2.8rem)/1.05 "DM Serif Display", Georgia, serif; }
     .clinic-credentials { margin: .65rem 0 1.15rem; color: #86662f; font-size: clamp(.72rem, 1.4vw, .95rem); letter-spacing: .06em; }
@@ -88,7 +120,23 @@
     .clinic-description { max-width: 34rem; margin: 0 auto 1.4rem; }
     .clinic-specialist-copy h2 { margin: 0 0 .65rem; color: #174d36; font: 400 clamp(1.45rem, 4vw, 2.15rem)/1.05 "DM Serif Display", Georgia, serif; }
     .clinic-specialist-copy > p:last-child { margin: 0; }
-    @media (max-width: 560px) { .clinic-specialist-copy { padding: 1.25rem; } .clinic-doctor-image { width: min(100%, 17rem); } }
+    .root-cause-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(1.1rem, 3vw, 2rem); align-items: center; overflow: hidden; margin-top: 1.8rem; padding: clamp(1.35rem, 3.5vw, 2rem); border: 1px solid rgba(23,77,53,.08); border-radius: 22px; background: #e8f0e2; box-shadow: 0 8px 22px rgba(23,77,53,.06); text-align: left; }
+    .root-cause-icon { display: grid; width: clamp(4rem, 8vw, 5rem); height: clamp(4rem, 8vw, 5rem); place-items: center; flex: 0 0 auto; border-radius: 50%; background: #174d35; }
+    .root-cause-icon svg { width: 55%; height: 55%; fill: none; stroke: #fff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2; }
+    .root-cause-copy { position: relative; z-index: 1; min-width: 0; padding-left: clamp(1.1rem, 3vw, 2rem); border-left: 1px solid rgba(23,77,53,.2); }
+    .root-cause-copy h2 { margin: 0 0 .7rem; color: #174d35; font: 700 clamp(1.4rem, 3.2vw, 2.05rem)/1.16 "DM Serif Display", Georgia, serif; letter-spacing: -.01em; }
+    .root-cause-copy p { margin: 0; color: #63756a; font: clamp(.95rem, 1.6vw, 1.18rem)/1.55 Manrope, sans-serif; }
+    .root-cause-leaf { position: absolute; width: 4.5rem; height: 2rem; border: 1px solid rgba(23,77,53,.12); border-radius: 100% 0 100% 0; pointer-events: none; }
+    .root-cause-leaf-top { top: -.35rem; right: 1.8rem; transform: rotate(28deg); }
+    .root-cause-leaf-bottom { bottom: -.45rem; left: 1.2rem; transform: rotate(208deg); }
+    .root-cause-leaf::after { position: absolute; top: 50%; left: 12%; width: 78%; height: 1px; background: rgba(23,77,53,.1); content: ""; transform: rotate(-22deg); transform-origin: left center; }
+    .clinic-education { display: grid; gap: 1.15rem; margin: 2rem 0 0; padding-top: 1.65rem; border-top: 1px solid rgba(161,119,53,.28); text-align: left; }
+    .clinic-education-item { display: grid; grid-template-columns: 2.75rem minmax(0,1fr); gap: .85rem; align-items: start; }
+    .clinic-education-icon { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border-radius: 50%; background: #174d36; color: #fff; font-size: 1.2rem; box-shadow: 0 5px 12px rgba(23,77,54,.18); }
+    .clinic-education-item h3 { margin: .1rem 0 .25rem; color: #173f38; font: 800 clamp(.9rem, 1.7vw, 1.05rem)/1.3 Manrope, sans-serif; }
+    .clinic-education-item h3 strong { color: #174d36; }
+    .clinic-education-item p { margin: 0; color: #718078; font: clamp(.78rem, 1.4vw, .88rem)/1.55 Manrope, sans-serif; }
+    @media (max-width: 560px) { .clinic-specialist-copy { padding: 1.25rem; } .clinic-doctor-image { width: min(100%, 17rem); } .root-cause-card { grid-template-columns: 1fr; gap: .9rem; padding: 1.25rem; } .root-cause-copy { padding: 0; border-left: 0; } .root-cause-icon { width: 3.7rem; height: 3.7rem; } .root-cause-copy h2 { font-size: 1.45rem; } }
   `;
   document.head.appendChild(style);
 
