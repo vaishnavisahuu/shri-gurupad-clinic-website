@@ -933,9 +933,9 @@
     @media (max-width: 560px) { .find-us-section { padding-inline: 1rem; } .find-us-map-wrap iframe { height: 20rem; } .find-us-map-actions > * { flex: 1 1 10rem; } .find-us-whatsapp { align-items: flex-start; flex-wrap: wrap; } .find-us-whatsapp .find-us-button { width: 100%; margin-left: 0; } .find-us-social { align-items: center; flex-direction: column; } }
     @media (min-width: 701px) {
       .site-header { position: sticky !important; top: 0; left: 0; right: 0; z-index: 30; border-bottom: 1px solid rgba(217,174,79,.18) !important; background: rgba(8,53,36,.98) !important; box-shadow: 0 .7rem 1.5rem rgba(0,0,0,.12); }
-      .site-header__inner { display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto auto; width: min(100% - 4rem, 120rem) !important; min-height: 5.8rem !important; margin: 0 auto; gap: 1.25rem !important; align-items: center; }
-      .site-header__brand { flex: 0 0 auto; gap: 1.8rem !important; }
-      .site-header__logo { width: 3.7rem !important; height: 3.7rem !important; }
+      .site-header__inner { display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto auto; width: min(100% - 4rem, 120rem) !important; min-height: 4.8rem !important; margin: 0 auto; gap: 1.25rem !important; padding-block: .5rem !important; align-items: center; }
+      .site-header__brand { flex: 0 0 auto; gap: 1.2rem !important; }
+      .site-header__logo { width: 3.2rem !important; height: 3.2rem !important; }
       .site-header__clinic-name { color: #fff !important; font-size: 1.18rem !important; letter-spacing: .01em !important; }
       .site-header__clinic-subtitle { color: #d9ae4f !important; font-size: .72rem !important; letter-spacing: .08em !important; }
       .site-header__nav { position: static !important; display: flex !important; width: auto !important; height: auto !important; min-width: 0; flex-flow: row nowrap !important; align-items: center; justify-content: flex-end; gap: .15rem !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
