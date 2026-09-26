@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="theme-color" content="#174D36" />
+    <meta name="description" content="Explore Panchakarma therapies at Shri Gurupad Multispeciality Clinic, guided by Dr. Ashish Choyal." />
+    <title>Our Panchakarma Therapies | Shri Gurupad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color: #f7f1e8;
+        background: #103e32;
+        font-family: Manrope, sans-serif;
+        --green: #103e32;
+        --green-deep: #0c3028;
+        --green-soft: #174d3c;
+        --gold: #d9ae4f;
+        --cream: #f7f1e8;
+        --muted: #c8d5c9;
+        --line: rgba(217, 174, 79, .28);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; background: var(--green); }
+      a { color: inherit; }
+      .site-header { position: relative; z-index: 10; background: var(--green-deep); border-bottom: 1px solid rgba(217,174,79,.2); }
+      .site-header__inner { width: min(1120px, calc(100% - 2rem)); min-height: 5.2rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+      .site-header__brand { display: flex; align-items: center; gap: .85rem; min-width: 0; }
+      .site-header__logo { display: block; width: 3.25rem; height: 3.25rem; flex: 0 0 auto; }
+      .site-header__logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+      .site-header__clinic-name { color: var(--cream); font-size: .9rem; font-weight: 800; letter-spacing: .14em; }
+      .site-header__clinic-subtitle { margin-top: .22rem; color: var(--gold); font-size: .63rem; font-weight: 700; letter-spacing: .14em; }
+      .site-header__cta, .therapy-card__cta { border: 0; border-radius: 999px; background: var(--gold); color: var(--green-deep); cursor: pointer; font: 800 .72rem/1 Manrope, sans-serif; letter-spacing: .08em; padding: .8rem 1.15rem; text-decoration: none; text-transform: uppercase; transition: transform .2s ease, background .2s ease; }
+      .site-header__cta:hover, .therapy-card__cta:hover { background: #e6c36c; transform: translateY(-2px); }
+      .site-header__menu-btn { display: none; border: 0; background: transparent; padding: .5rem; }
+      .site-header__menu-btn span { display: block; width: 1.4rem; height: 2px; margin: .28rem 0; background: var(--cream); }
+      .site-header__nav { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; display: flex; justify-content: flex-end; gap: 1.4rem; padding: 0 0 1rem; }
+      .site-header__nav a { color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+      .site-header__nav a:hover { color: var(--gold); }
+      .page-hero { padding: clamp(4rem, 10vw, 7.5rem) 1rem clamp(3rem, 7vw, 5rem); text-align: center; background: radial-gradient(circle at 50% 0, rgba(217,174,79,.12), transparent 55%); }
+      .eyebrow { margin: 0 0 .8rem; color: var(--gold); font-size: .68rem; font-weight: 800; letter-spacing: .22em; }
+      h1, h2, h3 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; }
+      h1 { max-width: 48rem; margin: 0 auto; color: var(--cream); font-size: clamp(2.65rem, 7vw, 5.4rem); line-height: .98; }
+      .page-hero__subtitle { max-width: 42rem; margin: 1.2rem auto 0; color: var(--muted); font-size: clamp(.9rem, 1.7vw, 1.05rem); line-height: 1.75; }
+      .therapy-list { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding-bottom: 6rem; }
+      .therapy-card { display: grid; grid-template-columns: minmax(16rem, .82fr) minmax(0, 1.18fr); overflow: hidden; margin: 0 0 2rem; border: 1px solid var(--line); border-radius: 1.25rem; background: var(--green-soft); box-shadow: 0 1.5rem 3rem rgba(0,0,0,.14); }
+      .therapy-card:nth-child(even) { grid-template-columns: minmax(0, 1.18fr) minmax(16rem, .82fr); }
+      .therapy-card:nth-child(even) .therapy-card__media { order: 2; }
+      .therapy-card__media { min-height: 25rem; background: var(--green-deep); }
+      .therapy-card__media img { display: block; width: 100%; height: 100%; min-height: 25rem; object-fit: cover; }
+      .therapy-card__body { padding: clamp(1.5rem, 4vw, 3rem); }
+      .therapy-card__number { margin: 0 0 .55rem; color: var(--gold); font-size: .7rem; font-weight: 800; letter-spacing: .18em; }
+      .therapy-card h2 { margin: 0; color: var(--cream); font-size: clamp(2rem, 4vw, 3rem); line-height: 1; }
+      .therapy-card__subtitle { margin: .55rem 0 1rem; color: var(--gold); font-size: .78rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+      .therapy-card__description { margin: 0 0 1.35rem; color: var(--muted); font-size: .9rem; line-height: 1.7; }
+      .therapy-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; margin: 0 0 1.35rem; }
+      .therapy-info__box { padding: .85rem .9rem .9rem 1rem; border: 1px solid rgba(217,174,79,.17); border-left: 3px solid var(--gold); border-radius: .5rem; background: rgba(8,43,35,.46); }
+      .therapy-info__box--wide { grid-column: 1 / -1; }
+      .therapy-info dt { margin: 0 0 .32rem; color: var(--gold); font-size: .62rem; font-weight: 800; letter-spacing: .13em; }
+      .therapy-info dd { margin: 0; color: var(--cream); font-size: .77rem; line-height: 1.55; }
+      .benefits-title { margin: 0 0 .6rem; color: var(--gold); font-size: .63rem; font-weight: 800; letter-spacing: .14em; }
+      .benefits { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+      .benefits li { padding: .45rem .7rem; border: 1px solid rgba(217,174,79,.28); border-radius: 999px; color: var(--cream); font-size: .7rem; line-height: 1; }
+      .benefits li::before { content: "✦"; margin-right: .35rem; color: var(--gold); }
+      .page-footer { padding: 3rem 1rem 5rem; border-top: 1px solid rgba(217,174,79,.18); background: var(--green-deep); text-align: center; }
+      .page-footer strong { color: var(--cream); font-size: .78rem; letter-spacing: .14em; }
+      .page-footer p { margin: .6rem 0 0; color: var(--muted); font-size: .78rem; }
+      .floating-whatsapp, .floating-call { position: fixed; right: 1.1rem; z-index: 20; display: grid; width: 3rem; height: 3rem; place-items: center; border-radius: 50%; color: white; text-decoration: none; box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.25); }
+      .floating-whatsapp { bottom: 5.6rem; background: #25d366; }
+      .floating-call { bottom: 1.8rem; background: var(--gold); color: var(--green-deep); }
+      .floating-whatsapp svg, .floating-call svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; }
+      .scroll-top { position: fixed; right: 1.1rem; bottom: 9.4rem; z-index: 20; display: grid; width: 2.3rem; height: 2.3rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--green-soft); color: var(--gold); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+      .scroll-top.is-visible { opacity: 1; pointer-events: auto; }
+      @media (max-width: 700px) {
+        .site-header__inner { min-height: 4.5rem; }
+        .site-header__clinic-name { font-size: .75rem; }
+        .site-header__clinic-subtitle { font-size: .55rem; }
+        .site-header__cta, .site-header__nav { display: none; }
+        .site-header__menu-btn { display: block; }
+        .site-header__nav.is-open { display: grid; gap: 1rem; padding: 0 0 1.2rem; }
+        .therapy-card, .therapy-card:nth-child(even) { display: flex; flex-direction: column; }
+        .therapy-card:nth-child(even) .therapy-card__media { order: 0; }
+        .therapy-card__media, .therapy-card__media img { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+        .therapy-card__media img { object-fit: contain; background: var(--green-deep); }
+        .therapy-info { grid-template-columns: 1fr; }
+        .therapy-info__box--wide { grid-column: auto; }
+        .floating-whatsapp { bottom: 5rem; }
+        .floating-call { bottom: 1.25rem; }
+        .scroll-top { bottom: 8.7rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="site-header__brand">
+          <a class="site-header__logo" href="/" aria-label="Shri Gurupad home"><img src="/images/shri-gurupad-logo.png" alt="Shri Gurupad Multispeciality Clinic" /></a>
+          <div class="site-header__clinic-info"><div class="site-header__clinic-name">SHRI GURUPAD</div><div class="site-header__clinic-subtitle">MULTISPECIALITY CLINIC</div></div>
+        </div>
+        <a class="site-header__cta" href="/#contact">Book Now</a>
+        <button class="site-header__menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <a href="/#about">About</a><a href="/#treatments">Treatments</a><a href="/panchakarma.html">Panchkarma</a><a href="/#approach">Our approach</a><a href="/#gallery">Gallery</a><a href="/#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">AUTHENTIC AYURVEDIC CARE</p>
+        <h1>Our Panchakarma Therapies</h1>
+        <p class="page-hero__subtitle">Traditional Ayurvedic therapies administered by trained Panchakarma specialists under Dr. Umesh Shukla’s supervision.</p>
+      </section>
+      <section class="therapy-list" aria-label="Panchakarma therapies">
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/gurupad_ai_2.jpeg" alt="Vamana therapeutic emesis therapy" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">01</p><h2>Vamana</h2><p class="therapy-card__subtitle">Therapeutic Emesis</p><p class="therapy-card__description">A traditional Panchkarma therapy involving carefully supervised therapeutic emesis as part of a personalized Ayurvedic treatment plan.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Kapha-related congestion, recurrent respiratory concerns, and selected skin conditions after assessment.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Prepared in stages over several days; the main procedure is scheduled by the physician.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Individual assessment, preparation, supervised procedure, rest, and a graduated post-therapy diet.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Dosha-focused cleansing</li><li>Respiratory support</li><li>Guided recovery</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/gurupad_ai_3.jpeg" alt="Virechana therapeutic Ayurvedic cleansing" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">02</p><h2>Virechana</h2><p class="therapy-card__subtitle">Therapeutic Ayurvedic Cleansing</p><p class="therapy-card__description">A traditional Panchkarma therapy involving controlled therapeutic purgation to support the elimination of accumulated doshas.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Pitta-related digestive, skin, and metabolic concerns selected through consultation.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Preparation and recovery are planned around the individual; the active protocol is physician-directed.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Assessment, preparatory care, supervised cleansing, hydration, rest, and a structured return to food.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Digestive balance</li><li>Skin support</li><li>Personalized cleansing</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/gurupad_ai_5.jpeg" alt="Basti medicated Ayurvedic therapy" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">03</p><h2>Basti</h2><p class="therapy-card__subtitle">Medicated Ayurvedic Therapy</p><p class="therapy-card__description">A classical Panchkarma therapy using a physician-selected medicated oil or decoction protocol to support balance and comfort.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Lower-back and joint discomfort, digestive irregularity, and Vata-related concerns.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Delivered as a planned course; each session length depends on the selected protocol.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Clinical assessment, preparation, selected Basti sequence, observation, and follow-up guidance.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Vata balance</li><li>Joint comfort</li><li>Digestive support</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/gurupad_ai_4.jpeg" alt="Nasya nasal Ayurvedic therapy" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">04</p><h2>Nasya</h2><p class="therapy-card__subtitle">Nasal Ayurvedic Therapy</p><p class="therapy-card__description">A traditional Ayurvedic therapy in which carefully selected medicated oils or preparations are administered through the nasal passages.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Head, neck, sinus, migraine, and upper respiratory concerns following assessment.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>A focused session with preparation and aftercare tailored to the selected medicine.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Face and sinus preparation, physician-selected nasal application, rest, and simple aftercare.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Head and sinus support</li><li>Relaxation</li><li>Clearer breathing</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/three.jpeg" alt="Raktamokshana leech therapy" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">05</p><h2>Raktamokshana</h2><p class="therapy-card__subtitle">Leech Therapy</p><p class="therapy-card__description">A classical bloodletting therapy, including carefully selected leech therapy, performed only when clinically appropriate and under specialist supervision.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Localized skin and circulation-related concerns where the physician considers it appropriate.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Short, carefully monitored sessions with review and aftercare as advised.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Screening and consent, sterile preparation, supervised application, wound care, and review.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Localized support</li><li>Skin care</li><li>Monitored therapy</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/one.jpeg" alt="Abhyanga Ayurvedic oil massage" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">06</p><h2>Abhyanga</h2><p class="therapy-card__subtitle">Ayurvedic Oil Massage</p><p class="therapy-card__description">A traditional full-body Ayurvedic massage using warm herbal oils selected according to individual needs and Ayurvedic assessment.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Stress, stiffness, fatigue, dryness, and the need for restorative Ayurvedic body care.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Session duration and course frequency are selected according to the treatment plan.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Warm oil application, rhythmic massage, quiet rest, and post-treatment guidance.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Deep relaxation</li><li>Body nourishment</li><li>Mobility support</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+        <article class="therapy-card">
+          <div class="therapy-card__media"><img src="/images/two.jpeg" alt="Shirodhara Ayurvedic oil flow therapy" /></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">07</p><h2>Shirodhara</h2><p class="therapy-card__subtitle">Ayurvedic Oil Flow Therapy</p><p class="therapy-card__description">A classical Ayurvedic therapy in which a gentle, continuous stream of warm medicated oil or selected liquids is poured over the forehead.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Stress, sleep concerns, mental fatigue, and tension-related discomfort after consultation.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>A calm, focused session with duration set according to the selected protocol.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Comfortable positioning, warm oil flow, quiet rest, gentle cleansing, and follow-up advice.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Calming routine</li><li>Restful sleep support</li><li>Mental relaxation</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+        </article>
+      </section>
+    </main>
+    <footer class="page-footer"><strong>SHRI GURUPAD MULTISPECIALITY CLINIC</strong><p>Consultation &amp; Panchakarma Center · Silicon City, Indore · 7000944387</p></footer>
+    <a class="floating-whatsapp" href="https://wa.me/917000944387?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
+    <a class="floating-call" href="tel:7000944387" aria-label="Call clinic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+    <button class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
+    <script>
+      const menuButton = document.querySelector(".site-header__menu-btn");
+      const nav = document.querySelector(".site-header__nav");
+      menuButton.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("is-open");
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+      });
+      const scrollTop = document.querySelector(".scroll-top");
+      window.addEventListener("scroll", () => scrollTop.classList.toggle("is-visible", window.scrollY > 500), { passive: true });
+      scrollTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    </script>
+  </body>
+</html>
