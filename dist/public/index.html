@@ -32,22 +32,53 @@
             const desktopHeroStyle = document.createElement("style");
             desktopHeroStyle.id = "desktop-hero-enhancement";
             desktopHeroStyle.textContent = `
+              .hero-treatment-pills { display: none; }
               @media (min-width: 701px) {
-                .hero, .hero-premium-shell { background: #f7f1e8 !important; }
+                .hero, .hero-premium-shell { background: linear-gradient(135deg, #063A25 0%, #08472C 35%, #0B3F29 65%, #062F20 100%) !important; color: #F4F0DF !important; }
                 .hero { padding-top: 0 !important; }
                 .hero-premium-shell { padding-top: 0 !important; }
                 .hero-premium-shell { max-width: none !important; }
                 .hero-media-wrap { position: relative !important; isolation: isolate; height: min(42rem, calc(100vh - 6.2rem)) !important; min-height: 36rem; border-radius: 0 !important; }
-                .hero-media-wrap::before { content: ""; position: absolute; inset: 0 auto 0 0; z-index: 2; width: 42%; pointer-events: none; background: linear-gradient(135deg, #0b4938 0%, #123f2d 72%, rgba(18,63,45,.9) 100%); }
-                .hero-media-wrap::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(90deg, rgba(8,53,36,.12) 0%, transparent 46%, rgba(8,53,36,.08) 100%), linear-gradient(180deg, rgba(8,53,36,.18), transparent 32%, rgba(8,53,36,.14)); }
-                .hero-media-wrap .hero-media { transform: none !important; filter: none !important; image-rendering: auto; object-fit: cover; object-position: 58% center; clip-path: polygon(31% 0, 100% 0, 100% 100%, 31% 100%); }
+                .hero-media-wrap { background: linear-gradient(135deg, #063A25 0%, #08472C 35%, #0B3F29 65%, #062F20 100%) !important; }
+                .hero-media-wrap::before { content: ""; position: absolute; inset: 0 auto 0 0; z-index: 2; width: 48%; pointer-events: none; background: linear-gradient(135deg, rgba(6,58,37,.95) 0%, rgba(8,71,44,.9) 58%, rgba(6,47,32,.94) 100%); }
+                .hero-media-wrap::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(circle at 75% 35%, rgba(35,100,65,.22), transparent 45%), linear-gradient(90deg, rgba(6,47,32,.2) 0%, transparent 46%, rgba(6,47,32,.12) 100%); }
+                .hero-media-wrap .hero-media { transform: none !important; filter: saturate(.82) brightness(.82) !important; image-rendering: auto; object-fit: cover; object-position: 58% center; clip-path: polygon(31% 0, 100% 0, 100% 100%, 31% 100%); }
                 .hero-media-wrap .hero-media:not(.is-active) { opacity: 0 !important; }
                 .hero-copy-block { left: clamp(2rem, 8vw, 8rem) !important; bottom: clamp(3rem, 8vh, 6rem) !important; z-index: 4 !important; width: min(34rem, 36vw) !important; max-width: 34rem !important; transform: none !important; }
                 .hero-copy-block h2 { max-width: 30rem; font-size: clamp(2.6rem, 4.3vw, 5rem) !important; line-height: .98 !important; }
                 .hero-copy-block p { font-size: clamp(.82rem, 1.1vw, 1rem) !important; }
                 .hero-copy-block p:nth-of-type(5) { font-size: clamp(2.5rem, 4.5vw, 4.8rem) !important; line-height: .86 !important; }
-                .hero-copy-block button { min-height: 3rem !important; padding: .8rem 1.3rem !important; background: #d9ae4f !important; border: 0 !important; color: #123f2d !important; border-radius: 999px !important; }
-                .hero-copy-block .desktop-explore-button { display: inline-flex; min-height: 3rem; align-items: center; margin-left: .7rem; padding: .8rem 1.3rem; border: 1px solid #d9ae4f; border-radius: 999px; color: #f5d27a; font: 800 .75rem Manrope, sans-serif; text-decoration: none; vertical-align: middle; }
+                .hero-copy-block { background: linear-gradient(135deg, #063A25 0%, #08472C 35%, #0B3F29 65%, #062F20 100%) !important; color: #F4F0DF !important; }
+                .hero-copy-block h1, .hero-copy-block h2, .hero-copy-block .hero-tagline { color: #F4F0DF !important; }
+                .hero-copy-block .hero-clinic-name, .hero-copy-block .hero-kicker { color: #D9B84A !important; }
+                .hero-copy-block .hero-description { color: #B8C0B6 !important; }
+                .hero-copy-block button { min-height: 3rem !important; padding: .8rem 1.3rem !important; background: linear-gradient(135deg, #E5C65A, #CFA83D) !important; border: 0 !important; color: #063A25 !important; border-radius: 999px !important; }
+                .hero-copy-block .desktop-explore-button { display: inline-flex; min-height: 3rem; align-items: center; margin-left: .7rem; padding: .8rem 1.3rem; border: 1px solid rgba(210,180,70,.35); border-radius: 999px; color: #E6C65C; font: 800 .75rem Manrope, sans-serif; text-decoration: none; vertical-align: middle; }
+                .hero-name-divider { display: flex; width: min(100%, 24rem); align-items: center; gap: .65rem; margin: .15rem 0 .4rem; color: rgba(217,184,74,.8); }
+                .hero-name-divider::before, .hero-name-divider::after { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, currentColor); content: ""; }
+                .hero-name-divider::after { transform: scaleX(-1); }
+                .hero-name-divider span { font: 700 .8rem/1 Georgia, serif; }
+              }
+              @media (min-width: 1024px) {
+                .stats-band {
+                  width: 100% !important;
+                  max-width: none !important;
+                  margin: 0 !important;
+                  border: 0 !important;
+                  background: linear-gradient(135deg, #063A25 0%, #08472C 50%, #062F20 100%) !important;
+                  color: #F4F0DF !important;
+                }
+                .stats-band .stats-intro p,
+                .stats-band .stat-card__value { color: #F4F0DF !important; }
+                .stats-band .stats-intro em,
+                .stats-band .stat-card__top,
+                .stats-band .stat-card__top span { color: #D9B84A !important; }
+                .stats-band .stat-card { border-color: rgba(217,184,74,.25) !important; }
+                .stats-band .stat-card__label { color: rgba(244,240,223,.72) !important; }
+                .hero-treatment-pills { display: flex; width: max-content; max-width: none; align-items: center; gap: clamp(.5rem, .65vw, .8rem); margin: .7rem 0 .85rem; white-space: nowrap; }
+                .hero-treatment-pills a { display: inline-flex; height: 42px; align-items: center; justify-content: center; padding: 0 clamp(.8rem, .95vw, 1.2rem); border: 1px solid rgba(190,160,55,.35); border-radius: 999px; background: rgba(25,70,45,.65); color: #D8D8C8; font: 600 clamp(.65rem, .72vw, .82rem)/1 Manrope, sans-serif; text-decoration: none; transition: background-color .25s ease, border-color .25s ease, color .25s ease; }
+                .hero-treatment-pills a:hover, .hero-treatment-pills a:focus-visible { border-color: rgba(210,185,90,.7); background: rgba(37,88,56,.82); color: #F4F0DF; }
+                .hero-treatment-pills a:focus-visible { outline: 2px solid #D9B84A; outline-offset: 3px; }
               }
             `;
             document.head.appendChild(desktopHeroStyle);
@@ -114,7 +145,7 @@
             const brandOverlay = wrap.querySelector(".hero-brand-overlay");
             if (brandOverlay) brandOverlay.style.display = "none";
             wrap.appendChild(heroCopy);
-            heroCopy.innerHTML = '<p style="margin:0 0 .55rem;color:#d9ae4f;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.2vw,.85rem);font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.7)">AYURVEDA &nbsp;•&nbsp; PANCHAKARMA</p><h2 style="margin:0 0 .5rem;color:#fff;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.65rem,4.5vw,3rem);font-weight:400;line-height:1.02;text-shadow:0 2px 12px rgba(0,0,0,.75)">Root-Cause Care.<br>Natural Healing.</h2><p style="margin:0 0 .65rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.7rem,1.3vw,.92rem);line-height:1.35;text-shadow:0 2px 10px rgba(0,0,0,.7)">Personalized Ayurvedic treatments<br>for lasting wellness.</p><p style="margin:0;color:#e4bd63;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.15rem,2.5vw,1.7rem);font-style:italic;line-height:1">Meet <span style="color:#d9ae4f;font-family:Manrope,sans-serif;font-size:.9em;font-style:normal">⌁</span></p><p style="margin:.45rem 0 0;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.8rem,1.4vw,1rem);line-height:1">Dr.</p><p style="margin:0;color:#fff;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.35rem,6vw,4rem);font-weight:800;line-height:.88;text-shadow:0 2px 14px rgba(0,0,0,.8)">Ashish<br><span style="color:#e4bd63">Choyal</span></p><p style="margin:.55rem 0 .65rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.1vw,.85rem);font-weight:700;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,.7)">B.A.M.S., M.D. (Panchakarma)</p><p style="margin:0 0 .8rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.1vw,.82rem);line-height:1.35;text-shadow:0 2px 10px rgba(0,0,0,.7)">Steady expertise. Personal attention.<br>Root-cause focused Ayurvedic care.</p><button type="button" style="position:relative;z-index:5;display:inline-flex!important;width:auto!important;min-width:0!important;padding:.62rem 1rem!important;font-size:.75rem!important">Book Appointment</button>';
+            heroCopy.innerHTML = '<p style="margin:0 0 .55rem;color:#d9ae4f;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.2vw,.85rem);font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.7)">AYURVEDA &nbsp;•&nbsp; PANCHAKARMA</p><h2 style="margin:0 0 .5rem;color:#fff;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.65rem,4.5vw,3rem);font-weight:400;line-height:1.02;text-shadow:0 2px 12px rgba(0,0,0,.75)">Root-Cause Care.<br>Natural Healing.</h2><p style="margin:0 0 .65rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.7rem,1.3vw,.92rem);line-height:1.35;text-shadow:0 2px 10px rgba(0,0,0,.7)">Personalized Ayurvedic treatments for lasting wellness.</p><p style="margin:0;color:#e4bd63;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.15rem,2.5vw,1.7rem);font-style:italic;line-height:1">Meet <span style="color:#d9ae4f;font-family:Manrope,sans-serif;font-size:.9em;font-style:normal">⌁</span></p><p style="margin:.45rem 0 0;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.8rem,1.4vw,1rem);line-height:1">Dr.</p><p style="margin:0;color:#fff;font-family:DM Serif Display,Georgia,serif;font-size:clamp(2.35rem,6vw,4rem);font-weight:800;line-height:.88;text-shadow:0 2px 14px rgba(0,0,0,.8)">Ashish<br><span style="color:#e4bd63">Choyal</span></p><p style="margin:.55rem 0 .65rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.1vw,.85rem);font-weight:700;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,.7)">B.A.M.S., M.D. (Panchakarma)</p><p style="margin:0 0 .8rem;color:#fff;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1.1vw,.82rem);line-height:1.35;text-shadow:0 2px 10px rgba(0,0,0,.7)">Steady expertise. Personal attention.<br>Root-cause focused Ayurvedic care.</p><button type="button" style="position:relative;z-index:5;display:inline-flex!important;width:auto!important;min-width:0!important;padding:.62rem 1rem!important;font-size:.75rem!important">Book Appointment</button>';
             heroCopy.style.cssText = "position:absolute!important;left:clamp(1rem,5vw,3.5rem)!important;right:auto!important;top:auto!important;bottom:clamp(.7rem,3vw,2rem)!important;z-index:4!important;width:min(92%,32rem)!important;max-width:32rem!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#fff!important;text-align:left!important;transform:scale(.78)!important;transform-origin:bottom left!important;text-shadow:0 2px 12px rgba(0,0,0,.7)!important";
             if (window.innerWidth >= 701) {
               heroCopy.style.cssText += ";left:clamp(2rem,8vw,8rem)!important;bottom:clamp(3rem,8vh,6rem)!important;width:min(40rem,42vw)!important;max-width:40rem!important;transform:none!important";
@@ -123,10 +154,18 @@
             const ayurvedaLabel = heroParagraphs[0];
             const treatmentCopy = heroParagraphs[1];
             const meetLabel = heroParagraphs[2];
+            if (meetLabel) {
+              meetLabel.innerHTML = '<span aria-hidden="true" style="display:inline-block;width:3rem;height:1px;background:currentColor;vertical-align:middle"></span><span>B.A.M.S., M.D. (Panchakarma)</span>';
+              meetLabel.style.cssText = "display:flex;align-items:center;gap:.85rem;margin:0 0 .2rem;color:#D9B84A;font-family:Manrope,sans-serif;font-size:clamp(.65rem,1vw,.85rem);font-style:normal;font-weight:800;letter-spacing:.2em;line-height:1;text-transform:uppercase";
+            }
             const doctorTitle = heroParagraphs[3];
             const doctorName = heroParagraphs[4];
             const doctorQualification = heroParagraphs[5];
             const supportingCopy = heroParagraphs[6];
+            const doctorDivider = document.createElement("div");
+            doctorDivider.className = "hero-name-divider";
+            doctorDivider.setAttribute("aria-hidden", "true");
+            doctorDivider.innerHTML = "<span>⌁</span>";
             if (doctorName) {
               doctorName.style.cssText += ";font-size:clamp(3.2rem,8vw,5.2rem)!important;font-weight:900!important;line-height:.84!important;text-shadow:0 2px 14px rgba(0,0,0,.8)!important";
               const surname = doctorName.querySelector("span");
@@ -134,29 +173,76 @@
             }
             if (supportingCopy) supportingCopy.remove();
             if (window.innerWidth >= 701) {
-              const desktopCopyOrder = [
-                meetLabel,
-                doctorTitle,
-                doctorName,
-                doctorQualification,
-                heroCopy.querySelector("h2"),
-                ayurvedaLabel,
-                treatmentCopy,
-                heroCopy.querySelector("button"),
-              ];
+              if (doctorQualification) {
+                doctorQualification.innerHTML = `
+                  <span style="display:block;color:#d9b84a;font-family:Manrope,sans-serif;font-size:clamp(.55rem,.72vw,.72rem);font-weight:800;letter-spacing:.22em;line-height:1.2;text-transform:uppercase;opacity:.95;">FOUNDER</span>
+                  <span style="display:block;margin-top:.25rem;color:#f3efe7;font-family:Manrope,sans-serif;font-size:clamp(.8rem,1.2vw,1rem);font-weight:800;letter-spacing:.02em;line-height:1.25;text-transform:uppercase;">SHRI GURUPAD MULTISPECIALITY CLINIC</span>
+                  <span style="display:block;margin-top:.2rem;color:#d7c38f;font-family:Manrope,sans-serif;font-size:clamp(.56rem,.7vw,.7rem);font-weight:600;letter-spacing:.08em;line-height:1.2;text-transform:uppercase;opacity:.9;">Consultation &amp; Panchkarma Centre</span>
+                `;
+                doctorQualification.style.cssText = "position:relative;display:block;margin:0 0 .65rem;padding-left:clamp(.6rem,.9vw,.9rem);border-left:1px solid rgba(217,184,74,.7);";
+              }
+              if (doctorName) doctorName.after(doctorDivider);
+              const desktopCopyOrder = window.innerWidth >= 1024
+                ? [
+                  meetLabel,
+                  doctorTitle,
+                  doctorName,
+                  doctorDivider,
+                  doctorQualification,
+                  heroCopy.querySelector("h2"),
+                  ayurvedaLabel,
+                  treatmentCopy,
+                  heroCopy.querySelector("button"),
+                ]
+                : [
+                  meetLabel,
+                  doctorTitle,
+                  doctorName,
+                  doctorDivider,
+                  doctorQualification,
+                  heroCopy.querySelector("h2"),
+                  ayurvedaLabel,
+                  treatmentCopy,
+                  heroCopy.querySelector("button"),
+                ];
               desktopCopyOrder.filter(Boolean).forEach((node) => heroCopy.appendChild(node));
               heroCopy.style.cssText += ";bottom:clamp(1.5rem,5vh,3.5rem)!important;width:min(34rem,38vw)!important;max-width:34rem!important";
+              if (window.innerWidth >= 1024 && doctorName) {
+                const headerHeight = document.querySelector("header.site-header")?.offsetHeight ?? 0;
+                heroCopy.style.cssText += `;top:${headerHeight + 10}px!important;bottom:auto!important;left:clamp(1.5rem,3vw,3rem)!important`;
+              }
               if (doctorTitle) doctorTitle.style.cssText += ";margin:.15rem 0 .15rem!important;font-size:clamp(.75rem,1vw,.95rem)!important;line-height:1!important";
               if (doctorName) doctorName.style.cssText += ";margin:0 0 .35rem!important;font-size:clamp(2.5rem,4.5vw,4rem)!important;line-height:.86!important";
-              if (doctorQualification) doctorQualification.style.cssText += ";margin:0 0 .65rem!important;font-size:clamp(.65rem,.85vw,.8rem)!important;line-height:1.15!important";
+              if (doctorQualification) doctorQualification.style.cssText += ";margin:0 0 .65rem!important;font-size:clamp(.65rem,.85vw,.8rem)!important;line-height:1.15!important;display:block!important;padding-left:clamp(.7rem,.9vw,1rem)!important;border-left:1px solid rgba(217,184,74,.7)!important;";
               const desktopHeadline = heroCopy.querySelector("h2");
               if (desktopHeadline) desktopHeadline.style.cssText += ";margin:0 0 .35rem!important;font-size:clamp(1.65rem,3vw,2.6rem)!important;line-height:1!important";
               if (ayurvedaLabel) ayurvedaLabel.style.cssText += ";margin:0 0 .35rem!important;font-size:clamp(.55rem,.75vw,.72rem)!important";
               if (treatmentCopy) treatmentCopy.style.cssText += ";margin:0 0 .55rem!important;font-size:clamp(.65rem,1vw,.82rem)!important;line-height:1.25!important";
-              if (meetLabel) meetLabel.style.cssText += ";margin:0 0 .2rem!important;font-size:clamp(.8rem,1.1vw,1rem)!important;line-height:1!important";
+              if (meetLabel) meetLabel.style.cssText += ";margin:0 0 .2rem!important;font-size:clamp(.65rem,.9vw,.85rem)!important;line-height:1!important";
+              if (window.innerWidth >= 1024 && meetLabel) meetLabel.style.cssText += ";margin-top:clamp(1.25rem,1.5vw,1.75rem)!important";
+              if (window.innerWidth >= 1024 && doctorTitle) doctorTitle.style.cssText += ";margin:0 0 .2rem!important;color:#aeb8b1!important;font-family:'DM Serif Display',Georgia,serif!important;font-size:clamp(2rem,3vw,3.25rem)!important;font-weight:400!important;line-height:1!important";
             }
             const appointmentButton = heroCopy.querySelector("button");
             if (appointmentButton) {
+              if (window.innerWidth >= 1024 && !heroCopy.querySelector(".hero-treatment-pills")) {
+                const treatmentPills = document.createElement("nav");
+                treatmentPills.className = "hero-treatment-pills";
+                treatmentPills.setAttribute("aria-label", "Treatments and conditions");
+                [
+                  ["Panchkarma", "#panchkarma-journey"],
+                  ["Sciatica", "#treatments"],
+                  ["Slip Disc", "#treatments"],
+                  ["Cervical", "#treatments"],
+                  ["Paralysis Recovery", "#treatments"],
+                  ["Migraine", "#treatments"],
+                ].forEach(([label, href]) => {
+                  const pill = document.createElement("a");
+                  pill.href = href;
+                  pill.textContent = label;
+                  treatmentPills.appendChild(pill);
+                });
+                appointmentButton.before(treatmentPills);
+              }
               appointmentButton.style.cssText += ";background:transparent!important;border:1px solid rgba(255,255,255,.9)!important;color:#fff!important;border-radius:7px!important;box-shadow:none!important;font-weight:700!important";
               if (window.innerWidth >= 701) {
                 appointmentButton.style.cssText += ";min-height:3rem!important;padding:.8rem 1.3rem!important;background:#d9ae4f!important;border:0!important;color:#123f2d!important;border-radius:999px!important";
@@ -199,25 +285,53 @@
               const gallery = document.createElement("section");
               gallery.className = "uploaded-gallery";
               gallery.setAttribute("aria-label", "Clinic Gallery");
-              gallery.style.cssText = "padding:2.5rem 1.25rem 6rem;background:#f5ede2;text-align:center;color:#173f38";
+              gallery.style.cssText = "padding:2.5rem 1.25rem 1.25rem;background:#f5ede2;text-align:center;color:#173f38";
               gallery.innerHTML = '<div style="max-width:42rem;margin:0 auto"><p style="margin:0;color:#b0802d;font-family:Manrope,sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase">CLINIC GALLERY</p><h2 style="margin:.45rem 0 .4rem;color:#173f38;font-family:DM Serif Display,Georgia,serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:400">Moments of healing</h2><p style="margin:0 auto 1.35rem;color:#5b625d;font-family:Manrope,sans-serif;font-size:.85rem;line-height:1.5">Upload your clinic images and view them one by one.</p><label style="display:inline-flex;align-items:center;justify-content:center;padding:.7rem 1.1rem;border:1px solid #174d36;border-radius:7px;background:#174d36;color:#fff;font-family:Manrope,sans-serif;font-size:.8rem;font-weight:700;cursor:pointer"><input class="gallery-upload-input" type="file" accept="image/*" multiple style="position:absolute;width:1px;height:1px;opacity:0">Upload Images</label><div class="gallery-viewer" style="display:none;margin:1.5rem auto 0;max-width:34rem"><div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#e8ddcf;box-shadow:0 14px 30px rgba(55,43,25,.14)"><img class="gallery-current-image" alt="Uploaded clinic gallery image" style="display:block;width:100%;height:100%;object-fit:cover"><button class="gallery-prev" type="button" aria-label="Previous image" style="position:absolute;left:.7rem;top:50%;transform:translateY(-50%);width:2.3rem;height:2.3rem;border:0;border-radius:50%;background:rgba(23,63,56,.86);color:#fff;font-size:1.25rem;cursor:pointer">&#8249;</button><button class="gallery-next" type="button" aria-label="Next image" style="position:absolute;right:.7rem;top:50%;transform:translateY(-50%);width:2.3rem;height:2.3rem;border:0;border-radius:50%;background:rgba(23,63,56,.86);color:#fff;font-size:1.25rem;cursor:pointer">&#8250;</button></div><p class="gallery-counter" style="margin:.7rem 0 0;color:#86662f;font-family:Manrope,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em"></p></div></div>';
               (highlights || hero).insertAdjacentElement("afterend", gallery);
-              gallery.innerHTML = gallery.innerHTML.replace("Upload your clinic images and view them one by one.", "A curated view of Shri Gurupad clinic.");
               const input = gallery.querySelector(".gallery-upload-input");
               const uploadLabel = input?.closest("label");
               if (uploadLabel) uploadLabel.remove();
-              const galleryDescription = gallery.querySelector("p");
-              if (galleryDescription) galleryDescription.textContent = "A curated view of Shri Gurupad clinic.";
+              const galleryDescription = gallery.querySelector(":scope > div > p:nth-of-type(2)");
+              galleryDescription?.remove();
               const viewer = gallery.querySelector(".gallery-viewer");
               const image = gallery.querySelector(".gallery-current-image");
               image.style.objectFit = "contain";
+              const galleryIntro = document.createElement("div");
+              galleryIntro.className = "gallery-editorial-intro";
+              galleryIntro.append(
+                gallery.querySelector(":scope > div > p:first-child"),
+                gallery.querySelector(":scope > div > h2"),
+              );
+              const benefits = document.createElement("div");
+              benefits.className = "gallery-benefits";
+              benefits.setAttribute("aria-label", "Our care values");
+              benefits.innerHTML = `
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0M19 8h3m-1.5-1.5v3"/></svg>Expert Doctors</span>
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-11a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 6.6-7 11-7 11Z"/><path d="M12 7c-2 2-2 5 0 7 2-2 2-5 0-7Z"/></svg>Authentic Ayurveda</span>
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/><path d="m8 12 2.5 2.5L16 9"/></svg>Holistic Healing</span>
+                <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"/><path d="M8 12h8m-4-4v8"/></svg>Personalized Care</span>`;
+              galleryIntro.appendChild(benefits);
+              const explore = document.createElement("a");
+              explore.className = "gallery-explore-link";
+              explore.href = "/treatments.html";
+              explore.innerHTML = 'Explore Our Treatments <span aria-hidden="true">→</span>';
+              galleryIntro.appendChild(explore);
+              gallery.querySelector(":scope > div").prepend(galleryIntro);
+              const slideCopy = document.createElement("div");
+              slideCopy.className = "gallery-slide-copy";
+              slideCopy.innerHTML = '<p class="gallery-slide-number"></p><h3 class="gallery-slide-title"></h3><p class="gallery-slide-description"></p><div class="gallery-slide-tags"></div><a class="gallery-slide-cta" href="/treatments.html">DISCUSS YOUR CONCERN <span aria-hidden="true">→</span></a>';
+              const galleryFrame = viewer.querySelector(":scope > div");
+              const slideArt = document.createElement("div");
+              slideArt.className = "gallery-slide-art";
+              slideArt.appendChild(image);
+              galleryFrame.prepend(slideCopy, slideArt);
               const counter = gallery.querySelector(".gallery-counter");
               if (counter) counter.remove();
               const files = [
-                { name: "Bone and joint disorders", url: "/images/back and joints.png" },
-                { name: "Blood pressure care", url: "/images/blood pressure.png" },
-                { name: "Migraine care", url: "/images/migrane.png" },
-                { name: "Skin disorders care", url: "/images/skin.png" },
+                { name: "Bone and joint disorders", title: "Bone & Joint Care", description: "Comprehensive care for neck, back, joint, and nerve-related concerns.", tags: ["Back pain", "Joint care", "Sciatica", "Mobility"], url: "/images/backAndJoints.png" },
+                { name: "Blood pressure care", title: "Blood Pressure", description: "Natural guidance for blood pressure through lifestyle, diet, and treatment planning.", tags: ["BP monitoring", "Diet plan", "Lifestyle guidance", "Preventive care"], url: "/images/blood pressure.png" },
+                { name: "Migraine care", title: "Migraine & Headache", description: "Support for migraine and headaches related to stress, lifestyle, or underlying imbalances.", tags: ["Migraine", "Headache", "Stress", "Sleep care"], url: "/images/migrane.png" },
+                { name: "Skin disorders care", title: "Skin Disorders", description: "Ayurvedic consultation for skin, scalp, and related concerns.", tags: ["Skin care", "Hair fall", "Allergies", "Eczema"], url: "/images/skindisorders.png" },
               ];
               let current = 0;
               const render = () => {
@@ -225,6 +339,14 @@
                 if (!item) return;
                 image.src = item.url;
                 image.alt = item.name;
+                slideCopy.querySelector(".gallery-slide-number").textContent = String(current + 1).padStart(2, "0");
+                slideCopy.querySelector(".gallery-slide-title").textContent = item.title;
+                slideCopy.querySelector(".gallery-slide-description").textContent = item.description;
+                slideCopy.querySelector(".gallery-slide-tags").replaceChildren(...item.tags.map((tag) => {
+                  const chip = document.createElement("span");
+                  chip.textContent = tag;
+                  return chip;
+                }));
                 viewer.style.display = "block";
               };
               render();
@@ -255,12 +377,12 @@
               if (skinCard && !skinCard.querySelector(".skin-disorders-image")) {
                 const skinImage = document.createElement("img");
                 skinImage.className = "skin-disorders-image";
-                skinImage.src = "/images/skin.png";
+                skinImage.src = "/images/skindisorders.png";
                 skinImage.alt = "Ayurvedic skin disorders care";
-                skinImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                skinImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;background:transparent;transform:none;max-width:none";
                 const skinImageFrame = document.createElement("div");
                 skinImageFrame.className = "skin-disorders-image-frame";
-                skinImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                skinImageFrame.style.cssText = "width:100%;height:15rem;overflow:hidden;border-radius:0;margin:0;background:transparent;display:block";
                 skinImageFrame.appendChild(skinImage);
                 skinCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", skinImageFrame);
               }
@@ -268,12 +390,12 @@
               if (boneCard && !boneCard.querySelector(".bone-joint-image")) {
                 const boneImage = document.createElement("img");
                 boneImage.className = "bone-joint-image";
-                boneImage.src = "/images/back and joints.png";
+                boneImage.src = "/images/backAndJoints.png";
                 boneImage.alt = "Ayurvedic bone and joint care";
-                boneImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                boneImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;background:transparent;transform:none;max-width:none";
                 const boneImageFrame = document.createElement("div");
                 boneImageFrame.className = "bone-joint-image-frame";
-                boneImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                boneImageFrame.style.cssText = "width:100%;height:15rem;overflow:hidden;border-radius:0;margin:0;background:transparent;display:block";
                 boneImageFrame.appendChild(boneImage);
                 boneCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", boneImageFrame);
               }
@@ -283,10 +405,10 @@
                 migraineImage.className = "migraine-image";
                 migraineImage.src = "/images/migrane.png";
                 migraineImage.alt = "Ayurvedic migraine care";
-                migraineImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                migraineImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;background:transparent;transform:none;max-width:none";
                 const migraineImageFrame = document.createElement("div");
                 migraineImageFrame.className = "migraine-image-frame";
-                migraineImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                migraineImageFrame.style.cssText = "width:100%;height:15rem;overflow:hidden;border-radius:0;margin:0;background:transparent;display:block";
                 migraineImageFrame.appendChild(migraineImage);
                 migraineCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", migraineImageFrame);
               }
@@ -296,10 +418,10 @@
                 bloodPressureImage.className = "blood-pressure-image";
                 bloodPressureImage.src = "/images/blood pressure.png";
                 bloodPressureImage.alt = "Ayurvedic blood pressure care";
-                bloodPressureImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                bloodPressureImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;background:transparent;transform:none;max-width:none";
                 const bloodPressureImageFrame = document.createElement("div");
                 bloodPressureImageFrame.className = "blood-pressure-image-frame";
-                bloodPressureImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                bloodPressureImageFrame.style.cssText = "width:100%;height:15rem;overflow:hidden;border-radius:0;margin:0;background:transparent;display:block";
                 bloodPressureImageFrame.appendChild(bloodPressureImage);
                 bloodPressureCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", bloodPressureImageFrame);
               }
@@ -309,10 +431,10 @@
                 diabetesImage.className = "diabetes-image";
                 diabetesImage.src = "/images/diabetes.png";
                 diabetesImage.alt = "Ayurvedic diabetes care";
-                diabetesImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                diabetesImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;background:transparent;transform:none;max-width:none";
                 const diabetesImageFrame = document.createElement("div");
                 diabetesImageFrame.className = "diabetes-image-frame";
-                diabetesImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                diabetesImageFrame.style.cssText = "width:100%;height:15rem;overflow:hidden;border-radius:0;margin:0;background:transparent;display:block";
                 diabetesImageFrame.appendChild(diabetesImage);
                 diabetesCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", diabetesImageFrame);
               }
@@ -322,16 +444,110 @@
                 digestiveImage.className = "digestive-image";
                 digestiveImage.src = "/images/digestive_disorders.png";
                 digestiveImage.alt = "Ayurvedic digestive disorders care";
-                digestiveImage.style.cssText = "display:block;width:166.67%;height:130%;object-fit:cover;object-position:center;border-radius:10px;transform:translateX(-40%);max-width:none";
+                digestiveImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;background:transparent;transform:none;max-width:none";
                 const digestiveImageFrame = document.createElement("div");
                 digestiveImageFrame.className = "digestive-image-frame";
-                digestiveImageFrame.style.cssText = "width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;border-radius:10px;margin:1rem 0 1.25rem;background:#e8ddcf";
+                digestiveImageFrame.style.cssText = "width:100%;height:15rem;overflow:hidden;border-radius:0;margin:0;background:transparent;display:block";
                 digestiveImageFrame.appendChild(digestiveImage);
                 digestiveCard.querySelector(".treatment-card__head")?.insertAdjacentElement("afterend", digestiveImageFrame);
               }
-              [skinCard, boneCard, migraineCard, bloodPressureCard, diabetesCard, digestiveCard].forEach((card) => {
+              let kidneyStonesCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Kidney Stones");
+              if (!kidneyStonesCard && digestiveCard) {
+                kidneyStonesCard = digestiveCard.cloneNode(true);
+                kidneyStonesCard.classList.add("kidney-stones-card");
+                kidneyStonesCard.classList.add("is-visible");
+                kidneyStonesCard.querySelector(".treatment-card__index").textContent = "07";
+                kidneyStonesCard.querySelector("h3").textContent = "Kidney Stones";
+                kidneyStonesCard.querySelector("p").textContent = "Ayurvedic care and personalized guidance for kidney stones and urinary concerns.";
+                kidneyStonesCard.querySelector(".treatment-items").replaceChildren(
+                  ...["Kidney stones", "Urinary health", "Pain relief", "Ayurvedic care"].map((tag) => {
+                    const item = document.createElement("span");
+                    item.textContent = tag;
+                    return item;
+                  })
+                );
+                const kidneyLink = kidneyStonesCard.querySelector(".treatment-card__link");
+                kidneyLink.textContent = "DISCUSS YOUR CONCERN ↗";
+                const kidneyImageFrame = kidneyStonesCard.querySelector(".digestive-image-frame");
+                const kidneyImage = kidneyImageFrame?.querySelector("img");
+                if (kidneyImageFrame && kidneyImage) {
+                  kidneyImageFrame.className = "kidney-stones-image-frame";
+                  kidneyImage.className = "kidney-stones-image";
+                  kidneyImage.src = "/images/stone.png";
+                  kidneyImage.alt = "Ayurvedic kidney stones care";
+                }
+                kidneyStonesCard.style.setProperty("--reveal-delay", "350ms");
+                digestiveCard.after(kidneyStonesCard);
+              }
+              let thyroidCareCard = [...document.querySelectorAll(".treatment-card")].find((card) => card.querySelector("h3")?.textContent.trim() === "Thyroid Care");
+              if (!thyroidCareCard && digestiveCard) {
+                thyroidCareCard = digestiveCard.cloneNode(true);
+                thyroidCareCard.classList.add("thyroid-care-card");
+                thyroidCareCard.classList.add("is-visible");
+                thyroidCareCard.querySelector(".treatment-card__index").textContent = "08";
+                thyroidCareCard.querySelector("h3").textContent = "Thyroid Care";
+                thyroidCareCard.querySelector("p").textContent = "Ayurvedic care for thyroid-related concerns, hormonal balance, and overall well-being.";
+                thyroidCareCard.querySelector(".treatment-items").replaceChildren(
+                  ...["Thyroid health", "Hormonal balance", "Fatigue & weakness", "Weight concerns"].map((tag) => {
+                    const item = document.createElement("span");
+                    item.textContent = tag;
+                    return item;
+                  })
+                );
+                const thyroidLink = thyroidCareCard.querySelector(".treatment-card__link");
+                thyroidLink.href = "/treatments.html";
+                thyroidLink.textContent = "DISCUSS YOUR CONCERN ↗";
+                const thyroidImageFrame = thyroidCareCard.querySelector(".digestive-image-frame");
+                const thyroidImage = thyroidImageFrame?.querySelector("img");
+                if (thyroidImageFrame && thyroidImage) {
+                  thyroidImageFrame.className = "thyroid-care-image-frame";
+                  thyroidImage.className = "thyroid-care-image";
+                  thyroidImage.src = "/images/thayroid.png";
+                  thyroidImage.alt = "Patient discussing thyroid concerns with an Ayurvedic doctor";
+                  thyroidImage.style.cssText = "display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:10px;max-width:none";
+                }
+                thyroidCareCard.style.setProperty("--reveal-delay", "400ms");
+                kidneyStonesCard?.after(thyroidCareCard);
+              }
+              if (!document.querySelector("#thyroid-card-desktop-only")) {
+                const thyroidCardStyle = document.createElement("style");
+                thyroidCardStyle.id = "thyroid-card-desktop-only";
+                thyroidCardStyle.textContent = `
+                  @media (max-width: 700px) {
+                    #treatments .thyroid-care-card { display: none !important; }
+                  }
+                  @media (min-width: 701px) {
+                    #treatments .treatment-card [class*="image-frame"] {
+                      aspect-ratio: 3 / 2 !important;
+                      background: transparent !important;
+                    }
+                    #treatments .treatment-card [class*="image-frame"] img {
+                      width: 100% !important;
+                      height: 100% !important;
+                      max-width: 100% !important;
+                      object-fit: cover !important;
+                      object-position: center !important;
+                      transform: none !important;
+                    }
+                    #treatments .treatment-card .kidney-stones-image-frame img,
+                    #treatments .treatment-card .thyroid-care-image-frame img {
+                      object-fit: cover !important;
+                    }
+                  }
+                  @media (min-width: 1024px) {
+                    #treatments .treatment-card [class*="image-frame"] {
+                      height: auto !important;
+                      aspect-ratio: 16 / 10 !important;
+                    }
+                  }
+                `;
+                document.head.appendChild(thyroidCardStyle);
+              }
+              [skinCard, boneCard, migraineCard, bloodPressureCard, diabetesCard, digestiveCard, kidneyStonesCard, thyroidCareCard].forEach((card) => {
                 if (!card) return;
-                const imageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame, .diabetes-image-frame, .digestive-image-frame");
+                const discussLink = card.querySelector(".treatment-card__link");
+                if (discussLink) discussLink.textContent = "Discuss your concern ↗";
+                const imageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame, .diabetes-image-frame, .digestive-image-frame, .kidney-stones-image-frame, .thyroid-care-image-frame");
                 const head = card.querySelector(".treatment-card__head");
                 if (imageFrame && head) {
                   head.parentElement.insertBefore(imageFrame, head);
@@ -341,7 +557,7 @@
                   [...card.children].filter((child) => child !== imageFrame).forEach((child) => body.appendChild(child));
                   card.appendChild(body);
                 }
-                const cardImageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame, .diabetes-image-frame, .digestive-image-frame");
+                const cardImageFrame = card.querySelector(".skin-disorders-image-frame, .bone-joint-image-frame, .migraine-image-frame, .blood-pressure-image-frame, .diabetes-image-frame, .digestive-image-frame, .kidney-stones-image-frame, .thyroid-care-image-frame");
                 if (cardImageFrame) {
                   cardImageFrame.style.marginTop = "0";
                   cardImageFrame.style.aspectRatio = "2.1 / 1";
@@ -350,6 +566,25 @@
                 if (cardBody) cardBody.style.padding = ".9rem 1.1rem 1rem";
                 card.style.cssText += ";padding:0;background:#fff;border:1px solid #c8ddca;border-radius:14px;box-shadow:0 12px 28px rgba(35,82,54,.12);overflow:hidden";
               });
+              const treatmentGrid = skinCard?.parentElement;
+              const updateTreatmentGrid = () => {
+                if (!treatmentGrid) return;
+                const width = document.documentElement.clientWidth;
+                const columns = width >= 1440 ? 5 : width >= 1024 ? 4 : width >= 768 ? 3 : width >= 560 ? 2 : 1;
+                treatmentGrid.style.setProperty("grid-template-columns", `repeat(${columns}, minmax(0, 1fr))`, "important");
+              };
+              updateTreatmentGrid();
+              window.addEventListener("resize", updateTreatmentGrid, { passive: true });
+              const updateTreatmentPhotos = () => {
+                document.querySelectorAll("#treatments .treatment-card").forEach((card) => {
+                  const image = card.querySelector("img");
+                  if (!image) return;
+                  image.dataset.mobileSrc ??= image.getAttribute("src") || "";
+                  const source = image.dataset.mobileSrc;
+                  if (source && image.getAttribute("src") !== source) image.src = source;
+                });
+              };
+              updateTreatmentPhotos();
               const assessmentImages = [...assessment.querySelectorAll(".assessment-image")];
               assessmentImages.forEach((image) => { image.style.objectFit = "contain"; });
               let assessmentIndex = 0;

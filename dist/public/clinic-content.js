@@ -22,7 +22,12 @@
   const enhanceDesktopHeader = () => {
     const header = document.querySelector("header.site-header");
     const nav = header?.querySelector(".site-header__nav");
-    if (!header || !nav || header.dataset.desktopEnhanced === "true") return;
+    if (!header || !nav) return;
+    const panchkarmaLink = [...nav.querySelectorAll("a")].find((link) =>
+      link.textContent.trim().toLowerCase() === "panchkarma"
+    );
+    if (panchkarmaLink) panchkarmaLink.href = "#panchkarma-journey";
+    if (header.dataset.desktopEnhanced === "true") return;
     header.dataset.desktopEnhanced = "true";
     const inner = header.querySelector(".site-header__inner");
     if (inner && window.matchMedia("(min-width: 701px)").matches) inner.appendChild(nav);
@@ -34,8 +39,24 @@
     const phone = document.createElement("a");
     phone.className = "desktop-header-phone";
     phone.href = "tel:7000944387";
-    phone.innerHTML = '<span aria-hidden="true">☎</span> +91 7000944387';
+    phone.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92Z"/><path d="M14.05 2a9 9 0 0 1 8 8M14.05 6a5 5 0 0 1 4 4"/></svg> +91 7000944387';
     inner?.appendChild(phone);
+    const logo = header.querySelector(".site-header__logo img");
+    const originalLogoSrc = logo?.getAttribute("src");
+    const updateLogoForViewport = () => {
+      if (!logo || !originalLogoSrc) return;
+      const logoSrc = window.matchMedia("(min-width: 701px)").matches
+        ? "/images/shri-gurupad-logo-desktop.png"
+        : originalLogoSrc;
+      if (logo.getAttribute("src") !== logoSrc) logo.setAttribute("src", logoSrc);
+    };
+    updateLogoForViewport();
+    window.addEventListener("resize", updateLogoForViewport, { passive: true });
+    const updateHeaderState = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 10);
+    };
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
   };
 
   const RootCauseCard = () => `
@@ -364,6 +385,7 @@
     const intro = document.querySelector(".restored-clinic-intro");
     if (!intro || intro.dataset.contentVersion === "requested") return Boolean(intro);
 
+    intro.id = "about";
     intro.dataset.contentVersion = "requested";
     intro.innerHTML = `
       <div class="clinic-intro-inner">
@@ -377,12 +399,24 @@
             </div>
             <div class="clinic-doctor-image">
               <img src="/images/doctor.jpeg" alt="Dr. Ashish Choyal in his clinic" />
+              <div class="clinic-experience-badge" aria-label="Over 10 years of healing experience">
+                <strong>10+</strong>
+                <span>Years Healing</span>
+              </div>
+              <div class="clinic-professor-badge" aria-label="Professor at R.N.K. Medical College">
+                <span class="clinic-professor-icon" aria-hidden="true">🎓</span>
+                <span class="clinic-professor-copy">
+                  <strong>Professor</strong>
+                  <span>R.N.K. Medical College</span>
+                </span>
+              </div>
             </div>
             <p class="clinic-card-specialist">Meet your Ayurvedic specialist</p>
             <p class="clinic-doctor-name">Dr. Ashish Choyal</p>
             <p class="clinic-credentials">B.A.M.S., M.D. (Panchakarma)</p>
             <p class="clinic-description">We provide authentic Ayurvedic treatments with a holistic approach to restore balance, relieve ailments and promote long-term wellness.</p>
             <h2>Care guided by experience and compassion.</h2>
+            <p class="clinic-practice-overview">With over 10+ years of dedicated practice, Dr. Ashish Choyal (B.A.M.S., M.D. Panchkarma) provides personalized Ayurvedic consultation and Panchkarma care at Shri Gurupad Multispeciality Clinic for a wide range of health and wellness concerns, including bone and joint, migraine, digestive, skin, respiratory, and other chronic conditions.</p>
             ${RootCauseCard()}
             <div class="clinic-education" aria-label="Dr. Ashish Choyal's education and clinic">
               <article class="clinic-education-item">
@@ -410,6 +444,8 @@
     if (window.matchMedia("(min-width: 701px)").matches) {
       const copy = intro.querySelector(".clinic-specialist-copy");
       if (copy) {
+        copy.querySelector(".clinic-description")?.remove();
+        copy.querySelector(":scope > h2")?.remove();
         const left = document.createElement("div");
         const right = document.createElement("div");
         left.className = "clinic-desktop-left";
@@ -419,14 +455,14 @@
           ".clinic-card-specialist",
           ".clinic-doctor-name",
           ".clinic-credentials",
-          ".clinic-description",
-          ":scope > h2",
+
         ].forEach((selector) => {
           const element = copy.querySelector(selector);
           if (element) left.appendChild(element);
         });
         [
           ".clinic-card-brand",
+          ".clinic-practice-overview",
           ".root-cause-card",
           ".clinic-education",
           ".clinic-cta-actions",
@@ -434,14 +470,7 @@
           const element = copy.querySelector(selector);
           if (element) right.appendChild(element);
         });
-        const summary = document.createElement("div");
-        summary.className = "clinic-desktop-summary";
-        [".clinic-description", "h2"].forEach((selector) => {
-          const element = left.querySelector(selector);
-          if (element) summary.appendChild(element);
-        });
         copy.append(left, right);
-        copy.appendChild(summary);
       }
     }
     return true;
@@ -453,13 +482,17 @@
     .uploaded-gallery { padding-bottom: 0 !important; opacity: 0; transform: translateY(5rem); }
     .show-all-treatments { display: block; width: fit-content; margin: 1.5rem auto 0; padding: .75rem 1.2rem; border: 1px solid #174d36; border-radius: 999px; background: #174d36; color: #fff; font: 700 .78rem/1 Manrope, sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .2s ease, transform .2s ease; }
     .show-all-treatments:hover { background: #b0802d; transform: translateY(-2px); }
-    .treatment-card { width: 95% !important; min-height: 0 !important; justify-self: center; }
+    .treatment-card { display: flex !important; flex-direction: column !important; width: 95% !important; min-height: 0 !important; justify-self: center; }
     .treatment-card [class*="image-frame"] { display: block !important; margin-bottom: 0 !important; aspect-ratio: 2.35 / 1 !important; }
     .treatment-card [class*="image-frame"] img { display: block !important; }
-    .treatment-card-body { margin-top: 0 !important; padding: .45rem .8rem .7rem !important; }
+    .treatment-card-body { display: flex !important; flex: 1 1 auto !important; flex-direction: column !important; margin-top: 0 !important; padding: .45rem .8rem .7rem !important; }
     .treatment-card__head { display: none !important; }
-    .treatment-card p { margin-bottom: .4rem !important; line-height: 1.4 !important; }
-    .treatment-card .treatment-card__tags { margin-bottom: .45rem !important; }
+    #treatments .treatments-grid .treatment-card .treatment-card-body h3 { margin: 0 0 .65rem !important; color: #173f38 !important; font: 700 16px/1.3 Manrope, sans-serif !important; }
+    #treatments .treatments-grid .treatment-card .treatment-card-body > p { margin: 0 0 .8rem !important; color: #52645a !important; font: 400 10px/1.6 Manrope, sans-serif !important; }
+    #treatments .treatments-grid .treatment-card .treatment-card__link { margin-top: auto !important; padding-top: .25rem !important; color: #174d36 !important; font: 600 10px/1.4 Manrope, sans-serif !important; text-transform: none !important; }
+    #treatments .treatments-grid .treatment-card .treatment-items,
+    #treatments .treatments-grid .treatment-card .treatment-card__tags { display: none !important; }
+    #treatments .treatments-grid .treatment-card .treatment-card-body { min-height: 0 !important; }
     @media (min-width: 701px) {
       #treatments {
         padding-top: clamp(4rem, 6vw, 6rem) !important;
@@ -491,9 +524,9 @@
       }
       #treatments .treatments-grid {
         display: grid !important;
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
         align-items: stretch !important;
-        gap: 1.5rem !important;
+        gap: clamp(.75rem, 1vw, 1.25rem) !important;
       }
       #treatments .treatment-card,
       #treatments .treatments-grid .treatment-card:nth-child(3n + 2) {
@@ -506,10 +539,14 @@
       }
       #treatments .treatment-card-body {
         display: flex !important;
-        min-height: 15rem !important;
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
         flex-direction: column !important;
       }
-      #treatments .treatment-card-body .treatment-card__tags {
+      #treatments .treatment-card-body .treatment-items {
+        display: none !important;
+      }
+      #treatments .treatment-card-body .treatment-card__link {
         margin-top: auto !important;
       }
       .treatments-grid {
@@ -527,8 +564,16 @@
     .clinic-type { margin: .45rem 0 1.8rem; color: #a17735; font-size: clamp(.68rem, 1.4vw, .82rem); }
     .clinic-divider { width: 5.5rem; height: 1px; margin: 0 auto 2rem; background: #c8ae7d; color: #a17735; font-size: 1.2rem; line-height: 1; }
     .clinic-specialist { padding-top: 0; text-align: center; opacity: 0; transform: translateY(5rem); }
-    .clinic-doctor-image { width: min(100%, 18rem); margin: 0 auto 1.5rem; overflow: hidden; aspect-ratio: 4 / 5; border-radius: 10px; background: #e7dccb; box-shadow: 0 10px 24px rgba(88,63,27,.12); }
-    .clinic-doctor-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
+    .clinic-doctor-image { position: relative; width: min(100%, 18rem); margin: 0 auto 1.5rem; overflow: visible; aspect-ratio: 4 / 5; border-radius: 10px; background: #e7dccb; box-shadow: 0 10px 24px rgba(88,63,27,.12); }
+    .clinic-doctor-image img { display: block; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; object-position: center 58%; }
+    .clinic-experience-badge { position: absolute; right: -.75rem; bottom: -.65rem; z-index: 2; display: flex; width: 8.5rem; min-height: 7rem; flex-direction: column; align-items: flex-start; justify-content: center; padding: 1rem 1.2rem; border-radius: 1.15rem; background: #e0bf4e; color: #174d36; box-shadow: 0 10px 24px rgba(23,63,56,.18); }
+    .clinic-experience-badge strong { font: 400 2.5rem/.95 "DM Serif Display", Georgia, serif; }
+    .clinic-experience-badge span { margin-top: .5rem; font: 700 .9rem/1.2 Manrope, sans-serif; }
+    .clinic-professor-badge { position: absolute; top: 1.5rem; left: -.75rem; z-index: 2; display: flex; width: min(16rem, calc(100vw - 3rem)); min-height: 4.5rem; align-items: center; gap: .8rem; padding: .75rem 1rem; border: 1px solid rgba(23,77,53,.08); border-radius: .9rem; background: #fff; color: #174d36; box-shadow: 0 10px 28px rgba(0,0,0,.16); text-align: left; }
+    .clinic-professor-icon { display: grid; width: 2.35rem; height: 2.35rem; flex: 0 0 auto; place-items: center; font-size: 1.5rem; }
+    .clinic-professor-copy { display: flex; min-width: 0; flex-direction: column; gap: .2rem; }
+    .clinic-professor-copy strong { color: #174d36; font: 800 .9rem/1.2 Manrope, sans-serif; }
+    .clinic-professor-copy > span { color: #68756b; font: 400 .78rem/1.3 Manrope, sans-serif; }
     .clinic-specialist-copy { padding: clamp(1.5rem, 4vw, 2.25rem); border: 1px solid rgba(161,119,53,.35); border-radius: 12px; background: linear-gradient(145deg, rgba(255,255,255,.78), rgba(244,236,223,.92)); box-shadow: 0 14px 30px rgba(23,63,56,.1); text-align: center; }
     .clinic-card-brand { padding-bottom: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(161,119,53,.28); }
     .clinic-card-eyebrow, .clinic-card-type { font-family: Manrope, sans-serif; font-weight: 800; letter-spacing: .16em; }
@@ -546,6 +591,7 @@
     .clinic-description { max-width: 34rem; margin: 0 auto 1.4rem; }
     .clinic-specialist-copy h2 { margin: 0 0 .65rem; color: #174d36; font: 400 clamp(1.45rem, 4vw, 2.15rem)/1.05 "DM Serif Display", Georgia, serif; }
     .clinic-specialist-copy > p:last-child { margin: 0; }
+    .clinic-practice-overview { margin: 0 0 1rem; padding: 1rem 1.15rem; border-left: 3px solid #b0802d; border-radius: .6rem; background: #e8f0e2; color: #4d5952; font: clamp(.84rem, 1.5vw, .96rem)/1.65 Manrope, sans-serif; text-align: left; }
     .root-cause-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(1.1rem, 3vw, 2rem); align-items: center; overflow: hidden; margin-top: 1.8rem; padding: clamp(1.35rem, 3.5vw, 2rem); border: 1px solid rgba(23,77,53,.08); border-radius: 22px; background: #e8f0e2; box-shadow: 0 8px 22px rgba(23,77,53,.06); text-align: left; }
     .root-cause-icon { display: grid; width: clamp(4rem, 8vw, 5rem); height: clamp(4rem, 8vw, 5rem); place-items: center; flex: 0 0 auto; border-radius: 50%; background: #174d35; }
     .root-cause-icon svg { width: 55%; height: 55%; fill: none; stroke: #fff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2; }
@@ -589,7 +635,13 @@
       }
       .clinic-desktop-left {
         grid-column: 1;
+        text-align: center;
       }
+      .clinic-desktop-left > .clinic-card-specialist,
+      .clinic-desktop-left > .clinic-doctor-name,
+      .clinic-desktop-left > .clinic-credentials,
+      .clinic-desktop-left > .clinic-root-quote { text-align: center !important; }
+      .clinic-desktop-left > .clinic-root-quote { margin-right: auto !important; margin-left: auto !important; }
       .clinic-desktop-right {
         grid-column: 2;
         display: flex;
@@ -726,55 +778,221 @@
         font-size: .72rem !important;
       }
     }
-    @media (min-width: 701px) {
+    @media (min-width: 1024px) {
       .uploaded-gallery {
-        padding: clamp(4rem, 6vw, 6rem) clamp(2rem, 6vw, 6rem) clamp(4rem, 6vw, 6rem) !important;
-        background: linear-gradient(135deg, #f8f2e8 0%, #f1e6d7 100%) !important;
+        min-height: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        padding: 2rem clamp(2rem, 4vw, 4rem) !important;
+        background:
+          radial-gradient(ellipse at 93% 8%, rgba(216,180,90,.12), transparent 24rem),
+          linear-gradient(115deg, #f8f7ee 0%, #f3f1e6 100%) !important;
       }
       .uploaded-gallery > div {
-        width: min(100%, 72rem) !important;
-        max-width: 72rem !important;
+        display: grid !important;
+        width: min(100%, 88rem) !important;
+        max-width: 88rem !important;
+        grid-template-columns: minmax(21rem, .82fr) minmax(0, 1.18fr) !important;
+        grid-template-rows: auto !important;
+        column-gap: clamp(2.5rem, 5vw, 5rem) !important;
+        align-items: center !important;
         margin: 0 auto !important;
+        text-align: left !important;
       }
-      .uploaded-gallery > div > p:first-child {
-        margin-bottom: .8rem !important;
-        font-size: .75rem !important;
-        letter-spacing: .28em !important;
+      .gallery-editorial-intro {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        align-self: center !important;
       }
-      .uploaded-gallery h2 {
-        margin: 0 0 .75rem !important;
-        font-size: clamp(2.5rem, 4.5vw, 4.25rem) !important;
+      .gallery-editorial-intro > p:first-child {
+        margin: 0 0 1rem !important;
+        color: #a17631 !important;
+        font-size: .67rem !important;
+        font-weight: 800 !important;
+        letter-spacing: .2em !important;
+        line-height: 1.6 !important;
+        text-transform: uppercase !important;
+      }
+      .gallery-editorial-intro h2 {
+        max-width: 28rem !important;
+        margin: 0 0 .9rem !important;
+        color: #174d36 !important;
+        font: 400 clamp(2.5rem, 4vw, 4rem)/1.02 "DM Serif Display", Georgia, serif !important;
+      }
+      .gallery-editorial-intro > p:nth-child(3) {
+        max-width: 29rem !important;
+        margin: 0 !important;
+        color: #68756b !important;
+        font: 400 clamp(.88rem, 1.2vw, 1rem)/1.7 Manrope, sans-serif !important;
+      }
+      .gallery-benefits {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: .85rem 1rem !important;
+        margin-top: 1.6rem !important;
+      }
+      .gallery-benefits span {
+        display: flex !important;
+        align-items: center !important;
+        gap: .55rem !important;
+        color: #354b3b !important;
+        font: 700 clamp(.69rem, .9vw, .81rem)/1.35 Manrope, sans-serif !important;
+      }
+      .gallery-benefits svg {
+        width: 1.35rem !important;
+        height: 1.35rem !important;
+        flex: 0 0 auto !important;
+        fill: none !important;
+        stroke: #b0802d !important;
+        stroke-linecap: round !important;
+        stroke-linejoin: round !important;
+        stroke-width: 1.5 !important;
+      }
+      .gallery-explore-link {
+        display: inline-flex !important;
+        min-height: 3rem !important;
+        align-items: center !important;
+        gap: .8rem !important;
+        margin-top: 1.75rem !important;
+        padding: 0 1.2rem !important;
+        border-radius: .55rem !important;
+        background: #154c35 !important;
+        color: #fff !important;
+        font: 800 .73rem/1 Manrope, sans-serif !important;
+        letter-spacing: .06em !important;
+        text-decoration: none !important;
+        text-transform: uppercase !important;
+        transition: background .2s ease, transform .2s ease !important;
+      }
+      .gallery-explore-link:hover {
+        transform: translateY(-2px) !important;
+        background: #a17631 !important;
+      }
+      .gallery-explore-link span,
+      .gallery-slide-cta span {
+        font-size: 1.1rem !important;
         line-height: 1 !important;
       }
-      .uploaded-gallery > div > p:nth-child(3) {
-        max-width: 34rem !important;
-        margin: 0 auto 2rem !important;
-        font-size: 1rem !important;
-        line-height: 1.65 !important;
-      }
       .uploaded-gallery .gallery-viewer {
-        width: min(100%, 68rem) !important;
-        max-width: 68rem !important;
-        margin: 2.25rem auto 0 !important;
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 1rem !important;
+        background: transparent !important;
+        box-shadow: none !important;
       }
       .uploaded-gallery .gallery-viewer > div {
-        aspect-ratio: 16 / 8 !important;
-        border-radius: 1.25rem !important;
-        background: #e4d8c8 !important;
-        box-shadow: 0 1.2rem 2.5rem rgba(55,43,25,.16) !important;
+        position: relative !important;
+        display: grid !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 3 / 2 !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(23,77,53,.1) !important;
+        border-radius: 1rem !important;
+        background: #fffdf7 !important;
+        box-shadow: 0 1.2rem 2.8rem rgba(40,52,39,.13) !important;
+      }
+      .gallery-slide-copy {
+        display: none !important;
+      }
+      .gallery-slide-number {
+        margin: 0 0 1.1rem !important;
+        color: #a17631 !important;
+        font: 800 .7rem/1 Manrope, sans-serif !important;
+        letter-spacing: .19em !important;
+      }
+      .gallery-slide-title {
+        margin: 0 0 .75rem !important;
+        color: #174d36 !important;
+        font: 400 clamp(1.7rem, 2.5vw, 2.55rem)/1.04 "DM Serif Display", Georgia, serif !important;
+      }
+      .gallery-slide-description {
+        margin: 0 !important;
+        color: #647168 !important;
+        font: 400 clamp(.75rem, 1vw, .87rem)/1.65 Manrope, sans-serif !important;
+      }
+      .gallery-slide-tags {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: .4rem !important;
+        margin-top: 1rem !important;
+      }
+      .gallery-slide-tags span {
+        padding: .38rem .55rem !important;
+        border: 1px solid rgba(23,77,53,.14) !important;
+        border-radius: 999px !important;
+        background: #f5f5ec !important;
+        color: #47614e !important;
+        font: 700 .58rem/1 Manrope, sans-serif !important;
+      }
+      .gallery-slide-cta {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: .45rem !important;
+        margin-top: auto !important;
+        padding-top: 1rem !important;
+        color: #174d36 !important;
+        font: 800 .59rem/1.3 Manrope, sans-serif !important;
+        letter-spacing: .075em !important;
+        text-decoration: none !important;
+      }
+      .gallery-slide-art {
+        position: relative !important;
+        grid-column: 1 / -1 !important;
+        grid-row: 1 !important;
+        min-width: 0 !important;
+        overflow: hidden !important;
+        background: #e6e7d8 !important;
       }
       .uploaded-gallery .gallery-current-image {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: 100% !important;
+        padding: 0 !important;
         object-fit: contain !important;
-        padding: .75rem !important;
+        object-position: center !important;
       }
       .uploaded-gallery .gallery-prev,
       .uploaded-gallery .gallery-next {
-        width: 3rem !important;
-        height: 3rem !important;
-        font-size: 1.7rem !important;
+        top: auto !important;
+        bottom: .85rem !important;
+        width: 2.45rem !important;
+        height: 2.45rem !important;
+        transform: none !important;
+        border: 1px solid rgba(255,255,255,.75) !important;
+        background: #fffdf7 !important;
+        color: #174d36 !important;
+        font-size: 1.35rem !important;
+        box-shadow: 0 .25rem .8rem rgba(0,0,0,.14) !important;
       }
-      .uploaded-gallery .gallery-prev { left: 1.25rem !important; }
-      .uploaded-gallery .gallery-next { right: 1.25rem !important; }
+      .uploaded-gallery .gallery-prev:hover,
+      .uploaded-gallery .gallery-next:hover {
+        background: #174d36 !important;
+        color: #fff !important;
+      }
+      .uploaded-gallery .gallery-prev { right: 3.7rem !important; left: auto !important; }
+      .uploaded-gallery .gallery-next { right: .85rem !important; }
+    }
+    @media (max-width: 1023px) {
+      .gallery-editorial-intro, .gallery-slide-art { display: contents !important; }
+      .gallery-benefits, .gallery-explore-link, .gallery-slide-copy { display: none !important; }
+    }
+    @media (min-width: 1024px) and (max-width: 1200px) {
+      .uploaded-gallery > div { grid-template-columns: minmax(18rem, .82fr) minmax(0, 1.18fr) !important; column-gap: 2rem !important; }
+      .uploaded-gallery .gallery-viewer > div { grid-template-columns: minmax(0, 1fr) !important; }
+      .gallery-benefits { gap: .7rem .5rem !important; }
+      .gallery-benefits span { font-size: .67rem !important; }
+      .gallery-slide-copy { padding-inline: 1rem !important; }
+      .gallery-slide-tags span { font-size: .53rem !important; }
     }
     .panchkarma-journey { padding: clamp(4.5rem, 9vw, 7rem) 1.25rem; background: #faf9f4; }
     .panchkarma-journey-inner { max-width: 78rem; margin: 0 auto; }
@@ -932,19 +1150,39 @@
     @media (max-width: 900px) { .find-us-layout { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .find-us-section { padding-inline: 1rem; } .find-us-map-wrap iframe { height: 20rem; } .find-us-map-actions > * { flex: 1 1 10rem; } .find-us-whatsapp { align-items: flex-start; flex-wrap: wrap; } .find-us-whatsapp .find-us-button { width: 100%; margin-left: 0; } .find-us-social { align-items: center; flex-direction: column; } }
     @media (min-width: 701px) {
-      .site-header { position: sticky !important; top: 0; left: 0; right: 0; z-index: 30; border-bottom: 1px solid rgba(217,174,79,.18) !important; background: rgba(8,53,36,.98) !important; box-shadow: 0 .7rem 1.5rem rgba(0,0,0,.12); }
-      .site-header__inner { display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto auto; width: min(100% - 4rem, 120rem) !important; min-height: 4.8rem !important; margin: 0 auto; gap: 1.25rem !important; padding-block: .5rem !important; align-items: center; }
+      .site-header {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 30;
+        background: transparent !important;
+        border-bottom: 1px solid transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transition: background .3s ease, backdrop-filter .3s ease, border-color .3s ease, box-shadow .3s ease;
+      }
+      .site-header.is-scrolled {
+        position: fixed !important;
+        background: rgba(4,45,28,.94) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(217,184,74,.15) !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,.15) !important;
+      }
+      .site-header__inner { display: grid !important; grid-template-columns: minmax(13rem, auto) minmax(0, 1fr) max-content max-content; width: min(calc(100% - 4rem), 120rem) !important; min-height: 4.8rem !important; margin: 0 auto; gap: 1.25rem !important; padding-block: .5rem !important; align-items: center; }
       .site-header__brand { flex: 0 0 auto; gap: 1.2rem !important; }
       .site-header__logo { width: 3.2rem !important; height: 3.2rem !important; }
-      .site-header__clinic-name { color: #fff !important; font-size: 1.18rem !important; letter-spacing: .01em !important; }
-      .site-header__clinic-subtitle { color: #d9ae4f !important; font-size: .72rem !important; letter-spacing: .08em !important; }
-      .site-header__nav { position: static !important; display: flex !important; width: auto !important; height: auto !important; min-width: 0; flex-flow: row nowrap !important; align-items: center; justify-content: flex-end; gap: .15rem !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
-      .site-header__nav a { padding: .7rem .55rem !important; border: 0 !important; border-radius: .55rem; background: transparent !important; color: rgba(255,255,255,.82) !important; font-size: .74rem !important; font-weight: 800 !important; letter-spacing: 0 !important; text-transform: none !important; white-space: nowrap; box-shadow: none !important; }
+      .site-header__clinic-name { color: #fff !important; font-size: 1.18rem !important; font-weight: 800 !important; letter-spacing: .01em !important; }
+      .site-header__clinic-subtitle { color: #D9B84A !important; font-size: .72rem !important; font-weight: 700 !important; letter-spacing: .08em !important; }
+      .site-header__nav { position: static !important; display: flex !important; width: 100% !important; height: auto !important; min-width: 0; flex-flow: row nowrap !important; align-items: center; justify-content: flex-end; gap: .15rem !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
+      .site-header__nav a { padding: .7rem .55rem !important; border: 0 !important; border-radius: .55rem; background: transparent !important; color: #B8C0B6 !important; font-size: .74rem !important; font-weight: 900 !important; letter-spacing: 0 !important; text-transform: none !important; white-space: nowrap; box-shadow: none !important; }
       .site-header__nav a[href="#approach"] { white-space: nowrap; }
       .site-header__nav a:hover, .site-header__nav a:focus-visible, .site-header__nav .desktop-header-home { border: 0 !important; background: rgba(72,119,77,.35) !important; color: #f2c861 !important; box-shadow: none !important; }
-      .site-header__cta { margin-left: .4rem; padding: .85rem 1.25rem !important; border-radius: 999px !important; background: #e5bd58 !important; color: #123f2d !important; font-size: .82rem !important; }
-      .desktop-header-phone { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .55rem; color: #e5bd58; font: 800 .82rem Manrope, sans-serif; text-decoration: none; white-space: nowrap; }
-      .desktop-header-phone span { color: #e83f9c; font-size: 1.15rem; }
+      .site-header__cta { width: max-content !important; margin-left: .4rem; padding: .85rem 1.25rem !important; border-radius: 999px !important; background: linear-gradient(135deg, #E5C65A, #CFA83D) !important; color: #063A25 !important; font-size: .82rem !important; font-weight: 800 !important; justify-self: end; }
+      .desktop-header-phone { display: inline-flex; flex: 0 0 auto; align-items: center; gap: .55rem; color: #e5bd58; font: 900 .82rem Manrope, sans-serif; text-decoration: none; white-space: nowrap; }
+      .desktop-header-phone svg { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; color: #e83f9c; }
       .site-header__menu-btn { display: none !important; }
       .site-header__brand { order: 1; }
       .site-header__nav { order: 2; }
@@ -963,7 +1201,7 @@
       .site-header__logo, .site-header__logo img { width: 3rem !important; height: 3rem !important; max-width: 3rem !important; max-height: 3rem !important; object-fit: contain !important; }
       .site-header__clinic-info { min-width: 0; }
       .site-header__clinic-name { overflow: hidden; color: #fff !important; font-size: .78rem !important; line-height: 1.1 !important; text-overflow: ellipsis; white-space: nowrap; }
-      .site-header__clinic-subtitle { color: #d9ae4f !important; font-size: .5rem !important; letter-spacing: .04em !important; line-height: 1.2 !important; white-space: nowrap; }
+      .site-header__clinic-subtitle { color: #d9ae4f !important; font-size: .5rem !important; font-weight: 700 !important; letter-spacing: .04em !important; line-height: 1.2 !important; white-space: nowrap; }
       .site-header__nav { gap: 0 !important; }
       .site-header__nav a { padding: .65rem .3rem !important; border: 0 !important; font-size: .61rem !important; line-height: 1 !important; white-space: nowrap; }
       .site-header__cta { margin-left: .15rem; padding: .7rem .8rem !important; font-size: .68rem !important; }
@@ -1001,14 +1239,52 @@
     @media (min-width: 701px) and (max-width: 1100px) { .panchkarma-journey { padding-inline: clamp(1.5rem, 4vw, 3rem); } .panchkarma-journey-inner { max-width: 64rem; } .panchkarma-journey-header { max-width: 58rem; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-stage { grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr); gap: 1.5rem; } .panchkarma-stage-copy h3 { font-size: clamp(1.7rem, 3vw, 2.2rem); } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { font-size: .9rem; } .panchkarma-stage-image-wrap { aspect-ratio: 1.35 / 1; } }
     @media (max-width: 700px) { .panchkarma-journey { overflow-x: hidden; padding-inline: 1rem; } .panchkarma-journey-header { max-width: 100%; } .panchkarma-journey-heading-image { width: 100%; max-width: 100%; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-timeline-line { top: 1.5rem; bottom: 1.5rem; left: 1.25rem; } .panchkarma-stage, .panchkarma-stage:nth-of-type(even) { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; align-items: start; } .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 2; grid-row: auto; text-align: left; } .panchkarma-stage-marker { width: 2.5rem; height: 2.5rem; } .panchkarma-stage-image-wrap { grid-column: 2; grid-row: 1; aspect-ratio: 1.35 / 1; border-radius: 18px; } .panchkarma-stage-copy { grid-column: 2; grid-row: 2; } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: none; } }
     @media (max-width: 560px) { .explore-panchkarma-cta-section { padding: 2rem 1rem; } .explore-panchkarma-cta { width: 90%; min-height: 3.25rem; padding-inline: 1rem; white-space: nowrap; } .panchkarma-journey .explore-panchkarma-cta-section { padding: 0; } .panchkarma-journey .explore-panchkarma-cta { width: min(100%, 21rem); white-space: normal; } }
+    @media (min-width: 1024px) {
+      #treatments > .container { width: 100% !important; max-width: none !important; padding-inline: clamp(1.5rem, 3.5vw, 4.5rem) !important; }
+      #treatments .treatments-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+      #treatments .treatments-grid { gap: clamp(1rem, 1.5vw, 1.75rem) !important; }
+      #treatments .treatment-card { width: 100% !important; min-width: 0 !important; }
+      #treatments .treatment-card [class*="image-frame"] { aspect-ratio: 2 / 1 !important; }
+      #treatments .treatment-card-body { min-height: 0 !important; padding: .6rem clamp(.7rem, .9vw, 1rem) .7rem !important; }
+      #treatments .treatments-grid .treatment-card .treatment-card-body h3 { margin: 0 0 .65rem !important; color: #173f38 !important; font: 700 16px/1.3 Manrope, sans-serif !important; letter-spacing: 0 !important; }
+      #treatments .treatments-grid .treatment-card .treatment-card-body > p { margin: 0 0 .8rem !important; color: #52645a !important; font: 400 10px/1.6 Manrope, sans-serif !important; }
+      #treatments .treatments-grid .treatment-card .treatment-card__link { margin-top: auto !important; padding-top: .25rem !important; color: #174d36 !important; font: 600 10px/1.4 Manrope, sans-serif !important; letter-spacing: 0 !important; text-transform: none !important; }
+      #treatments .treatment-card-body .treatment-items { display: none !important; }
+      .restored-clinic-intro { width: 100% !important; max-width: none !important; padding: 2rem 0 !important; }
+      .clinic-intro-inner { max-width: none !important; }
+      .clinic-specialist-copy { width: 100% !important; border-radius: 0 !important; }
+      .clinic-doctor-image { width: min(100%, 26rem) !important; }
+      .clinic-doctor-image img { object-fit: contain !important; object-position: center center !important; }
+      .clinic-experience-badge { right: -2rem !important; bottom: -1.5rem !important; }
+      .clinic-professor-badge { top: .75rem !important; left: -1.25rem !important; }
+      .uploaded-gallery { padding-top: 2rem !important; }
+      .uploaded-gallery { padding-bottom: 0 !important; }
+      .uploaded-gallery > div > p:last-child { margin-bottom: 0 !important; }
+      #treatments { padding-top: 1rem !important; }
+    }
     @media (prefers-reduced-motion: reduce) { .panchkarma-stage, .panchkarma-stage-copy, .panchkarma-stage-image { transition: none; } }
   `;
   document.head.appendChild(style);
 
   const observeScrollSections = () => {
     removeExtraSpecialistSection();
+    document.querySelector("#panchkarma")?.remove();
+    document.querySelector("main > .experience-section")?.remove();
+    const conditionsHeading = [...document.querySelectorAll("h2")].find((heading) =>
+      heading.textContent.trim().startsWith("Conditions we")
+    );
+    conditionsHeading?.querySelector("br")?.remove();
     addTreatmentsButton();
     addPanchkarmaJourney();
+    const gallery = document.querySelector(".uploaded-gallery");
+    const doctorInfo = document.querySelector(".restored-clinic-intro");
+    if (gallery && doctorInfo && gallery.parentElement === doctorInfo.parentElement) {
+      const main = gallery.parentElement;
+      const desktopOrder = window.matchMedia("(min-width: 701px)").matches;
+      const firstSection = desktopOrder ? doctorInfo : gallery;
+      const secondSection = desktopOrder ? gallery : doctorInfo;
+      if (firstSection.nextElementSibling !== secondSection) main.insertBefore(firstSection, secondSection);
+    }
     const appointmentSection = document.querySelector("#homepage-appointment");
     if (appointmentSection) {
       const appointmentButtons = [
@@ -1043,6 +1319,7 @@
     return true;
   };
 
+  window.matchMedia("(min-width: 701px)").addEventListener("change", observeScrollSections);
   if (!renderClinicIntro() || !observeScrollSections()) {
     new MutationObserver(() => {
       renderClinicIntro();
