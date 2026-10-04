@@ -266,6 +266,7 @@
         <div class="container booking-grid">
           <div class="booking-intro"><p class="eyebrow">Take the first step</p><h2>Book Your Consultation</h2><p>Take the first step toward personalized Ayurvedic care at Shri Gurupad Multispeciality Clinic.</p><p><strong>Call:</strong><br /><a href="tel:7999771845">7999771845</a></p></div>
           <form id="appointment-form" novalidate>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px" />
             <div class="field"><label for="name">Full Name *</label><input id="name" name="name" required autocomplete="name" /></div>
             <div class="field"><label for="phone">Phone Number *</label><input id="phone" name="phone" required type="tel" inputmode="tel" autocomplete="tel" /></div>
             <div class="field"><label for="age">Age</label><input id="age" name="age" type="number" min="0" max="120" /></div>
@@ -303,28 +304,6 @@
       <section class="final-cta"><div class="container"><h2>Begin Your Ayurvedic Wellness Journey</h2><p>Consult Dr. Ashish Choyal at Shri Gurupad Multispeciality Clinic.</p><a class="button button--gold" href="#booking">Book an Appointment</a></div></section>
     </main>
     <footer><div class="container">Shri Gurupad Multispeciality Clinic · Consultation &amp; Panchkarma Center</div></footer>
-    <script>
-      const form = document.querySelector("#appointment-form");
-      const status = document.querySelector("#form-status");
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          status.textContent = "Please complete the required fields before submitting.";
-          status.classList.add("is-visible");
-          return;
-        }
-        const submit = form.querySelector("button[type=submit]");
-        submit.disabled = true;
-        submit.textContent = "Sending...";
-        window.setTimeout(() => {
-          form.reset();
-          submit.disabled = false;
-          submit.textContent = "Book Appointment";
-          status.textContent = "Thank you! Your appointment request has been received. Our team will contact you shortly.";
-          status.classList.add("is-visible");
-        }, 500);
-      });
-    </script>
+    <script src="/booking-form.js"></script>
   </body>
 </html>

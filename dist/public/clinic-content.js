@@ -180,9 +180,10 @@
         </div>
       </div>
       <div class="homepage-appointment-form-wrap">
-        <form class="homepage-appointment-form">
+        <form class="homepage-appointment-form" novalidate>
           <p class="homepage-appointment-eyebrow">PERSONALIZED CARE</p><h3>Book an Appointment</h3>
           <p class="homepage-appointment-form-lead">Share your details and our team will contact you regarding your consultation.</p>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px" />
           <div class="homepage-appointment-fields">
             <label>Full Name *<input name="name" placeholder="Your full name" required /></label>
             <label>Phone Number *<input name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required /></label>
@@ -198,21 +199,6 @@
 
       </div>
       <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7999771845" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917999771845" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic">☘ <span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
-    const form = section.querySelector("form");
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (!form.checkValidity()) return form.reportValidity();
-      const submit = form.querySelector("button");
-      const status = form.querySelector(".homepage-appointment-status");
-      submit.disabled = true;
-      submit.textContent = "Submitting...";
-      window.setTimeout(() => {
-        submit.disabled = false;
-        submit.textContent = "Book Consultation →";
-        status.textContent = "Thank you! Your appointment request has been received. Our team will contact you shortly.";
-        form.reset();
-      }, 700);
-    });
     section.querySelector(".homepage-floating-actions button").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
     return section;
   };
@@ -1114,6 +1100,29 @@
     .homepage-floating-actions a, .homepage-floating-actions button { display: grid; min-width: 3rem; min-height: 3rem; place-items: center; padding: .4rem .65rem; border: 0; border-radius: 999px; background: #174d35; color: #fff; box-shadow: 0 .4rem 1rem rgba(0,0,0,.18); cursor: pointer; font: 800 .68rem Manrope, sans-serif; text-decoration: none; }
     .homepage-floating-actions a:nth-child(2) { background: #1c6849; }
     .homepage-floating-actions span { display: none; }
+    @media (min-width: 901px) {
+      .homepage-appointment { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); align-items: stretch; background: #fffdf9; }
+      .homepage-appointment-hero { padding: clamp(2.5rem, 4vw, 4.5rem) clamp(2rem, 3.2vw, 4rem); }
+      .homepage-appointment-inner { width: 100%; max-width: 42rem; margin-left: auto; }
+      .homepage-appointment h2 { font-size: clamp(2.8rem, 4.2vw, 4.7rem); line-height: 1.04; }
+      .homepage-appointment-lead { margin: 1.5rem 0 2rem; font-size: clamp(.95rem, 1.2vw, 1.12rem); }
+      .homepage-appointment-info-grid { grid-template-columns: 1fr; gap: .8rem; }
+      .homepage-appointment-info-grid article { min-height: 0; padding: 1.1rem 1.25rem; }
+      .homepage-appointment-info-grid h3 { color: #e9c45f; font: 800 .95rem/1.4 Manrope, sans-serif; }
+      .homepage-appointment-info-grid p { margin-top: .35rem; font-size: .86rem; }
+      .homepage-appointment-whatsapp { margin-top: 1.25rem; padding: 1.1rem 1.25rem; }
+      .homepage-appointment-form-wrap { display: flex; width: 100%; align-items: center; padding: clamp(2rem, 4vw, 4rem) clamp(2rem, 3.2vw, 4rem); }
+      .homepage-appointment-form { width: 100%; max-width: 48rem; margin: 0 auto; padding: 0; border-radius: 0; background: transparent; box-shadow: none; }
+      .homepage-appointment-form .homepage-appointment-eyebrow { color: #b0802d; }
+      .homepage-appointment-form h3 { color: #173f2f; font-size: clamp(2rem, 3vw, 2.8rem); }
+      .homepage-appointment-form-lead { margin: .7rem 0 1.8rem; font-size: .95rem; }
+      .homepage-appointment-fields { gap: 1.1rem; }
+      .homepage-appointment-fields label { gap: .55rem; font-size: .82rem; }
+      .homepage-appointment-fields input, .homepage-appointment-fields select { min-height: 3.6rem; padding: .85rem 1rem; border-color: rgba(32,61,53,.18); border-radius: .75rem; background: #f9f7f3; font-size: .9rem; }
+      .homepage-appointment-fields textarea { min-height: 8rem; padding: .9rem 1rem; border-color: rgba(32,61,53,.18); border-radius: .75rem; background: #f9f7f3; font-size: .9rem; }
+      .homepage-appointment-fields label:nth-child(3), .homepage-appointment-fields label:nth-child(7) { grid-column: 1 / -1; }
+      .homepage-appointment-submit { width: 100%; min-height: 3.5rem; margin-top: 1.5rem; border-radius: .8rem; background: #1b6848; font-size: .9rem; }
+    }
     @media (max-width: 900px) { .homepage-appointment-info-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .homepage-appointment-hero { padding-inline: 1rem; } .homepage-appointment-info-grid, .homepage-appointment-fields { grid-template-columns: 1fr; } .homepage-appointment-whatsapp { align-items: flex-start; flex-direction: column; } .homepage-appointment-whatsapp-button, .homepage-appointment-submit { width: 100%; } .homepage-appointment-form-wrap { padding-inline: 1rem; } .homepage-appointment-wide { grid-column: auto; } .homepage-floating-actions { right: .75rem; bottom: calc(.75rem + env(safe-area-inset-bottom)); } }
     .find-us-section { padding: clamp(4.5rem, 9vw, 7rem) 1.25rem; background: #f7f1e8; color: #174d35; }
