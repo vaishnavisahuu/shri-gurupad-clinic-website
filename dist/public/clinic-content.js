@@ -38,8 +38,8 @@
     nav.insertBefore(home, nav.firstElementChild);
     const phone = document.createElement("a");
     phone.className = "desktop-header-phone";
-    phone.href = "tel:7000944387";
-    phone.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92Z"/><path d="M14.05 2a9 9 0 0 1 8 8M14.05 6a5 5 0 0 1 4 4"/></svg> +91 7000944387';
+    phone.href = "tel:7999771845";
+    phone.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 1.72 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92Z"/><path d="M14.05 2a9 9 0 0 1 8 8M14.05 6a5 5 0 0 1 4 4"/></svg> +91 7999771845';
     inner?.appendChild(phone);
     const logo = header.querySelector(".site-header__logo img");
     const originalLogoSrc = logo?.getAttribute("src");
@@ -170,12 +170,12 @@
           <div class="homepage-appointment-info-grid">
             <article><span class="homepage-appointment-icon" aria-hidden="true">⌖</span><div><h3>Shri Gurupad Multispeciality Clinic</h3><p>Consultation &amp; Panchkarma Center</p><p>[ADD CLINIC ADDRESS]</p></div></article>
             <article><span class="homepage-appointment-icon" aria-hidden="true">◷</span><div><h3>OPD Timings</h3><p>[ADD OPD TIMINGS]</p></div></article>
-            <article><span class="homepage-appointment-icon" aria-hidden="true">☎</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7000944387">7000944387</a></p><p><a href="tel:7869869888">7869869888</a></p></div></article>
+            <article><span class="homepage-appointment-icon" aria-hidden="true">☎</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7999771845">7999771845</a></p></div></article>
             <article><span class="homepage-appointment-icon" aria-hidden="true">✦</span><div><h3>Consultation With</h3><p>Dr. Ashish Choyal</p><p>B.A.M.S., M.D. (Panchkarma)</p></div></article>
           </div>
           <div class="homepage-appointment-whatsapp">
             <div><p class="homepage-appointment-eyebrow">QUICK WHATSAPP BOOKING</p><h3>Message us directly to enquire about your consultation.</h3></div>
-            <a class="homepage-appointment-whatsapp-button" href="https://wa.me/917000944387?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal." target="_blank" rel="noreferrer">WhatsApp Us →</a>
+            <a class="homepage-appointment-whatsapp-button" href="https://wa.me/917999771845?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal." target="_blank" rel="noreferrer">WhatsApp Us →</a>
           </div>
         </div>
       </div>
@@ -197,7 +197,7 @@
         </form>
 
       </div>
-      <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7000944387" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic">☘ <span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
+      <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7999771845" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917999771845" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic">☘ <span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
     const form = section.querySelector("form");
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -220,7 +220,7 @@
   const FindUsSection = () => {
     const address = "245, Sector-G, Main Road, Silicon City, Indore - 452012";
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
-    const whatsappUrl = "https://wa.me/917000944387?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal.";
+    const whatsappUrl = "https://wa.me/917999771845?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal.";
     const section = document.createElement("section");
     section.className = "find-us-section";
     section.id = "find-us";
@@ -240,10 +240,10 @@
           <div class="find-us-cards">
             <article class="find-us-card"><span aria-hidden="true">📍</span><div><h3>Main Clinic — Silicon City</h3><address>245, Sector-G, Main Road,<br />Silicon City,<br />Indore - 452012</address><a href="${directionsUrl}" target="_blank" rel="noreferrer">Get Directions →</a></div></article>
             <article class="find-us-card"><span aria-hidden="true">👨‍⚕️</span><div><h3>Consultation With</h3><p><strong>Dr. Ashish Choyal</strong><br />B.A.M.S., M.D. (Panchkarma)<br />Consultation &amp; Panchkarma Center</p></div></article>
-            <article class="find-us-card"><span aria-hidden="true">📞</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7000944387">+91 7000944387</a><br /><a href="tel:7869869888">+91 7869869888</a></p><a href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp →</a></div></article>
+            <article class="find-us-card"><span aria-hidden="true">📞</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7999771845">+91 7999771845</a></p><a href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp →</a></div></article>
           </div>
         </div>
-        <div class="find-us-whatsapp"><span aria-hidden="true">💬</span><div><h3>WhatsApp</h3><p>Send us a message for quick appointment enquiries.</p></div><a class="find-us-button" href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp +91 7000944387 →</a></div>
+        <div class="find-us-whatsapp"><span aria-hidden="true">💬</span><div><h3>WhatsApp</h3><p>Send us a message for quick appointment enquiries.</p></div><a class="find-us-button" href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp +91 7999771845 →</a></div>
         <div class="find-us-social"><p class="find-us-eyebrow">FOLLOW SHRI GURUPAD</p><div><a href="#" data-placeholder-social title="Add the clinic's Instagram URL">Instagram</a><a href="#" data-placeholder-social title="Add the clinic's Facebook URL">Facebook</a><a href="#" data-placeholder-social title="Add the clinic's YouTube URL">YouTube</a></div></div>
         <a class="find-us-full-contact" href="#contact">📍 Full Contact Page &amp; Directions →</a>
       </div>`;
