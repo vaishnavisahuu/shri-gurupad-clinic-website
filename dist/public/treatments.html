@@ -96,14 +96,22 @@
       .condition-card { display: grid; grid-template-columns: minmax(15rem, 30%) minmax(0, 1fr); min-width: 0; overflow: hidden; border: 1px solid rgba(23,75,50,.1); border-radius: 1.5rem; background: #fff; box-shadow: 0 .8rem 2rem rgba(23,75,50,.075); transition: transform .2s ease, box-shadow .2s ease; }
       .condition-card:hover { transform: translateY(-2px); box-shadow: 0 1.2rem 2.5rem rgba(23,75,50,.12); }
       @media (min-width: 521px) {
+        .condition-card:first-child { grid-template-columns: minmax(0, 42%) minmax(0, 1fr); }
         .condition-card:nth-child(even) { grid-template-columns: minmax(0, 1fr) minmax(15rem, 30%); }
         .condition-card:nth-child(even) .condition-card__media { grid-column: 2; grid-row: 1; }
         .condition-card:nth-child(even) .condition-card__content { grid-column: 1; grid-row: 1; }
       }
       .condition-card__media { position: relative; min-height: 21rem; overflow: hidden; background: #dfe8df; }
-      .condition-card__media::after { position: absolute; inset: 30% 0 0; background: linear-gradient(180deg, transparent 0%, rgba(14,54,37,.84) 100%); content: ""; pointer-events: none; }
-      .condition-card__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-      .condition-card__image-title { position: absolute; right: 1.25rem; bottom: 1.35rem; left: 1.25rem; z-index: 1; color: #fff; font: 400 clamp(1.45rem,2vw,1.9rem)/1.15 "DM Serif Display", Georgia, serif; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
+      .condition-card__image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+      .condition-card__image--contain { object-fit: contain; background: transparent; }
+      .condition-card:first-child .condition-card__image { object-fit: cover; object-position: 62% center; }
+      #treatment-6 .condition-card__media { background: #eef1ea; }
+      @media (min-width: 521px) {
+        #treatment-6.condition-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      }
+      #treatment-6 .condition-card__image { width: 100%; height: 100%; object-fit: cover; object-position: 65% center; background: transparent; }
+      #treatment-12 .condition-card__image { object-position: 78% center; }
+      #treatment-13 .condition-card__image { object-position: right center; }
       .condition-card__content { display: flex; min-width: 0; flex-direction: column; padding: clamp(1.25rem,2.4vw,2rem); }
       .condition-card__content h3 { margin: 0; color: #172b22; font: 400 clamp(1.45rem,2.1vw,1.85rem)/1.2 "DM Serif Display", Georgia, serif; }
       .condition-card__description { margin: .55rem 0 1.15rem; color: #586477; font-size: .92rem; line-height: 1.7; }
@@ -198,7 +206,6 @@
       @media (max-width: 520px) {
         .condition-card { grid-template-columns: minmax(0, 1fr); border-radius: 1.25rem; }
         .condition-card__media { min-height: 14rem; height: 14rem; }
-        .condition-card__image-title { right: 1rem; bottom: 1rem; left: 1rem; font-size: 1.55rem; }
         .condition-card__content { padding: 1.15rem; }
         .condition-card__content h3 { font-size: 1.4rem; }
         .condition-card__description { margin-bottom: 1rem; font-size: .9rem; }
@@ -288,6 +295,7 @@
           name: "Skin Disorders",
           image: "/images/skindisorders.png",
           alt: "Ayurvedic skin care consultation",
+          imageFit: "contain",
           description: "Skin concerns such as acne, eczema, pigmentation, and recurring irritation may require a personalized approach. Ayurvedic consultation focuses on understanding your skin condition, health history, and individual care needs.",
           symptoms: ["Itching, redness, or irritation", "Dryness and flaky skin", "Acne, blemishes, or pigmentation", "Recurring skin eruptions"],
           therapiesLabel: "Therapies Used",
@@ -297,8 +305,8 @@
         },
         {
           name: "Hair Fall & Scalp Concerns",
-          image: "/images/skin-photo.jpg",
-          alt: "Consultation for skin and scalp concerns",
+          image: "/images/hair-fall-scalp-consultation.png",
+          alt: "Doctor consulting with a patient about hair and scalp concerns",
           description: "Hair fall and scalp concerns may be associated with various factors, including stress, nutrition, and scalp health. Ayurvedic consultation focuses on understanding contributing factors and developing a personalized hair and scalp care approach.",
           symptoms: ["Increased hair shedding", "Scalp itching or flaking", "Reduced hair density", "Dryness or scalp irritation"],
           therapiesLabel: "Therapies Used",
@@ -324,16 +332,16 @@
         },
         {
           name: "Cervical & Lumbar Spondylosis",
-          image: "/images/backAndJoints.png",
-          alt: "Doctor consultation for spine, neck, and lower-back concerns",
+          image: "/images/cervical-spondylosis-consultation.png",
+          alt: "Doctor examining a patient's neck during a cervical spine consultation",
           description: "Individual consultation for neck or lower-back symptoms in the context of your diagnosis and existing care.",
           symptoms: ["Neck or lower-back pain", "Stiffness", "Tingling or radiating discomfort"],
           therapies: ["Abhyanga", "Basti Karma", "Kati Basti"],
         },
         {
           name: "Sciatica",
-          image: "/images/back-and-joints-photo.jpg",
-          alt: "Consultation for back and leg discomfort",
+          image: "/images/sciatica-consultation.png",
+          alt: "Doctor discussing sciatica concerns with a patient",
           description: "Sciatica occurs when the sciatic nerve becomes compressed or irritated, causing pain that radiates from the lower back through the hip and down the leg. Ayurvedic treatment focuses on managing discomfort, improving mobility, and addressing the underlying Vata imbalance.",
           symptoms: ["Shooting pain from lower back to leg", "Numbness or tingling in leg/foot", "Weakness in the affected leg", "Pain that worsens while sitting"],
           therapiesLabel: "Therapies Used",
@@ -382,24 +390,24 @@
         },
         {
           name: "Insomnia & Stress",
-          image: "/images/gurupad_ai_3.jpeg",
-          alt: "Calm consultation setting for sleep and stress concerns",
+          image: "/images/insomnia-stress-consultation.png",
+          alt: "Doctor discussing stress and wellbeing with a patient",
           description: "Talk through sleep routines, stress, and supportive wellness practices in a confidential consultation.",
           symptoms: ["Difficulty falling asleep", "Frequent waking", "Stress affecting daily life"],
           therapies: ["Shirodhara", "Abhyanga", "Sleep routine guidance"],
         },
         {
           name: "Allergies & Sinusitis",
-          image: "/images/doctor.jpeg",
-          alt: "Doctor consultation for allergy and sinus concerns",
+          image: "/images/allergies-sinusitis.png",
+          alt: "Doctor consulting a patient about allergy and sinusitis symptoms",
           description: "Consultation for recurring allergy symptoms or sinus discomfort and discussion of suitable options.",
           symptoms: ["Nasal congestion", "Sneezing or irritation", "Sinus pressure"],
           therapies: ["Nasya Karma", "Vamana", "Individual care plan"],
         },
         {
           name: "General Wellness & Immunity",
-          image: "/images/gurupad_ai_5.jpeg",
-          alt: "General Ayurvedic wellness consultation",
+          image: "/images/general-wellness-immunity.png",
+          alt: "Doctor discussing general wellness with a patient",
           description: "Discuss everyday wellbeing, health goals, and routines with a personalized Ayurvedic consultation.",
           symptoms: ["General wellness goals", "Energy and routine concerns", "Preventive care questions"],
           therapies: ["Abhyanga", "Personalized consultation", "Wellness guidance"],
@@ -427,15 +435,12 @@
         media.className = "condition-card__media";
         const image = document.createElement("img");
         image.className = "condition-card__image";
+        if (treatment.imageFit === "contain") image.classList.add("condition-card__image--contain");
         image.src = treatment.image;
         image.alt = treatment.alt;
         image.loading = "lazy";
         image.decoding = "async";
-        const imageTitle = document.createElement("span");
-        imageTitle.className = "condition-card__image-title";
-        imageTitle.textContent = treatment.name;
-        imageTitle.setAttribute("aria-hidden", "true");
-        media.append(image, imageTitle);
+        media.appendChild(image);
 
         const content = document.createElement("div");
         content.className = "condition-card__content";
