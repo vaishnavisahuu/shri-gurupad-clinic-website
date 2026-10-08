@@ -19,6 +19,126 @@
     grid.insertAdjacentElement("afterend", button);
   };
 
+  const removeMedicalNote = () => {
+    const note = document.querySelector(".medical-note");
+    if (!note) return false;
+    note.remove();
+    return true;
+  };
+
+  const enhanceClinicGalleryImage = () => {
+    const exteriorTile = document.querySelector("#gallery .gallery-tile--1");
+    const exteriorImage = exteriorTile?.querySelector("img");
+    const panchkarmaTile = document.querySelector("#gallery .gallery-tile--2");
+    const brandTile = document.querySelector("#gallery .gallery-tile--3");
+    const brandImage = brandTile?.querySelector("img");
+    const treatmentRoomTile = document.querySelector("#gallery .gallery-tile--4");
+    const treatmentRoomImage = treatmentRoomTile?.querySelector("img");
+    if (!exteriorTile || !exteriorImage || !panchkarmaTile || !brandTile || !brandImage || !treatmentRoomTile || !treatmentRoomImage) return false;
+
+    exteriorImage.src = "/images/clinic-exterior-gallery.png";
+    exteriorImage.alt = "Exterior of Shri Gurupad Multispeciality Clinic in Indore";
+    exteriorTile.setAttribute("aria-label", "View gallery image: Shri Gurupad Multispeciality Clinic exterior");
+    const exteriorCategory = exteriorTile.querySelector(".gallery-tile__overlay > span");
+    const exteriorCaption = exteriorTile.querySelector(".gallery-tile__overlay > strong");
+    if (exteriorCategory) exteriorCategory.textContent = "Our clinic";
+    if (exteriorCaption) exteriorCaption.textContent = "Shri Gurupad Multispeciality Clinic";
+
+    let panchkarmaImage = panchkarmaTile.querySelector("img");
+    if (!panchkarmaImage) {
+      panchkarmaImage = document.createElement("img");
+      panchkarmaImage.loading = "lazy";
+      panchkarmaImage.decoding = "async";
+      panchkarmaTile.insertBefore(panchkarmaImage, panchkarmaTile.firstChild);
+    }
+    panchkarmaImage.src = "/images/clinic-treatment-gallery.png";
+    panchkarmaImage.alt = "Traditional Ayurvedic therapy information displayed at the clinic entrance";
+    panchkarmaTile.setAttribute("aria-label", "View gallery image: Panchkarma care at Shri Gurupad");
+    const panchkarmaCategory = panchkarmaTile.querySelector(".gallery-tile__overlay > span");
+    const panchkarmaCaption = panchkarmaTile.querySelector(".gallery-tile__overlay > strong");
+    if (panchkarmaCategory) panchkarmaCategory.textContent = "Panchkarma";
+    if (panchkarmaCaption) panchkarmaCaption.textContent = "Panchkarma care at Shri Gurupad";
+
+    brandImage.src = "/images/clinic-brand-gallery.png";
+    brandImage.alt = "Shri Gurupad Ayurveda clinic emblem";
+    brandTile.setAttribute("aria-label", "View gallery image: Shri Gurupad Ayurveda and Panchkarma emblem");
+    const brandCategory = brandTile.querySelector(".gallery-tile__overlay > span");
+    const brandCaption = brandTile.querySelector(".gallery-tile__overlay > strong");
+    if (brandCategory) brandCategory.textContent = "Our tradition";
+    if (brandCaption) brandCaption.textContent = "Rooted in Ayurvedic care";
+
+    treatmentRoomImage.src = "/images/clinic-treatment-room-gallery.png";
+    treatmentRoomImage.alt = "Consultation room inside Shri Gurupad Multispeciality Clinic";
+    treatmentRoomTile.setAttribute("aria-label", "View gallery image: Shri Gurupad clinic consultation room");
+    const treatmentRoomCategory = treatmentRoomTile.querySelector(".gallery-tile__overlay > span");
+    const treatmentRoomCaption = treatmentRoomTile.querySelector(".gallery-tile__overlay > strong");
+    if (treatmentRoomCategory) treatmentRoomCategory.textContent = "Inside the clinic";
+    if (treatmentRoomCaption) treatmentRoomCaption.textContent = "A welcoming space for care";
+    return true;
+  };
+
+  const enhanceSiteFooter = () => {
+    const footer = document.querySelector("footer.footer");
+    const footerMain = footer?.querySelector(".footer-main");
+    const footerBottom = footer?.querySelector(".footer-bottom");
+    if (!footer || !footerMain || !footerBottom) return false;
+    if (footer.dataset.footerRedesigned === "true") return true;
+
+    const treatmentNames = [...document.querySelectorAll("#treatments .treatment-card-body h3, #treatments .treatment-card h3")]
+      .map((heading) => heading.textContent.trim())
+      .filter((name, index, names) => name && names.indexOf(name) === index)
+      .slice(0, 7);
+    if (!treatmentNames.length) return false;
+    const treatmentLinks = treatmentNames.map((name) =>
+      `<a href="#treatments">${name}</a>`
+    ).join("");
+
+    footerMain.className = "container footer-main site-footer-redesign";
+    footerMain.innerHTML = `
+      <div class="site-footer-brand">
+        <a class="site-footer-brand-link" href="#top" aria-label="Shri Gurupad home">
+          <img src="/images/mark.svg" alt="" />
+          <span><strong>SHRI GURUPAD</strong><small>Multispeciality Clinic</small></span>
+        </a>
+        <p>Consultation &amp; Panchakarma Center</p>
+        <p class="site-footer-description">Personalized Ayurvedic consultation and Panchakarma care in Silicon City, Indore.</p>
+        <div class="site-footer-actions" aria-label="Contact and directions">
+          <a class="site-footer-action-call" href="tel:7999771845" aria-label="Call Shri Gurupad">☎</a>
+          <a class="site-footer-action-whatsapp" href="https://wa.me/917999771845?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer" aria-label="Contact Shri Gurupad on WhatsApp">◉</a>
+          <a class="site-footer-action-directions" href="https://www.google.com/maps?q=245%2C%20Sector-G%2C%20Main%20Road%2C%20Silicon%20City%2C%20Indore%20-%20452012" target="_blank" rel="noreferrer" aria-label="Get directions to Shri Gurupad">⌖</a>
+        </div>
+      </div>
+      <nav class="site-footer-column" aria-label="Quick links">
+        <h2>Quick Links</h2>
+        <a href="#top">Home</a>
+        <a href="#about">About Doctor</a>
+        <a href="#treatments">Treatments</a>
+        <a href="#panchkarma-journey">Panchakarma Therapies</a>
+        <a href="#patient-stories">Patient Stories</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#homepage-appointment">Book Appointment</a>
+      </nav>
+      <nav class="site-footer-column" aria-label="Conditions we treat">
+        <h2>Conditions We Treat</h2>
+        ${treatmentLinks}
+        <a href="/treatments.html">View all treatments <span aria-hidden="true">→</span></a>
+      </nav>
+      <div class="site-footer-column site-footer-contact">
+        <h2>Contact Us</h2>
+        <p><span aria-hidden="true">📍</span><span>245, Sector-G, Main Road,<br />Silicon City,<br />Indore - 452012</span></p>
+        <a href="tel:7999771845"><span aria-hidden="true">☎</span>+91 7999771845</a>
+        <a href="https://wa.me/917999771845?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer"><span aria-hidden="true">◉</span>WhatsApp enquiries</a>
+        <p><span aria-hidden="true">◷</span><span>11 AM–2 PM<br />5 PM–9 PM</span></p>
+        <a href="#find-us">Full contact &amp; directions <span aria-hidden="true">→</span></a>
+      </div>`;
+    footerBottom.className = "container footer-bottom site-footer-bottom";
+    footerBottom.innerHTML = `
+      <span>© ${new Date().getFullYear()} SHRI GURUPAD MULTISPECIALITY CLINIC.</span>
+      <span>Information on this website is for general awareness and does not replace professional medical consultation.</span>`;
+    footer.dataset.footerRedesigned = "true";
+    return true;
+  };
+
   const enhanceDesktopHeader = () => {
     const header = document.querySelector("header.site-header");
     const nav = header?.querySelector(".site-header__nav");
@@ -77,12 +197,12 @@
 
   const PanchkarmaJourney = () => {
     const treatments = [
-      { number: "01", name: "VAMANA", subtitle: "Therapeutic Emesis", description: "A traditional Panchkarma therapy involving carefully supervised therapeutic emesis as part of a personalized Ayurvedic treatment plan.", image: "/images/gurupad_ai_2.jpeg" },
+      { number: "01", name: "VAMANA", subtitle: "Therapeutic Emesis", description: "A traditional Panchkarma therapy involving carefully supervised therapeutic emesis as part of a personalized Ayurvedic treatment plan.", image: "/images/vamana1.png" },
       { number: "02", name: "VIRECHANA", subtitle: "Therapeutic Ayurvedic Cleansing", description: "A traditional Panchkarma therapy involving controlled therapeutic purgation to support the elimination of accumulated doshas.", image: "/images/gurupad_ai_3.jpeg" },
-      { number: "03", name: "NASYA", subtitle: "Nasal Ayurvedic Therapy", description: "A traditional Ayurvedic therapy in which carefully selected medicated oils or preparations are administered through the nasal passages.", image: "/images/gurupad_ai_4.jpeg" },
-      { number: "04", name: "BASTI", subtitle: "Medicated Ayurvedic Therapy", description: "A localized Ayurvedic therapy where warm medicated oil is gently retained over the lower back to support comfort and relaxation.", image: "/images/gurupad_ai_5.jpeg" },
-      { number: "05", name: "ABHYANGA", subtitle: "Ayurvedic Oil Massage", description: "A traditional full-body Ayurvedic massage using warm herbal oils selected according to individual needs and Ayurvedic assessment.", image: "/images/one.jpeg" },
-      { number: "06", name: "SHIRODHARA", subtitle: "Ayurvedic Oil Flow Therapy", description: "A classical Ayurvedic therapy in which a gentle, continuous stream of warm medicated oil or selected liquids is poured over the forehead.", image: "/images/two.jpeg" },
+      { number: "03", name: "NASYA", subtitle: "Nasal Ayurvedic Therapy", description: "A traditional Ayurvedic therapy in which carefully selected medicated oils or preparations are administered through the nasal passages.", image: "/images/nasya.png" },
+      { number: "04", name: "BASTI", subtitle: "Medicated Ayurvedic Therapy", description: "A localized Ayurvedic therapy where warm medicated oil is gently retained over the lower back to support comfort and relaxation.", image: "/images/basti.png" },
+      { number: "05", name: "ABHYANGA", subtitle: "Ayurvedic Oil Massage", description: "A traditional full-body Ayurvedic massage using warm herbal oils selected according to individual needs and Ayurvedic assessment.", image: "/images/abhyanga.png" },
+      { number: "06", name: "RAKTAMOKSHANA", subtitle: "Traditional Ayurvedic Bloodletting", description: "Raktamokshana is a traditional Ayurvedic bloodletting procedure used selectively in certain conditions, with the method and suitability determined by a qualified Ayurvedic practitioner.", image: "/images/raktamokshana.png" },
     ];
     const section = document.createElement("section");
     section.className = "panchkarma-journey";
@@ -123,7 +243,7 @@
     const section = PanchkarmaJourney();
     const journeyHeader = section.querySelector(".panchkarma-journey-header");
     journeyHeader.innerHTML = `
-      <img class="panchkarma-journey-heading-image" src="/images/journey-heading-new.png" alt="The Five Purifications, showing Vamana, Virechana, Nasya Karma, Kati Basti, Abhyanga, Leech Therapy, and Shirodhara" />`;
+      <img class="panchkarma-journey-heading-image" src="/images/journey-heading-new.png" alt="The Five Purifications, showing Vamana, Virechana, Nasya Karma, Kati Basti, Abhyanga, and Raktamokshana" />`;
     section.querySelector(".panchkarma-timeline").insertAdjacentElement("afterend", ExploreAllPanchkarmaButton());
     button.insertAdjacentElement("afterend", section);
     const patientStories = PatientStories();
@@ -229,8 +349,7 @@
             <article class="find-us-card"><span aria-hidden="true">📞</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7999771845">+91 7999771845</a></p><a href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp →</a></div></article>
           </div>
         </div>
-        <div class="find-us-whatsapp"><span aria-hidden="true">💬</span><div><h3>WhatsApp</h3><p>Send us a message for quick appointment enquiries.</p></div><a class="find-us-button" href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp +91 7999771845 →</a></div>
-        <div class="find-us-social"><p class="find-us-eyebrow">FOLLOW SHRI GURUPAD</p><div><a href="#" data-placeholder-social title="Add the clinic's Instagram URL">Instagram</a><a href="#" data-placeholder-social title="Add the clinic's Facebook URL">Facebook</a><a href="#" data-placeholder-social title="Add the clinic's YouTube URL">YouTube</a></div></div>
+        <div class="find-us-social"><p class="find-us-eyebrow">FOLLOW SHRI GURUPAD</p><div><a class="find-us-social-instagram" href="#" data-placeholder-social title="Add the clinic's Instagram URL"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="find-us-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a class="find-us-social-facebook" href="#" data-placeholder-social title="Add the clinic's Facebook URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.8l.4-3.1h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8z"></path></svg>Facebook</a><a class="find-us-social-youtube" href="#" data-placeholder-social title="Add the clinic's YouTube URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"></path></svg>YouTube</a><a class="find-us-social-whatsapp" href="${whatsappUrl}" target="_blank" rel="noreferrer" aria-label="Send an appointment enquiry on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4.1Z"></path><path d="M9 8.2c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.2 1.5 2.1 1.9.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1-.2-2.2-.7-3.5-1.9-1.4-1.2-2.2-2.7-2.4-3.7-.2-.9 0-1.6.6-2.4Z"></path></svg>WhatsApp</a></div></div>
         <a class="find-us-full-contact" href="#contact">📍 Full Contact Page &amp; Directions →</a>
       </div>`;
     return section;
@@ -282,10 +401,32 @@
           </div>
         </div>
         <p class="patient-stories-empty" hidden>Patient stories for this category will be added soon.</p>
-        <div class="patient-stories-review"><a class="button patient-stories-review-link" href="#contact">Write a Review</a></div>
         <div class="patient-care-timeline">
           <div class="patient-stories-subheading"><p class="patient-stories-eyebrow">FROM CONSULTATION TO CARE</p><h3>Every Care Plan Begins With Listening</h3></div>
-          <ol>${["Initial Consultation", "Personalized Ayurvedic Assessment", "Recommended Care Plan", "Follow-up & Guidance"].map((step, index) => `<li><span>0${index + 1}</span><strong>${step}</strong></li>`).join("")}</ol>
+          <ol class="patient-care-image-gallery" aria-label="Care journey images" aria-hidden="true">${[
+            `<li><div class="patient-care-step-image"><img src="/images/initial_consultaion.png" alt="" /></div></li>`,
+            `<li><div class="patient-care-step-image"><img src="/images/personalised_care.png" alt="" /></div></li>`,
+            `<li><div class="patient-care-step-image"><img src="/images/care_plan.png" alt="" /></div></li>`,
+            `<li><div class="patient-care-step-image"><img src="/images/follow_up.png" alt="" /></div></li>`
+          ].join("")}</ol>
+          <ol class="patient-care-step-track" aria-label="Care journey steps" aria-hidden="true">${[
+            `<li><span>01</span><strong>Initial Consultation</strong></li>`,
+            `<li><span>02</span><strong>Personalized Ayurvedic Assessment</strong></li>`,
+            `<li><span>03</span><strong>Recommended Care Plan</strong></li>`,
+            `<li><span>04</span><strong>Follow-up & Guidance</strong></li>`
+          ].join("")}</ol>
+          <ol class="patient-care-mobile-slides" aria-label="Care journey slideshow">${[
+            `<li class="patient-care-step patient-care-step-primary"><div class="patient-care-step-image"><img src="/images/initial_consultaion.png" alt="Doctor consulting with patient during an initial consultation" /></div><div class="patient-care-step-copy"><span>01</span><strong>Initial Consultation</strong><p>Share your health concerns, history and wellness goals.</p></div></li>`,
+            `<li class="patient-care-step"><div class="patient-care-step-image"><img src="/images/personalised_care.png" alt="Doctor assessing a patient during a personalized Ayurvedic consultation" /></div><div class="patient-care-step-copy"><span>02</span><strong>Personalized Ayurvedic Assessment</strong><p>A personalized assessment helps guide your Ayurvedic care.</p></div></li>`,
+            `<li class="patient-care-step"><div class="patient-care-step-image"><img src="/images/care_plan.png" alt="Doctor explaining a personalized Ayurvedic care plan to a patient" /></div><div class="patient-care-step-copy"><span>03</span><strong>Recommended Care Plan</strong><p>Receive care recommendations tailored to your needs.</p></div></li>`,
+            `<li class="patient-care-step"><div class="patient-care-step-image"><img src="/images/follow_up.png" alt="Doctor giving follow-up guidance to a patient in an Ayurvedic clinic" /></div><div class="patient-care-step-copy"><span>04</span><strong>Follow-up & Guidance</strong><p>Continue with follow-up support and practical guidance.</p></div></li>`
+          ].join("")}</ol>
+          <div class="patient-care-indicator" role="group" aria-label="Care journey steps" aria-hidden="true">
+            <button class="patient-care-indicator-step is-active" type="button" aria-label="Show step 1: Initial Consultation" aria-current="step">01</button>
+            <button class="patient-care-indicator-step" type="button" aria-label="Show step 2: Personalized Ayurvedic Assessment">02</button>
+            <button class="patient-care-indicator-step" type="button" aria-label="Show step 3: Recommended Care Plan">03</button>
+            <button class="patient-care-indicator-step" type="button" aria-label="Show step 4: Follow-up & Guidance">04</button>
+          </div>
         </div>
       </div>
       <div class="patient-story-modal" role="dialog" aria-modal="true" aria-labelledby="patient-story-modal-heading" hidden>
@@ -302,6 +443,51 @@
     const empty = section.querySelector(".patient-stories-empty");
     const carousel = section.querySelector(".patient-stories-grid");
     const carouselDots = [...section.querySelectorAll(".patient-stories-carousel-dot")];
+    const careTimeline = section.querySelector(".patient-care-timeline");
+    const careSteps = [...careTimeline.querySelectorAll(".patient-care-mobile-slides .patient-care-step")];
+    const careIndicators = [...careTimeline.querySelectorAll(".patient-care-indicator-step")];
+    const mobileCareQuery = window.matchMedia("(max-width: 560px)");
+    let careStepIndex = 0;
+    let careSlideshowTimer;
+    const setCareStep = (index) => {
+      careStepIndex = (index + careSteps.length) % careSteps.length;
+      careSteps.forEach((step, stepIndex) => {
+        const active = stepIndex === careStepIndex;
+        step.classList.toggle("is-active", active);
+        step.setAttribute("aria-hidden", String(mobileCareQuery.matches && !active));
+      });
+      careIndicators.forEach((indicator, indicatorIndex) => {
+        const active = indicatorIndex === careStepIndex;
+        indicator.classList.toggle("is-active", active);
+        if (active) indicator.setAttribute("aria-current", "step");
+        else indicator.removeAttribute("aria-current");
+      });
+    };
+    const updateCareSlideshow = () => {
+      window.clearInterval(careSlideshowTimer);
+      careSlideshowTimer = undefined;
+      const isMobile = mobileCareQuery.matches;
+      careTimeline.querySelector(".patient-care-image-gallery").setAttribute("aria-hidden", String(isMobile));
+      careTimeline.querySelector(".patient-care-step-track").setAttribute("aria-hidden", String(isMobile));
+      careTimeline.querySelector(".patient-care-mobile-slides").setAttribute("aria-hidden", String(!isMobile));
+      careTimeline.querySelector(".patient-care-indicator").setAttribute("aria-hidden", String(!isMobile));
+      careSteps.forEach((step, index) => {
+        step.setAttribute("aria-hidden", String(isMobile && index !== careStepIndex));
+      });
+      if (isMobile && document.visibilityState === "visible") {
+        careSlideshowTimer = window.setInterval(() => setCareStep(careStepIndex + 1), 4000);
+      }
+    };
+    careIndicators.forEach((indicator, index) => {
+      indicator.addEventListener("click", () => {
+        setCareStep(index);
+        updateCareSlideshow();
+      });
+    });
+    mobileCareQuery.addEventListener("change", updateCareSlideshow);
+    document.addEventListener("visibilitychange", updateCareSlideshow);
+    setCareStep(0);
+    updateCareSlideshow();
     const updateCarousel = (page) => {
       const card = cards[0];
       if (!card) return;
@@ -468,6 +654,33 @@
     .uploaded-gallery { padding-bottom: 0 !important; opacity: 0; transform: translateY(5rem); }
     .show-all-treatments { display: block; width: fit-content; margin: 1.5rem auto 0; padding: .75rem 1.2rem; border: 1px solid #174d36; border-radius: 999px; background: #174d36; color: #fff; font: 700 .78rem/1 Manrope, sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .2s ease, transform .2s ease; }
     .show-all-treatments:hover { background: #b0802d; transform: translateY(-2px); }
+    .treatments-section.section-pad { padding-bottom: clamp(3rem, 6vw, 5rem) !important; }
+    #approach.approach-section { padding-bottom: 3rem !important; }
+    #gallery.gallery-section { padding-top: 3rem !important; }
+    .footer { background: radial-gradient(ellipse at 12% 0%, rgba(35,107,77,.3), transparent 36rem), linear-gradient(125deg, #0b3827, #103f2d 54%, #0b3526) !important; color: #d1ddd3 !important; }
+    .footer-main.site-footer-redesign { grid-template-columns: minmax(13rem, 1.15fr) minmax(9rem, .8fr) minmax(11rem, 1fr) minmax(13rem, 1.15fr) !important; gap: clamp(1.5rem, 3.5vw, 3.5rem) !important; padding-block: 3.5rem !important; }
+    .site-footer-brand-link { display: flex; align-items: center; gap: .8rem; color: #fff; text-decoration: none; }
+    .site-footer-brand-link img { width: 3.5rem; height: 3.5rem; flex: 0 0 auto; padding: .25rem; border: 1px solid rgba(217,174,79,.3); border-radius: 50%; background: #fff; object-fit: contain; }
+    .site-footer-brand-link > span { display: grid; gap: .25rem; }
+    .site-footer-brand-link strong { color: #fff; font: 800 1rem/1.1 Manrope, sans-serif; letter-spacing: .04em; }
+    .site-footer-brand-link small { color: #d9ae4f; font: 700 .68rem/1.35 Manrope, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+    .site-footer-brand > p { margin: 1.15rem 0 0; color: #b8c8bc; font: 400 .85rem/1.7 Manrope, sans-serif; }
+    .site-footer-brand > .site-footer-description { max-width: 20rem; margin-top: .55rem; color: #a8b9ad; }
+    .site-footer-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.35rem; }
+    .site-footer-actions a { display: grid; width: 3.15rem; height: 3.15rem; place-items: center; border-radius: .8rem; color: #fff; font: 800 1.25rem/1 Manrope, sans-serif; text-decoration: none; transition: transform .2s ease, filter .2s ease; }
+    .site-footer-actions a:hover { filter: brightness(1.08); transform: translateY(-2px); }
+    .site-footer-action-call { background: #28784f; }
+    .site-footer-action-whatsapp { background: #20c968; }
+    .site-footer-action-directions { background: rgba(255,255,255,.13); }
+    .site-footer-column { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; gap: .85rem; }
+    .site-footer-column h2 { width: 100%; margin: 0 0 .45rem; padding-bottom: .8rem; border-bottom: 1px solid rgba(255,255,255,.13); color: #fff; font: 800 .95rem/1.3 Manrope, sans-serif; letter-spacing: 0; }
+    .site-footer-column > a { color: #b8c8bc; font: 500 .83rem/1.5 Manrope, sans-serif; text-decoration: none; transition: color .18s ease; }
+    .site-footer-column > a:hover { color: #e2bd63; }
+    .site-footer-contact p, .site-footer-contact > a { display: flex; align-items: flex-start; gap: .7rem; margin: 0; color: #b8c8bc; font: 500 .8rem/1.65 Manrope, sans-serif; text-decoration: none; }
+    .site-footer-contact p > span:first-child, .site-footer-contact > a > span:first-child { width: 1.2rem; flex: 0 0 auto; color: #e2bd63; text-align: center; }
+    .site-footer-contact > a:hover { color: #e2bd63; }
+    .footer-bottom.site-footer-bottom { display: flex; justify-content: space-between; gap: 1rem 2rem; padding-block: 1.2rem 1.5rem !important; border-top: 1px solid rgba(255,255,255,.12); color: #8fa496 !important; font: 400 .68rem/1.6 Manrope, sans-serif !important; letter-spacing: 0 !important; text-align: left !important; }
+    .site-footer-bottom > span:last-child { max-width: 42rem; text-align: right; }
     .treatment-card { display: flex !important; flex-direction: column !important; width: 95% !important; min-height: 0 !important; justify-self: center; }
     .treatment-card [class*="image-frame"] { display: block !important; margin-bottom: 0 !important; aspect-ratio: 2.35 / 1 !important; }
     .treatment-card [class*="image-frame"] img { display: block !important; }
@@ -1046,16 +1259,26 @@
     .patient-journey-card p { margin: .35rem 0 0; color: #68776e; font-size: .82rem; line-height: 1.6; }
     .patient-journey-card .patient-stories-eyebrow { margin-bottom: .35rem; }
     .patient-journey-meta { color: #b0802d !important; font-weight: 700; }
-    .patient-care-timeline { margin-top: clamp(4rem, 8vw, 6rem); padding: clamp(1.5rem, 4vw, 3rem); border-radius: 1.5rem; background: #e8f0e2; }
-    .patient-care-timeline ol { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0; padding: 0; list-style: none; }
-    .patient-care-timeline li { display: grid; gap: .5rem; color: #174d35; }
-    .patient-care-timeline li span { color: #b0802d; font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
-    .patient-care-timeline li strong { font: 400 1.25rem/1.2 "DM Serif Display", Georgia, serif; }
+    .patient-care-timeline { margin-top: .75rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 1.5rem; background: #e8f0e2; }
+    .patient-care-image-gallery, .patient-care-step-track, .patient-care-mobile-slides { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+    .patient-care-image-gallery { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+    .patient-care-step-track { position: relative; gap: 1rem; margin-top: 2rem; }
+    .patient-care-step-track::before { position: absolute; top: 2.35rem; right: 0; left: 0; height: 1px; background: rgba(23,77,53,.24); content: ""; }
+    .patient-care-step-track li { position: relative; display: grid; min-width: 0; gap: 1.1rem; padding-top: 3.3rem; color: #174d35; }
+    .patient-care-step-track li::before { position: absolute; top: 1.95rem; left: 0; width: .8rem; height: .8rem; border: 2px solid #c88b2e; border-radius: 50%; background: #fffaf1; box-shadow: inset 0 0 0 2px #fffaf1; content: ""; }
+    .patient-care-step-track li > span { position: absolute; top: 0; color: #b0802d; font: 800 .8rem/1.2 Manrope, sans-serif; }
+    .patient-care-step-track li > strong { font: 400 clamp(1.1rem, 1.5vw, 1.45rem)/1.2 "DM Serif Display", Georgia, serif; }
+    .patient-care-mobile-slides { display: none; }
+    .patient-care-step { display: grid; gap: .8rem; color: #174d35; }
+    .patient-care-step-image { overflow: hidden; border-radius: 1rem; border: 1px solid rgba(23,77,53,.12); background: #f6f2e9; box-shadow: 0 12px 24px rgba(23,77,53,.08); aspect-ratio: 1.34 / 1; }
+    .patient-care-step-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .patient-care-step-copy { display: grid; gap: .5rem; }
+    .patient-care-step span { color: #b0802d; font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+    .patient-care-step strong { font: 400 1.25rem/1.2 "DM Serif Display", Georgia, serif; }
+    .patient-care-step-copy p, .patient-care-indicator { display: none; }
     .patient-stories-disclaimer { max-width: 54rem; margin: clamp(3rem, 7vw, 5rem) auto 0; padding: 1.5rem; border-left: 3px solid #b0802d; background: rgba(255,253,249,.6); }
     .patient-stories-disclaimer h3, .patient-stories-review h3 { margin: 0; color: #174d35; font: 400 1.7rem "DM Serif Display", Georgia, serif; }
     .patient-stories-disclaimer p, .patient-stories-review p { margin: .65rem 0 0; color: #68776e; font-size: .82rem; line-height: 1.7; }
-    .patient-stories-review { margin: 2rem auto 0; text-align: center; }
-    .patient-stories-review-link { display: inline-block; margin-top: 1rem; }
     .patient-story-modal, .patient-share-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1rem; background: rgba(9,36,27,.66); }
     .patient-story-modal[hidden], .patient-share-modal[hidden] { display: none; }
     .patient-story-modal-card, .patient-share-modal-card { position: relative; width: min(100%, 34rem); padding: 2rem; border-radius: 1rem; background: #fffdf9; box-shadow: 0 1.5rem 4rem rgba(0,0,0,.25); }
@@ -1153,8 +1376,17 @@
     .find-us-social { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; text-align: center; }
     .find-us-social .find-us-eyebrow { margin: 0; }
     .find-us-social > div { display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem; }
-    .find-us-social a { padding: .65rem .9rem; border: 1px solid rgba(23,77,53,.2); border-radius: 999px; color: #174d35; font: 800 .72rem Manrope, sans-serif; text-decoration: none; }
-    .find-us-social a:hover { border-color: #174d35; background: #174d35; color: #fff; }
+    .find-us-social a { display: inline-flex; align-items: center; gap: .45rem; padding: .65rem .9rem; border: 1px solid transparent; border-radius: 999px; color: #fff; font: 800 .72rem Manrope, sans-serif; text-decoration: none; box-shadow: 0 .3rem .8rem rgba(23,77,53,.12); transition: filter .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .find-us-social a svg { width: 1rem; height: 1rem; flex: 0 0 auto; fill: currentColor; stroke: currentColor; stroke-width: 1.8; }
+    .find-us-social a.find-us-social-instagram { background: linear-gradient(135deg, #833ab4 0%, #c13584 42%, #e1306c 68%, #f77737 100%); }
+    .find-us-social a.find-us-social-instagram svg { fill: none; stroke: currentColor; }
+    .find-us-social a.find-us-social-instagram .find-us-social-icon-dot { fill: currentColor; stroke: none; }
+    .find-us-social a.find-us-social-facebook { background: #1877f2; }
+    .find-us-social a.find-us-social-facebook svg { fill: #fff; stroke: none; }
+    .find-us-social a.find-us-social-youtube { background: #ff0000; }
+    .find-us-social a.find-us-social-whatsapp { background: #25d366; }
+    .find-us-social a.find-us-social-whatsapp svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+    .find-us-social a:hover { filter: brightness(.9); transform: translateY(-2px); box-shadow: 0 .5rem 1rem rgba(23,77,53,.18); }
     .find-us-full-contact { width: 100%; margin-top: 1.25rem; }
     @media (max-width: 900px) { .find-us-layout { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .find-us-section { padding-inline: 1rem; } .find-us-map-wrap iframe { height: 20rem; } .find-us-map-actions > * { flex: 1 1 10rem; } .find-us-whatsapp { align-items: flex-start; flex-wrap: wrap; } .find-us-whatsapp .find-us-button { width: 100%; margin-left: 0; } .find-us-social { align-items: center; flex-direction: column; } }
@@ -1220,18 +1452,39 @@
     .patient-share-permission { display: flex !important; grid-template-columns: auto 1fr; align-items: start; gap: .5rem; }
     .patient-share-permission input { width: auto; }
     .patient-share-status { color: #174d35; font-size: .78rem; line-height: 1.5; }
-    @media (max-width: 900px) { .patient-stories-carousel .patient-story-card { flex-basis: calc((100% - 1rem) / 2); } .patient-care-timeline ol { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .patient-stories { padding-inline: 1rem; } .patient-story-featured { grid-template-columns: 1fr; } .patient-story-featured-image { min-height: 11rem; } .patient-stories-carousel .patient-story-card { flex-basis: 100%; } .patient-journey-card { grid-template-columns: 1fr; } .patient-care-timeline ol { grid-template-columns: 1fr; } .patient-stories-filter { font-size: .64rem; } }
+    @media (max-width: 900px) { .patient-stories-carousel .patient-story-card { flex-basis: calc((100% - 1rem) / 2); } .patient-care-image-gallery, .patient-care-step-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } .patient-care-step-track::before { display: none; } .patient-care-step-track li { padding-top: 2.4rem; } .patient-care-step-track li::before { top: 1.15rem; } }
+    @media (max-width: 560px) { .patient-stories { padding-inline: 1rem; } .patient-story-featured { grid-template-columns: 1fr; } .patient-story-featured-image { min-height: 11rem; } .patient-stories-carousel .patient-story-card { flex-basis: 100%; } .patient-journey-card { grid-template-columns: 1fr; } .patient-care-image-gallery, .patient-care-step-track { display: none; } .patient-care-mobile-slides { display: grid; grid-template-columns: 1fr; } .patient-stories-filter { font-size: .64rem; } }
+    @keyframes patient-care-slide-enter { from { opacity: 0; } to { opacity: 1; } }
+    @media (max-width: 560px) {
+      .patient-care-timeline { padding: 1.15rem; border-radius: 1.2rem; }
+      .patient-care-mobile-slides { position: relative; display: block; overflow: hidden; padding: .65rem; border: 1px solid rgba(23,77,53,.1); border-radius: 1.15rem; background: #fffdf8; box-shadow: 0 .8rem 1.8rem rgba(23,77,53,.09); }
+      .patient-care-timeline .patient-care-step { display: none; gap: 1rem; padding: .2rem; text-align: center; }
+      .patient-care-timeline .patient-care-step.is-active { display: grid; animation: patient-care-slide-enter .8s ease both; }
+      .patient-care-step-image { width: 100%; aspect-ratio: 1.42 / 1; border-radius: .85rem; box-shadow: none; }
+      .patient-care-step-copy { justify-items: center; gap: .45rem; padding: .25rem .35rem .65rem; }
+      .patient-care-step-copy > span { font-size: .72rem; letter-spacing: .16em; }
+      .patient-care-step-copy strong { max-width: 18rem; font-size: 1.35rem; line-height: 1.15; }
+      .patient-care-step-copy p { display: block; max-width: 19rem; margin: 0; color: #68756b; font: 400 .84rem/1.6 Manrope, sans-serif; }
+      .patient-care-indicator { display: flex; justify-content: center; align-items: center; gap: .45rem; margin-top: 1rem; }
+      .patient-care-indicator-step { min-width: 2rem; padding: .35rem .25rem; border: 0; border-radius: 999px; background: transparent; color: #839087; cursor: pointer; font: 800 .63rem/1 Manrope, sans-serif; letter-spacing: .05em; transition: background-color .25s ease, color .25s ease; }
+      .patient-care-indicator-step.is-active { background: #174d35; color: #fffdf8; }
+    }
+    @media (max-width: 560px) and (prefers-reduced-motion: reduce) {
+      .patient-care-timeline .patient-care-step.is-active { animation: none; }
+      .patient-care-indicator-step { transition: none; }
+    }
     @media (prefers-reduced-motion: reduce) { .patient-story-card { transition: none; } }
     .panchkarma-timeline { position: relative; display: grid; gap: clamp(3rem, 8vw, 6rem); }
     .panchkarma-timeline-line { position: absolute; top: 2rem; bottom: 2rem; left: 50%; width: 1px; background: rgba(23,77,53,.18); transform: translateX(-50%); }
-    .panchkarma-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; opacity: .42; transition: opacity .75s ease; }
+    .panchkarma-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 4.25rem minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; opacity: .42; transition: opacity .75s ease; }
+    .panchkarma-stage:nth-of-type(odd) .panchkarma-stage-image-wrap { grid-column: 1; grid-row: 1; }
+    .panchkarma-stage:nth-of-type(odd) .panchkarma-stage-copy { grid-column: 3; grid-row: 1; }
     .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap { grid-column: 3; grid-row: 1; }
     .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 1; grid-row: 1; text-align: right; }
-    .panchkarma-stage-marker { z-index: 1; display: grid; width: 3.2rem; height: 3.2rem; place-items: center; border: 1px solid rgba(23,77,53,.25); border-radius: 50%; background: #faf9f4; color: #829087; font: 800 .72rem/1 Manrope, sans-serif; letter-spacing: .06em; transition: background .5s ease, color .5s ease, border-color .5s ease, transform .5s ease; }
-    .panchkarma-stage-image-wrap { overflow: hidden; aspect-ratio: 1.5 / 1; border-radius: 22px; background: #e8f0e2; box-shadow: 0 14px 28px rgba(23,77,53,.1); }
+    .panchkarma-stage-marker { z-index: 1; grid-column: 2; grid-row: 1; justify-self: center; display: grid; width: 3.2rem; height: 3.2rem; place-items: center; border: 1px solid rgba(23,77,53,.25); border-radius: 50%; background: #faf9f4; color: #829087; font: 800 .72rem/1 Manrope, sans-serif; letter-spacing: .06em; transition: background .5s ease, color .5s ease, border-color .5s ease, transform .5s ease; }
+    .panchkarma-stage-image-wrap { overflow: hidden; aspect-ratio: 1.5 / 1; max-width: 34rem; width: 100%; justify-self: stretch; border-radius: 22px; background: #e8f0e2; box-shadow: 0 14px 28px rgba(23,77,53,.1); }
     .panchkarma-stage-image { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .82; transform: scale(1.04); transition: opacity .8s ease, transform 1s cubic-bezier(.2,.75,.3,1); }
-    .panchkarma-stage-copy { transform: translateY(1.25rem); transition: opacity .75s ease, transform .75s ease; }
+    .panchkarma-stage-copy { max-width: 34rem; transform: translateY(1.25rem); transition: opacity .75s ease, transform .75s ease; }
     .panchkarma-stage-number { margin: 0 0 .5rem; color: #b0802d; font: 800 .7rem/1 Manrope, sans-serif; letter-spacing: .2em; }
     .panchkarma-stage-copy h3 { margin: 0; color: #174d35; font: 400 clamp(1.6rem, 3vw, 2.45rem)/1 "DM Serif Display", Georgia, serif; letter-spacing: .04em; }
     .panchkarma-stage-copy h4 { margin: .55rem 0 .7rem; color: #52645a; font: 800 clamp(.8rem, 1.4vw, .95rem)/1.35 Manrope, sans-serif; }
@@ -1246,7 +1499,7 @@
     @media (max-width: 560px) { .clinic-specialist-copy { padding: 1.25rem; } .clinic-doctor-image { width: min(100%, 17rem); } .root-cause-card { grid-template-columns: 1fr; gap: .9rem; padding: 1.25rem; } .root-cause-copy { padding: 0; border-left: 0; } .root-cause-icon { width: 3.7rem; height: 3.7rem; } .root-cause-copy h2 { font-size: 1.45rem; } }
     @media (max-width: 560px) { .clinic-cta-actions { flex-direction: column; align-items: center; gap: .65rem; } .clinic-cta { width: min(100%, 13rem); min-height: 3rem; } }
     @media (min-width: 701px) and (max-width: 1100px) { .panchkarma-journey { padding-inline: clamp(1.5rem, 4vw, 3rem); } .panchkarma-journey-inner { max-width: 64rem; } .panchkarma-journey-header { max-width: 58rem; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-stage { grid-template-columns: minmax(0, 1fr) 3.5rem minmax(0, 1fr); gap: 1.5rem; } .panchkarma-stage-copy h3 { font-size: clamp(1.7rem, 3vw, 2.2rem); } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { font-size: .9rem; } .panchkarma-stage-image-wrap { aspect-ratio: 1.35 / 1; } }
-    @media (max-width: 700px) { .panchkarma-journey { overflow-x: hidden; padding-inline: 1rem; } .panchkarma-journey-header { max-width: 100%; } .panchkarma-journey-heading-image { width: 100%; max-width: 100%; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-timeline-line { top: 1.5rem; bottom: 1.5rem; left: 1.25rem; } .panchkarma-stage, .panchkarma-stage:nth-of-type(even) { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; align-items: start; } .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 2; grid-row: auto; text-align: left; } .panchkarma-stage-marker { width: 2.5rem; height: 2.5rem; } .panchkarma-stage-image-wrap { grid-column: 2; grid-row: 1; aspect-ratio: 1.35 / 1; border-radius: 18px; } .panchkarma-stage-copy { grid-column: 2; grid-row: 2; } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: none; } }
+    @media (max-width: 700px) { .panchkarma-journey { overflow-x: hidden; padding-inline: 1rem; } .panchkarma-journey-header { max-width: 100%; } .panchkarma-journey-heading-image { width: 100%; max-width: 100%; } .panchkarma-timeline { gap: 3.5rem; } .panchkarma-timeline-line { top: 1.5rem; bottom: 1.5rem; left: 2.9rem; } .panchkarma-stage, .panchkarma-stage:nth-of-type(even) { display: grid; grid-template-columns: 4.25rem 1px minmax(0, 1fr); gap: .9rem 1rem; align-items: center; } .panchkarma-stage:nth-of-type(odd) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(odd) .panchkarma-stage-copy, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-column: 3; text-align: left; } .panchkarma-stage:nth-of-type(odd) .panchkarma-stage-image-wrap, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-image-wrap { grid-row: 1; } .panchkarma-stage:nth-of-type(odd) .panchkarma-stage-copy, .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy { grid-row: 2; } .panchkarma-stage-marker { grid-column: 1; grid-row: 1; width: 4.25rem; height: 4.25rem; justify-self: center; } .panchkarma-stage-image-wrap { grid-column: 3; grid-row: 1; aspect-ratio: 1.15 / 1; border-radius: 18px; } .panchkarma-stage-copy { grid-column: 3; grid-row: 2; } .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: none; } }
     @media (max-width: 560px) { .explore-panchkarma-cta-section { padding: 2rem 1rem; } .explore-panchkarma-cta { width: 90%; min-height: 3.25rem; padding-inline: 1rem; white-space: nowrap; } .panchkarma-journey .explore-panchkarma-cta-section { padding: 0; } .panchkarma-journey .explore-panchkarma-cta { width: min(100%, 21rem); white-space: normal; } }
     @media (min-width: 1024px) {
       #treatments > .container { width: 100% !important; max-width: none !important; padding-inline: clamp(1.5rem, 3.5vw, 4.5rem) !important; }
@@ -1269,7 +1522,34 @@
       .uploaded-gallery { padding-top: 2rem !important; }
       .uploaded-gallery { padding-bottom: 0 !important; }
       .uploaded-gallery > div > p:last-child { margin-bottom: 0 !important; }
-      #treatments { padding-top: 1rem !important; }
+      #treatments { padding-top: 1rem !important; padding-bottom: 0 !important; }
+      .approach-section { padding-top: 3rem !important; }
+    }
+    @media (min-width: 1024px) and (max-width: 1599px) {
+      #approach > .container { display: grid; grid-template-columns: minmax(18rem, .85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      #approach .approach-heading { display: block; grid-column: 1; grid-row: 1; }
+      #approach .approach-heading h2 { max-width: 14ch; font-size: clamp(3rem, 5vw, 5rem); line-height: .98; }
+      #approach .approach-heading > p { max-width: 31rem; margin: 1.5rem 0 0; }
+      #approach .principles-grid { grid-column: 2; grid-row: 1; grid-template-columns: minmax(0, 1fr); gap: .85rem; margin-top: 0; }
+      #approach .principle-card { min-height: 0; padding: 1.15rem 1.35rem; }
+      #approach .principle-card:nth-child(2) { transform: none; }
+      #approach .principle-card h3 { margin: 1rem 0 .45rem; font-size: 1.35rem; }
+      #approach .principle-card p { max-width: none; }
+      #gallery > .container { display: grid; grid-template-columns: minmax(18rem, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      #gallery .gallery-grid { grid-column: 2; grid-row: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(13rem, 1fr)); }
+      #gallery .gallery-tile--1, #gallery .gallery-tile--4 { grid-column: auto; grid-row: auto; }
+      #gallery .gallery-header { display: flex; grid-column: 1; grid-row: 1; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      #gallery .gallery-header h2 { margin: 0; }
+      #gallery .gallery-header > p { max-width: 25rem; margin: 0; }
+    }
+    @media (max-width: 900px) {
+      .footer-main.site-footer-redesign { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    }
+    @media (max-width: 560px) {
+      .footer-main.site-footer-redesign { grid-template-columns: minmax(0, 1fr) !important; gap: 2rem !important; padding-block: 2.5rem !important; }
+      .site-footer-brand-link img { width: 3.1rem; height: 3.1rem; }
+      .footer-bottom.site-footer-bottom { flex-direction: column; gap: .6rem; text-align: center !important; }
+      .site-footer-bottom > span:last-child { text-align: center; }
     }
     @media (prefers-reduced-motion: reduce) { .panchkarma-stage, .panchkarma-stage-copy, .panchkarma-stage-image { transition: none; } }
   `;
@@ -1328,7 +1608,38 @@
     return true;
   };
 
+  const removeApproachProcessLine = () => {
+    const processLine = document.querySelector("#approach .process-line");
+    if (!processLine) return false;
+    processLine.remove();
+    return true;
+  };
+  if (!removeApproachProcessLine()) {
+    const approachObserver = new MutationObserver(() => {
+      if (removeApproachProcessLine()) approachObserver.disconnect();
+    });
+    approachObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
   window.matchMedia("(min-width: 701px)").addEventListener("change", observeScrollSections);
+  if (!removeMedicalNote()) {
+    const medicalNoteObserver = new MutationObserver(() => {
+      if (removeMedicalNote()) medicalNoteObserver.disconnect();
+    });
+    medicalNoteObserver.observe(document.body, { childList: true, subtree: true });
+  }
+  if (!enhanceClinicGalleryImage()) {
+    const galleryImageObserver = new MutationObserver(() => {
+      if (enhanceClinicGalleryImage()) galleryImageObserver.disconnect();
+    });
+    galleryImageObserver.observe(document.body, { childList: true, subtree: true });
+  }
+  if (!enhanceSiteFooter()) {
+    const footerObserver = new MutationObserver(() => {
+      if (enhanceSiteFooter()) footerObserver.disconnect();
+    });
+    footerObserver.observe(document.body, { childList: true, subtree: true });
+  }
   if (!renderClinicIntro() || !observeScrollSections()) {
     new MutationObserver(() => {
       renderClinicIntro();
