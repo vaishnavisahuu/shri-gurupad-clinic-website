@@ -1,6 +1,6 @@
 # Booking form behavior
 
-The homepage and Appointment page booking forms open WhatsApp with a pre-filled appointment message to `+91 7999771845`. Patients review and send the message themselves. Form submissions are not sent to Resend or stored in a database.
+The homepage and Appointment page booking forms open WhatsApp with a pre-filled appointment message to `+91 7000944387`. Patients review and send the message themselves. Form submissions are not sent to Resend or stored in a database.
 
 The existing Resend endpoint remains available but is not used by the booking forms. The WhatsApp booking flow requires no API key or mail configuration.
 

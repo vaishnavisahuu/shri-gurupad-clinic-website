@@ -41,7 +41,7 @@
         "",
         "Website: Shri Gurupad Clinic",
       ].join("\n");
-      const whatsappUrl = `https://wa.me/917999771845?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/917000944387?text=${encodeURIComponent(message)}`;
 
       if (status) {
         status.textContent = "Your appointment details are ready in WhatsApp. Please review the message and press Send.";

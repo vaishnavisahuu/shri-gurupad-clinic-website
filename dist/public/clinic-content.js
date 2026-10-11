@@ -103,9 +103,9 @@
         <p>Consultation &amp; Panchakarma Center</p>
         <p class="site-footer-description">Personalized Ayurvedic consultation and Panchakarma care in Silicon City, Indore.</p>
         <div class="site-footer-actions" aria-label="Contact and directions">
-          <a class="site-footer-action-call" href="tel:7999771845" aria-label="Call Shri Gurupad">☎</a>
-          <a class="site-footer-action-whatsapp" href="https://wa.me/917999771845?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer" aria-label="Contact Shri Gurupad on WhatsApp">◉</a>
-          <a class="site-footer-action-directions" href="https://www.google.com/maps?q=245%2C%20Sector-G%2C%20Main%20Road%2C%20Silicon%20City%2C%20Indore%20-%20452012" target="_blank" rel="noreferrer" aria-label="Get directions to Shri Gurupad">⌖</a>
+          <a class="site-footer-action-call" href="tel:7869869888" aria-label="Call Shri Gurupad">☎</a>
+          <a class="site-footer-action-whatsapp" href="https://wa.me/917000944387?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer" aria-label="Contact Shri Gurupad on WhatsApp">◉</a>
+          <a class="site-footer-action-directions" href="https://www.google.com/maps/dir/?api=1&destination=22.6376376%2C75.8325118" target="_blank" rel="noreferrer" aria-label="Get directions to Shri Gurupad">⌖</a>
         </div>
       </div>
       <nav class="site-footer-column" aria-label="Quick links">
@@ -126,8 +126,8 @@
       <div class="site-footer-column site-footer-contact">
         <h2>Contact Us</h2>
         <p><span aria-hidden="true">📍</span><span>245, Sector-G, Main Road,<br />Silicon City,<br />Indore - 452012</span></p>
-        <a href="tel:7999771845"><span aria-hidden="true">☎</span>+91 7999771845</a>
-        <a href="https://wa.me/917999771845?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer"><span aria-hidden="true">◉</span>WhatsApp enquiries</a>
+        <a href="tel:7869869888"><span aria-hidden="true">☎</span>+91 7869869888</a>
+        <a href="https://wa.me/917000944387?text=Namaste%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Shri%20Gurupad%20Multispeciality%20Clinic." target="_blank" rel="noreferrer"><span aria-hidden="true">◉</span>WhatsApp enquiries</a>
         <p><span aria-hidden="true">◷</span><span>11 AM–2 PM<br />5 PM–9 PM</span></p>
         <a href="#find-us">Full contact &amp; directions <span aria-hidden="true">→</span></a>
       </div>`;
@@ -158,8 +158,8 @@
     nav.insertBefore(home, nav.firstElementChild);
     const phone = document.createElement("a");
     phone.className = "desktop-header-phone";
-    phone.href = "tel:7999771845";
-    phone.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 1.72 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92Z"/><path d="M14.05 2a9 9 0 0 1 8 8M14.05 6a5 5 0 0 1 4 4"/></svg> +91 7999771845';
+    phone.href = "tel:7869869888";
+    phone.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 1.72 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92Z"/><path d="M14.05 2a9 9 0 0 1 8 8M14.05 6a5 5 0 0 1 4 4"/></svg> +91 7869869888';
     inner?.appendChild(phone);
     const logo = header.querySelector(".site-header__logo img");
     const originalLogoSrc = logo?.getAttribute("src");
@@ -249,8 +249,10 @@
     const patientStories = PatientStories();
     section.insertAdjacentElement("afterend", patientStories);
     wirePatientStories(patientStories);
+    const googleReview = GoogleReviewSection();
+    patientStories.insertAdjacentElement("afterend", googleReview);
     const appointment = AppointmentSection();
-    patientStories.insertAdjacentElement("afterend", appointment);
+    googleReview.insertAdjacentElement("afterend", appointment);
     appointment.insertAdjacentElement("afterend", FindUsSection());
     const stages = [...section.querySelectorAll(".panchkarma-stage")];
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
@@ -288,14 +290,14 @@
           <h2 id="homepage-appointment-heading">Book Your <em>Consultation</em><br />Today</h2>
           <p class="homepage-appointment-lead">Take the first step towards personalized Ayurvedic care with Dr. Ashish Choyal at Shri Gurupad Multispeciality Clinic.</p>
           <div class="homepage-appointment-info-grid">
-            <article><span class="homepage-appointment-icon" aria-hidden="true">⌖</span><div><h3>Shri Gurupad Multispeciality Clinic</h3><p>Consultation &amp; Panchkarma Center</p><p>[ADD CLINIC ADDRESS]</p></div></article>
-            <article><span class="homepage-appointment-icon" aria-hidden="true">◷</span><div><h3>OPD Timings</h3><p>[ADD OPD TIMINGS]</p></div></article>
-            <article><span class="homepage-appointment-icon" aria-hidden="true">☎</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7999771845">7999771845</a></p></div></article>
+            <article><span class="homepage-appointment-icon" aria-hidden="true">⌖</span><div><h3>Shri Gurupad Multispeciality Clinic</h3><p>Consultation &amp; Panchkarma Center</p><p>245, Sector-G, Main Road, Silicon City, Indore - 452012</p></div></article>
+            <article><span class="homepage-appointment-icon" aria-hidden="true">◷</span><div><h3>OPD Timings</h3><p>Mon-Sat: 11:00 AM - 2:00 PM<br />5:00 PM - 9:30 PM</p></div></article>
+            <article><span class="homepage-appointment-icon" aria-hidden="true">☎</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7869869888">7869869888</a><br /><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer">WhatsApp: 7000944387</a></p></div></article>
             <article><span class="homepage-appointment-icon" aria-hidden="true">✦</span><div><h3>Consultation With</h3><p>Dr. Ashish Choyal</p><p>B.A.M.S., M.D. (Panchkarma)</p></div></article>
           </div>
           <div class="homepage-appointment-whatsapp">
             <div><p class="homepage-appointment-eyebrow">QUICK WHATSAPP BOOKING</p><h3>Message us directly to enquire about your consultation.</h3></div>
-            <a class="homepage-appointment-whatsapp-button" href="https://wa.me/917999771845?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal." target="_blank" rel="noreferrer">WhatsApp Us →</a>
+            <a class="homepage-appointment-whatsapp-button" href="https://wa.me/917000944387?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal." target="_blank" rel="noreferrer">WhatsApp Us →</a>
           </div>
         </div>
       </div>
@@ -318,15 +320,16 @@
         </form>
 
       </div>
-      <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7999771845" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917999771845" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic">☘ <span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
+      <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7869869888" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic">☘ <span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
     section.querySelector(".homepage-floating-actions button").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
     return section;
   };
 
   const FindUsSection = () => {
-    const address = "245, Sector-G, Main Road, Silicon City, Indore - 452012";
-    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
-    const whatsappUrl = "https://wa.me/917999771845?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal.";
+    const coordinates = "22.6376376,75.8325118";
+    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(coordinates)}`;
+    const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(coordinates)}&output=embed`;
+    const whatsappUrl = "https://wa.me/917000944387?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20consultation%20at%20Shri%20Gurupad%20Multispeciality%20Clinic%20with%20Dr.%20Ashish%20Choyal.";
     const section = document.createElement("section");
     section.className = "find-us-section";
     section.id = "find-us";
@@ -340,13 +343,13 @@
         </header>
         <div class="find-us-layout">
           <div class="find-us-map-wrap">
-            <iframe title="Map showing Shri Gurupad Multispeciality Clinic in Silicon City, Indore" src="https://www.google.com/maps?q=245%2C%20Sector-G%2C%20Main%20Road%2C%20Silicon%20City%2C%20Indore%20-%20452012&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe title="Map showing Shri Gurupad Panchakarma in Pulak City, Silicon City, Indore" src="${mapUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <div class="find-us-map-actions"><a class="find-us-button" href="${directionsUrl}" target="_blank" rel="noreferrer">📍 Get Directions</a><a class="find-us-button find-us-button-secondary" href="#" data-placeholder-review title="Replace with the clinic's Google Business review URL">⭐ Write a Review</a></div>
           </div>
           <div class="find-us-cards">
             <article class="find-us-card"><span aria-hidden="true">📍</span><div><h3>Main Clinic — Silicon City</h3><address>245, Sector-G, Main Road,<br />Silicon City,<br />Indore - 452012</address><a href="${directionsUrl}" target="_blank" rel="noreferrer">Get Directions →</a></div></article>
             <article class="find-us-card"><span aria-hidden="true">👨‍⚕️</span><div><h3>Consultation With</h3><p><strong>Dr. Ashish Choyal</strong><br />B.A.M.S., M.D. (Panchkarma)<br />Consultation &amp; Panchkarma Center</p></div></article>
-            <article class="find-us-card"><span aria-hidden="true">📞</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7999771845">+91 7999771845</a></p><a href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp →</a></div></article>
+            <article class="find-us-card"><span aria-hidden="true">📞</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7869869888">+91 7869869888</a></p><a href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp →</a></div></article>
           </div>
         </div>
         <div class="find-us-social"><p class="find-us-eyebrow">FOLLOW SHRI GURUPAD</p><div><a class="find-us-social-instagram" href="#" data-placeholder-social title="Add the clinic's Instagram URL"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="find-us-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a class="find-us-social-facebook" href="#" data-placeholder-social title="Add the clinic's Facebook URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.8l.4-3.1h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8z"></path></svg>Facebook</a><a class="find-us-social-youtube" href="#" data-placeholder-social title="Add the clinic's YouTube URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"></path></svg>YouTube</a><a class="find-us-social-whatsapp" href="${whatsappUrl}" target="_blank" rel="noreferrer" aria-label="Send an appointment enquiry on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4.1Z"></path><path d="M9 8.2c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.2 1.5 2.1 1.9.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1-.2-2.2-.7-3.5-1.9-1.4-1.2-2.2-2.7-2.4-3.7-.2-.9 0-1.6.6-2.4Z"></path></svg>WhatsApp</a></div></div>
@@ -357,23 +360,27 @@
 
   const PatientStories = () => {
     const patientStories = [
-      { id: 1, name: "Priya Sharma", city: "Indore", condition: "Digestive Wellness", category: "Digestive Care", rating: 5, quote: "I was looking for guidance for my ongoing digestive concerns. During my consultation, the doctor listened carefully to my concerns and explained the Ayurvedic approach in a simple way. The treatment and lifestyle guidance were easy for me to understand and follow.", fullStory: "I was looking for guidance for my ongoing digestive concerns. During my consultation, the doctor listened carefully to my concerns and explained the Ayurvedic approach in a simple way. The treatment and lifestyle guidance were easy for me to understand and follow.", image: null },
-      { id: 2, name: "Amit Verma", city: "Indore", condition: "Joint & Bone Care", category: "Joint & Bone Care", rating: 5, quote: "My consultation was detailed and personalized. Dr. Ashish Choyal took time to understand my concerns and explained the recommended Ayurvedic care clearly. I appreciated the regular guidance throughout the process.", fullStory: "My consultation was detailed and personalized. Dr. Ashish Choyal took time to understand my concerns and explained the recommended Ayurvedic care clearly. I appreciated the regular guidance throughout the process.", image: null },
-      { id: 3, name: "Neha Patel", city: "Indore", condition: "Panchkarma Consultation", category: "Panchkarma", rating: 5, quote: "I visited the clinic to learn more about Panchkarma. The entire process was explained clearly before beginning the therapy. The staff was supportive and the overall experience was comfortable and well organized.", fullStory: "I visited the clinic to learn more about Panchkarma. The entire process was explained clearly before beginning the therapy. The staff was supportive and the overall experience was comfortable and well organized.", image: null },
-      { id: 4, name: "Rahul Jain", city: "Indore", condition: "Migraine & Headache Care", category: "Migraine & Headache", rating: 5, quote: "The consultation gave me a better understanding of my concerns and the Ayurvedic approach suggested for them. I received clear guidance about the recommended care and follow-up.", fullStory: "The consultation gave me a better understanding of my concerns and the Ayurvedic approach suggested for them. I received clear guidance about the recommended care and follow-up.", image: null },
-      { id: 5, name: "Kavita Joshi", city: "Indore", condition: "Women's Wellness", category: "Women's Wellness", rating: 5, quote: "I appreciated the personal attention during my consultation. My concerns were discussed in detail and I was given clear guidance regarding the Ayurvedic care plan and lifestyle practices.", fullStory: "I appreciated the personal attention during my consultation. My concerns were discussed in detail and I was given clear guidance regarding the Ayurvedic care plan and lifestyle practices.", image: null },
+      { id: 1, name: "Løkesh_ Chõuhañ", profile: "Local Guide · 16 reviews · 7 photos", time: "a year ago", rating: 5, quote: "Doctor has very good behaviour. Nice and clean clinic.\nClinic is well-maintained and Ayurvedic treatments are conducted systematically. Panchakarma and medicine availability are also satisfactory.", image: null },
+      { id: 2, name: "Sugam Alawa", profile: "1 review", time: "a year ago", rating: 5, quote: "Dr ashish sir has given proper treatment and panchakarma Therapy to patient. Must visit🙏", likes: "❤️ 3", image: null },
+      { id: 3, name: "Pankaj Lovanshi", profile: "Local Guide · 24 reviews · 58 photos", time: "a year ago", rating: 5, quote: "Best ever ayurvedic treatment.\ndoctor is very friendly and expert .\nMust visit", image: null },
+      { id: 4, name: "Ishu __.__", profile: "6 reviews · 5 photos", time: "a year ago", rating: 5, quote: "Experienced and caring doctor with best results. (Shedule your appointment before visiting)", image: null },
+      { id: 5, name: "Yashvi Bhawsar", profile: "2 reviews", time: "a year ago", rating: 5, quote: "Great experience as I took panchkarma therapy and get good result....", image: null },
+      { id: 6, name: "Vaibhav Sahu", profile: "7 reviews · 4 photos", time: "a year ago", rating: 5, quote: "Excellent Panchkarma treatment!!! Must visit🙌🏻", image: null },
+      { id: 7, name: "makrand sonare", profile: "7 reviews", time: "a year ago", rating: 5, quote: "Well equipped Panchakarma Setup with Experience Physician", image: null },
+      { id: 8, name: "Atul Singh", profile: "Local Guide · 12 reviews · 7 photos", time: "a year ago", rating: 5, quote: "Best treatment for Arthritis and all Chronic conditions", image: null },
+      { id: 9, name: "Dr.Ajith Krishnan", profile: "2 reviews · 2 photos", time: "a year ago", rating: 5, quote: "Great Speciality clinic ... Effective treatments...", image: null },
     ];
-    const filters = ["All", "Panchkarma", "Joint & Bone Care", "Skin Care", "Digestive Care", "Respiratory Care", "Migraine & Headache", "Women's Wellness", "Men's Wellness", "Child Wellness", "Swarnaprashan", "Other"];
     const stars = (rating) => "★".repeat(rating);
     const avatar = (story) => story.image
       ? `<img src="${story.image}" alt="${story.name}" />`
-      : `<span aria-hidden="true">${story.name.replace(/[^A-Za-z]/g, "").slice(0, 1) || "P"}</span>`;
+      : `<span aria-hidden="true">${Array.from(story.name.trim())[0]?.toUpperCase() || "G"}</span>`;
     const storyCard = (story) => `
-      <article class="patient-story-card" data-category="${story.category}">
+      <article class="patient-story-card">
         <div class="patient-story-avatar">${avatar(story)}</div>
         <div class="patient-story-stars" aria-label="${story.rating} out of 5 stars">${stars(story.rating)}</div>
         <p class="patient-story-quote">"${story.quote}"</p>
-        <div class="patient-story-meta"><strong>${story.name}</strong><span>${story.city}</span><span>${story.condition}</span></div>
+        ${story.likes ? `<p class="patient-story-likes">${story.likes}</p>` : ""}
+        <div class="patient-story-meta"><strong>${story.name}</strong><span>${story.profile}</span><span>${story.time}</span></div>
       </article>`;
     const section = document.createElement("section");
     section.className = "patient-stories";
@@ -382,21 +389,15 @@
     section.innerHTML = `
       <div class="patient-stories-inner">
         <header class="patient-stories-header">
-          <p class="patient-stories-eyebrow">PATIENT EXPERIENCES</p>
-          <h2 id="patient-stories-heading">Patient Stories</h2>
-          <p>Every patient's journey is unique. Read experiences shared by people who have consulted our clinic for Ayurvedic care and Panchkarma therapies.</p>
+          <p class="patient-stories-eyebrow">GOOGLE REVIEWS</p>
+          <h2 id="patient-stories-heading">Patient Reviews</h2>
+          <p>Recent reviews shared by people who have visited Shri Gurupad Clinic.</p>
         </header>
         <div class="patient-stories-carousel">
           <div class="patient-stories-grid">${patientStories.map(storyCard).join("")}</div>
           <div class="patient-stories-carousel-controls" aria-label="Patient story carousel controls">
             <button class="patient-stories-carousel-button patient-stories-carousel-prev" type="button" aria-label="Previous patient stories">‹</button>
-            <div class="patient-stories-carousel-dots" role="tablist" aria-label="Patient story pages">
-              <button class="patient-stories-carousel-dot is-active" type="button" role="tab" aria-label="Show patient stories page 1" aria-selected="true"></button>
-              <button class="patient-stories-carousel-dot" type="button" role="tab" aria-label="Show patient stories page 2" aria-selected="false"></button>
-              <button class="patient-stories-carousel-dot" type="button" role="tab" aria-label="Show patient stories page 3" aria-selected="false"></button>
-              <button class="patient-stories-carousel-dot" type="button" role="tab" aria-label="Show patient stories page 4" aria-selected="false"></button>
-              <button class="patient-stories-carousel-dot" type="button" role="tab" aria-label="Show patient stories page 5" aria-selected="false"></button>
-            </div>
+            <div class="patient-stories-carousel-dots" role="tablist" aria-label="Patient story pages">${patientStories.map((story, index) => `<button class="patient-stories-carousel-dot${index === 0 ? " is-active" : ""}" type="button" role="tab" aria-label="Show patient stories page ${index + 1}" aria-selected="${index === 0}"></button>`).join("")}</div>
             <button class="patient-stories-carousel-button patient-stories-carousel-next" type="button" aria-label="Next patient stories">›</button>
           </div>
         </div>
@@ -434,6 +435,26 @@
       </div>
       </div>`;
     section._patientStories = patientStories;
+    return section;
+  };
+
+  const GoogleReviewSection = () => {
+    const section = document.createElement("section");
+    section.className = "google-review-section";
+    section.setAttribute("aria-labelledby", "google-review-heading");
+    section.innerHTML = `
+      <div class="google-review-card">
+        <div class="google-review-rating">
+          <div class="google-review-stars" aria-label="Rated 4.9 out of 5 stars">★★★★★</div>
+          <p class="google-review-score"><strong>4.9</strong><span>/ 5</span></p>
+          <p class="google-review-count">1000+ Google Reviews</p>
+        </div>
+        <div class="google-review-action">
+          <h2 id="google-review-heading">Your experience matters</h2>
+          <p>Share your experience with Shri Gurupad Clinic.</p>
+          <a href="https://www.google.com/search?q=Shri+Gurupad+Clinic" target="_blank" rel="noopener noreferrer">Write a Review <span aria-hidden="true">→</span></a>
+        </div>
+      </div>`;
     return section;
   };
 
@@ -491,11 +512,11 @@
     const updateCarousel = (page) => {
       const card = cards[0];
       if (!card) return;
-      section.dataset.carouselPage = String(page);
       const gap = parseFloat(getComputedStyle(carousel).gap) || 16;
       const pageSize = window.matchMedia("(max-width: 560px)").matches ? 1 : 3;
       const maxPage = Math.ceil(cards.length / pageSize) - 1;
-      page = Math.min(page, maxPage);
+      page = Math.max(0, Math.min(page, maxPage));
+      section.dataset.carouselPage = String(page);
       carousel.scrollTo({ left: page * (card.offsetWidth + gap) * pageSize, behavior: "smooth" });
       carouselDots.forEach((dot, index) => {
         const active = index === page;
@@ -505,20 +526,21 @@
       });
     };
     section.querySelector(".patient-stories-carousel-prev").addEventListener("click", () => updateCarousel(Math.max(0, Number(section.dataset.carouselPage || 0) - 1)));
-    section.querySelector(".patient-stories-carousel-next").addEventListener("click", () => updateCarousel(Math.min(carouselDots.length - 1, Number(section.dataset.carouselPage || 0) + 1)));
-    carouselDots.forEach((dot, index) => dot.addEventListener("click", () => {
-      section.dataset.carouselPage = String(index);
-      updateCarousel(index);
-    }));
+    section.querySelector(".patient-stories-carousel-next").addEventListener("click", () => updateCarousel(Number(section.dataset.carouselPage || 0) + 1));
+    carouselDots.forEach((dot, index) => dot.addEventListener("click", () => updateCarousel(index)));
+    updateCarousel(0);
+    window.addEventListener("resize", () => updateCarousel(Number(section.dataset.carouselPage || 0)), { passive: true });
     carousel.addEventListener("scroll", () => {
       const card = cards[0];
       if (!card) return;
       const gap = parseFloat(getComputedStyle(carousel).gap) || 16;
       const pageSize = window.matchMedia("(max-width: 560px)").matches ? 1 : 3;
-      const page = Math.min(carouselDots.length - 1, Math.round(carousel.scrollLeft / ((card.offsetWidth + gap) * pageSize)));
+      const maxPage = Math.ceil(cards.length / pageSize) - 1;
+      const page = Math.min(maxPage, Math.round(carousel.scrollLeft / ((card.offsetWidth + gap) * pageSize)));
       section.dataset.carouselPage = String(page);
       carouselDots.forEach((dot, index) => {
         const active = index === page;
+        dot.hidden = index > maxPage;
         dot.classList.toggle("is-active", active);
         dot.setAttribute("aria-selected", String(active));
       });
@@ -1157,7 +1179,7 @@
         max-width: none !important;
         height: 100% !important;
         padding: 0 !important;
-        object-fit: contain !important;
+        object-fit: cover !important;
         object-position: center !important;
       }
       .uploaded-gallery .gallery-prev,
@@ -1211,7 +1233,22 @@
     .panchkarma-journey .explore-panchkarma-cta:hover { background: #b0802d; box-shadow: 0 10px 22px rgba(176,128,45,.2); }
     .panchkarma-journey .explore-panchkarma-cta:focus-visible { outline-color: rgba(176,128,45,.55); }
     .patient-stories { position: relative; overflow: hidden; padding: clamp(4.5rem, 9vw, 7rem) 1.25rem; background: #f7f1e8; color: #203d35; }
+    .patient-stories { padding-bottom: clamp(2rem, 4vw, 3rem); }
     .patient-stories-inner { max-width: 78rem; margin: 0 auto; }
+    .google-review-section { padding: clamp(1.25rem, 2.5vw, 2rem) 1.25rem; background: #f7f1e8; }
+    .google-review-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; max-width: 64rem; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid rgba(23,77,53,.1); border-radius: 1.5rem; background: #fffdf9; box-shadow: 0 1rem 2.5rem rgba(23,77,53,.08); text-align: center; }
+    .google-review-rating { padding: .5rem 1rem; }
+    .google-review-stars { color: #e2a82f; font-size: clamp(1.6rem, 4vw, 2.2rem); letter-spacing: .15em; line-height: 1; }
+    .google-review-score { display: flex; justify-content: center; align-items: baseline; gap: .4rem; margin: .8rem 0 .2rem; color: #174d35; font: 400 1.2rem Manrope, sans-serif; }
+    .google-review-score strong { font: 400 clamp(3rem, 6vw, 4.5rem)/1 "DM Serif Display", Georgia, serif; }
+    .google-review-score span { color: #68776e; }
+    .google-review-count { margin: .4rem 0 0; color: #68776e; font: 700 .85rem Manrope, sans-serif; }
+    .google-review-action { padding: .5rem 1rem; border-left: 1px solid rgba(23,77,53,.14); }
+    .google-review-action h2 { margin: 0; color: #174d35; font: 400 clamp(1.6rem, 3vw, 2.2rem)/1.15 "DM Serif Display", Georgia, serif; }
+    .google-review-action p { margin: .65rem 0 1.2rem; color: #68776e; font: .88rem/1.6 Manrope, sans-serif; }
+    .google-review-action a { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; gap: .6rem; padding: .8rem 1.35rem; border-radius: 999px; background: #174d35; color: #fff; font: 800 .8rem Manrope, sans-serif; text-decoration: none; transition: background-color .2s ease, transform .2s ease; }
+    .google-review-action a:hover { transform: translateY(-2px); background: #b0802d; }
+    .google-review-action a:focus-visible { outline: 3px solid rgba(176,128,45,.55); outline-offset: 3px; }
     .patient-stories-header, .patient-stories-subheading { max-width: 48rem; margin: 0 auto clamp(2.5rem, 5vw, 4rem); text-align: center; }
     .patient-stories-eyebrow { margin: 0 0 .75rem; color: #b0802d; font: 800 .68rem/1.3 Manrope, sans-serif; letter-spacing: .2em; }
     .patient-stories-header h2, .patient-stories-subheading h3 { margin: 0; color: #174d35; font: 400 clamp(2.2rem, 4.5vw, 3.5rem)/1.05 "DM Serif Display", Georgia, serif; }
@@ -1247,9 +1284,10 @@
     .patient-story-avatar, .patient-journey-avatar { display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border-radius: 50%; background: #e4eee3; color: #174d35; font: 400 1.2rem "DM Serif Display", Georgia, serif; }
     .patient-story-avatar img { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
     .patient-story-card .patient-story-stars { margin-top: 1rem; font-size: .72rem; }
-    .patient-story-quote { margin: .9rem 0 1.1rem; color: #40584f; font: italic 1rem/1.6 "DM Serif Display", Georgia, serif; }
+    .patient-story-quote { margin: .9rem 0 1.1rem; color: #40584f; font: italic 1rem/1.6 "DM Serif Display", Georgia, serif; white-space: pre-line; }
     .patient-story-meta { display: grid; gap: .18rem; margin-top: auto; color: #68776e; font-size: .72rem; }
     .patient-story-meta strong { color: #174d35; font-size: .82rem; }
+    .patient-story-likes { margin: -.45rem 0 .8rem; color: #68776e; font-size: .75rem; }
     .patient-story-read { width: fit-content; margin-top: 1rem; padding: 0; border: 0; background: transparent; color: #b0802d; cursor: pointer; font: 800 .7rem Manrope, sans-serif; }
     .patient-story-read span { margin-left: .25rem; }
     .patient-stories-empty { margin: 2rem 0; color: #68776e; text-align: center; }
@@ -1454,6 +1492,7 @@
     .patient-share-status { color: #174d35; font-size: .78rem; line-height: 1.5; }
     @media (max-width: 900px) { .patient-stories-carousel .patient-story-card { flex-basis: calc((100% - 1rem) / 2); } .patient-care-image-gallery, .patient-care-step-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } .patient-care-step-track::before { display: none; } .patient-care-step-track li { padding-top: 2.4rem; } .patient-care-step-track li::before { top: 1.15rem; } }
     @media (max-width: 560px) { .patient-stories { padding-inline: 1rem; } .patient-story-featured { grid-template-columns: 1fr; } .patient-story-featured-image { min-height: 11rem; } .patient-stories-carousel .patient-story-card { flex-basis: 100%; } .patient-journey-card { grid-template-columns: 1fr; } .patient-care-image-gallery, .patient-care-step-track { display: none; } .patient-care-mobile-slides { display: grid; grid-template-columns: 1fr; } .patient-stories-filter { font-size: .64rem; } }
+    @media (max-width: 640px) { .google-review-section { padding-inline: 1rem; } .google-review-card { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem 1rem; } .google-review-action { padding: 1.25rem .25rem .25rem; border-top: 1px solid rgba(23,77,53,.14); border-left: 0; } }
     @keyframes patient-care-slide-enter { from { opacity: 0; } to { opacity: 1; } }
     @media (max-width: 560px) {
       .patient-care-timeline { padding: 1.15rem; border-radius: 1.2rem; }
@@ -1557,6 +1596,8 @@
 
   const observeScrollSections = () => {
     removeExtraSpecialistSection();
+    const homeLink = document.querySelector(".desktop-header-home");
+    if (homeLink) homeLink.href = "#top";
     document.querySelector("#panchkarma")?.remove();
     document.querySelector("main > .experience-section")?.remove();
     const conditionsHeading = [...document.querySelectorAll("h2")].find((heading) =>
