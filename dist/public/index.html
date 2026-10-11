@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-B8aJkmt3.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CEATttqm.css">
+    <script type="module" crossorigin src="/assets/index-B8aJkmt3.js?v=whatsapp-center-3"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CEATttqm.css?v=whatsapp-center-3">
     <style>
       #panchkarma-journey {
         --panchkarma-bleed: 28px;
@@ -57,6 +57,73 @@
       #panchkarma-journey .explore-panchkarma-cta {
         background: #d9ae4f;
         color: #103b2c;
+      }
+      @media (max-width: 900px) {
+        .homepage-floating-actions,
+        .floating-whatsapp {
+          display: none !important;
+        }
+        .mobile-action-bar {
+          box-sizing: border-box;
+          grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+          min-height: calc(4.5rem + env(safe-area-inset-bottom));
+          padding: 0.35rem 0.75rem env(safe-area-inset-bottom);
+          align-items: center;
+        }
+        .mobile-action-bar > a,
+        .mobile-action-bar > button {
+          grid-column: auto !important;
+          display: flex !important;
+          width: 100%;
+          min-width: 0;
+          min-height: 3.5rem;
+          align-self: center;
+          flex-direction: column !important;
+          align-items: center;
+          justify-content: center;
+          gap: 0.25rem !important;
+          margin: 0;
+          padding: 0.35rem 0.2rem;
+          border: 0 !important;
+          border-radius: 0.75rem;
+          background: transparent !important;
+          box-shadow: none;
+          color: #174d35 !important;
+        }
+        .mobile-action-bar a[href*="wa.me"] {
+          grid-column: 2 !important;
+          background: #168a55 !important;
+          color: #fff !important;
+        }
+        .mobile-action-bar button:nth-child(2) {
+          grid-column: 3 !important;
+        }
+        .mobile-action-bar a[href*="wa.me"] span {
+          display: block !important;
+          color: inherit !important;
+          font-size: 0.62rem;
+          line-height: 1.1;
+        }
+        .mobile-action-bar a svg,
+        .mobile-action-bar button svg {
+          flex: 0 0 auto;
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+        .mobile-action-bar a[href*="wa.me"] svg {
+          display: none !important;
+        }
+        .mobile-action-bar a[href*="wa.me"]::before {
+          content: "";
+          display: block;
+          flex: 0 0 auto;
+          width: 1.35rem;
+          height: 1.35rem;
+          background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 11.5a8.5 8.5 0 0 1-12.2 7.6L3 20l1-4.8A8.5 8.5 0 1 1 20 11.5Z'/%3E%3Cpath d='M8.5 7.5c.4-.4 1-.4 1.3 0l1.1 1.6c.2.3.2.7-.1 1l-.6.7a7.3 7.3 0 0 0 3 3l.7-.6c.3-.3.7-.3 1-.1l1.6 1.1c.4.3.4.9 0 1.3l-.5.5c-.5.5-1.2.6-1.8.5a10.4 10.4 0 0 1-7-7c-.2-.6 0-1.3.5-1.8Z'/%3E%3C/svg%3E");
+        }
+        .mobile-action-bar a[href*="wa.me"] span {
+          color: #fff !important;
+        }
       }
     </style>
     <script defer src="/clinic-content.js"></script>
@@ -750,6 +817,24 @@ Error generating stack: `+l.message+`
 </script>
 
     <div id="root"></div>
-    <script defer src="%VITE_ANALYTICS_ENDPOINT%/umami" data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <script defer src="%VITE_ANALYTICS_ENDPOINT%/umami" data-website-id="%VITE_ANALYTICS_WEBSITE_ID%">    </script>
+    <script>
+      (() => {
+        const whatsappIcon = '<path d="M20.2 11.6a8.5 8.5 0 0 1-12.6 7.4L3 20l1.1-4.6a8.5 8.5 0 1 1 16.1-3.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.4 7.8c.3-.3.7-.3 1-.1l1.2 1.7c.2.3.2.6 0 .9l-.6.7c.6 1.3 1.5 2.2 2.8 2.8l.7-.6c.3-.2.6-.2.9 0l1.7 1.2c.3.2.3.7 0 1l-.6.6c-.4.4-1 .6-1.5.5-3.5-.8-6.2-3.5-7-7-.1-.5.1-1.1.5-1.5Z" fill="currentColor"/>';
+        const updateWhatsAppIcons = () => {
+          document
+            .querySelectorAll(".floating-whatsapp svg, .mobile-action-bar a[href*='wa.me'] svg")
+            .forEach((icon) => {
+              if (icon.dataset.whatsappIcon === whatsappIcon) return;
+              icon.setAttribute("viewBox", "0 0 24 24");
+              icon.innerHTML = whatsappIcon;
+              icon.dataset.whatsappIcon = whatsappIcon;
+            });
+        };
+        updateWhatsAppIcons();
+        const observer = new MutationObserver(updateWhatsAppIcons);
+        observer.observe(document.body, { childList: true, subtree: true });
+      })();
+    </script>
   </body>
 </html>

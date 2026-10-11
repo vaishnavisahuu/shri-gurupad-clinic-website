@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <meta name="theme-color" content="#174D36" />
+    <meta name="theme-color" content="#103e32" />
     <meta name="description" content="Explore Panchakarma therapies at Shri Gurupad Multispeciality Clinic, guided by Dr. Ashish Choyal." />
     <title>Our Panchakarma Therapies | Shri Gurupad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,20 +26,21 @@
       html { scroll-behavior: smooth; }
       body { margin: 0; background: var(--green); }
       a { color: inherit; }
-      .site-header { position: relative; z-index: 10; background: var(--green-deep); border-bottom: 1px solid rgba(217,174,79,.2); }
-      .site-header__inner { width: min(1120px, calc(100% - 2rem)); min-height: 5.2rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-      .site-header__brand { display: flex; align-items: center; gap: .85rem; min-width: 0; }
+      .site-header { position: sticky; top: 0; z-index: 100; background: var(--green); border-bottom: 1px solid rgba(217,174,79,.2); }
+      .site-header__inner { width: min(1200px, calc(100% - 3rem)); min-height: 4.8rem; margin: 0 auto; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 1rem; }
+      .site-header__brand { display: flex; align-items: center; gap: .85rem; min-width: 0; text-decoration: none; }
       .site-header__logo { display: block; width: 3.25rem; height: 3.25rem; flex: 0 0 auto; }
       .site-header__logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
       .site-header__clinic-name { color: var(--cream); font-size: .9rem; font-weight: 800; letter-spacing: .14em; }
       .site-header__clinic-subtitle { margin-top: .22rem; color: var(--gold); font-size: .63rem; font-weight: 700; letter-spacing: .14em; }
-      .site-header__cta, .therapy-card__cta { border: 0; border-radius: 999px; background: var(--gold); color: var(--green-deep); cursor: pointer; font: 800 .72rem/1 Manrope, sans-serif; letter-spacing: .08em; padding: .8rem 1.15rem; text-decoration: none; text-transform: uppercase; transition: transform .2s ease, background .2s ease; }
+      .site-header__cta, .therapy-card__cta { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; background: var(--gold); color: var(--green-deep); cursor: pointer; font: 800 .72rem/1 Manrope, sans-serif; letter-spacing: .08em; padding: .8rem 1.15rem; text-decoration: none; text-transform: uppercase; transition: transform .2s ease, background .2s ease; white-space: nowrap; }
       .site-header__cta:hover, .therapy-card__cta:hover { background: #e6c36c; transform: translateY(-2px); }
-      .site-header__menu-btn { display: none; border: 0; background: transparent; padding: .5rem; }
+      .site-header__menu-btn { display: none; width: 2.7rem; height: 2.7rem; border: 1px solid rgba(255,255,255,.2); border-radius: .7rem; background: rgba(255,255,255,.06); padding: .5rem; cursor: pointer; }
       .site-header__menu-btn span { display: block; width: 1.4rem; height: 2px; margin: .28rem 0; background: var(--cream); }
-      .site-header__nav { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; display: flex; justify-content: flex-end; gap: 1.4rem; padding: 0 0 1rem; }
-      .site-header__nav a { color: var(--muted); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
-      .site-header__nav a:hover { color: var(--gold); }
+      .site-header__nav { min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: clamp(.1rem, .5vw, .45rem); }
+      .site-header__nav a { padding: .65rem clamp(.25rem, .55vw, .55rem); border-radius: .5rem; color: var(--muted); font-size: clamp(.62rem, .78vw, .75rem); font-weight: 800; letter-spacing: 0; text-decoration: none; text-transform: none; white-space: nowrap; transition: color .2s ease, background-color .2s ease; }
+      .site-header__nav a:hover, .site-header__nav a[aria-current="page"] { background: rgba(72,119,77,.35); color: #f2c861; }
+      .site-header__phone { color: #e5bd58; font-size: .73rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
       .page-hero { padding: clamp(4rem, 10vw, 7.5rem) 1rem clamp(3rem, 7vw, 5rem); text-align: center; background: radial-gradient(circle at 50% 0, rgba(217,174,79,.12), transparent 55%); }
       .eyebrow { margin: 0 0 .8rem; color: var(--gold); font-size: .68rem; font-weight: 800; letter-spacing: .22em; }
       h1, h2, h3 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; }
@@ -74,13 +75,17 @@
       .floating-whatsapp svg, .floating-call svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; }
       .scroll-top { position: fixed; right: 1.1rem; bottom: 9.4rem; z-index: 20; display: grid; width: 2.3rem; height: 2.3rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--green-soft); color: var(--gold); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
       .scroll-top.is-visible { opacity: 1; pointer-events: auto; }
-      @media (max-width: 700px) {
-        .site-header__inner { min-height: 4.5rem; }
+      @media (max-width: 1100px) {
+        .site-header__inner { position: relative; width: min(100% - 1.5rem, 40rem); min-height: 4.5rem; grid-template-columns: minmax(0, 1fr) auto auto; gap: .5rem; }
+        .site-header__logo { width: 2.8rem; height: 2.8rem; }
         .site-header__clinic-name { font-size: .75rem; }
         .site-header__clinic-subtitle { font-size: .55rem; }
-        .site-header__cta, .site-header__nav { display: none; }
+        .site-header__nav { position: absolute; top: 100%; right: -.75rem; left: -.75rem; display: none; align-items: stretch; gap: .15rem; padding: .65rem .9rem .9rem; border-top: 1px solid rgba(217,174,79,.2); background: var(--green); box-shadow: 0 .7rem 1.2rem rgba(0,0,0,.18); }
+        .site-header__nav.is-open { display: grid; }
+        .site-header__nav a { padding: .75rem .7rem; font-size: .75rem; }
+        .site-header__cta { padding: .7rem .9rem; font-size: .66rem; }
+        .site-header__phone { display: none; }
         .site-header__menu-btn { display: block; }
-        .site-header__nav.is-open { display: grid; gap: 1rem; padding: 0 0 1.2rem; }
         .therapy-card, .therapy-card:nth-child(even) { display: flex; flex-direction: column; }
         .therapy-card:nth-child(even) .therapy-card__media { order: 0; }
         .therapy-card__media, .therapy-card__media img { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
@@ -91,21 +96,26 @@
         .floating-call { bottom: 1.25rem; }
         .scroll-top { bottom: 8.7rem; }
       }
+      @media (max-width: 380px) {
+        .site-header__clinic-subtitle { font-size: .47rem; letter-spacing: .08em; }
+        .site-header__cta { padding: .62rem .65rem; }
+      }
     </style>
   </head>
   <body>
     <header class="site-header">
       <div class="site-header__inner">
-        <div class="site-header__brand">
-          <a class="site-header__logo" href="/" aria-label="Shri Gurupad home"><img src="/images/shri-gurupad-logo.png" alt="Shri Gurupad Multispeciality Clinic" /></a>
+        <a class="site-header__brand" href="/" aria-label="Shri Gurupad home">
+          <span class="site-header__logo"><img src="/images/shri-gurupad-logo.png" alt="" /></span>
           <div class="site-header__clinic-info"><div class="site-header__clinic-name">SHRI GURUPAD</div><div class="site-header__clinic-subtitle">MULTISPECIALITY CLINIC</div></div>
-        </div>
-        <a class="site-header__cta" href="/#contact">Book Now</a>
-        <button class="site-header__menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        </a>
+        <nav class="site-header__nav" id="panchakarma-navigation" aria-label="Primary navigation">
+          <a href="/#top">Home</a><a href="/#about">About</a><a href="/treatments.html">Treatments</a><a href="/panchakarma.html" aria-current="page">Panchkarma</a><a href="/#approach">Our approach</a><a href="/#gallery">Gallery</a><a href="/#contact">Contact</a>
+        </nav>
+        <a class="site-header__cta" href="/appointment.html#booking">Book Now</a>
+        <a class="site-header__phone" href="tel:7869869888" aria-label="Call +91 7869869888">+91 7869869888</a>
+        <button class="site-header__menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="panchakarma-navigation"><span></span><span></span><span></span></button>
       </div>
-      <nav class="site-header__nav" aria-label="Primary navigation">
-        <a href="/#about">About</a><a href="/#treatments">Treatments</a><a href="/panchakarma.html">Panchkarma</a><a href="/#approach">Our approach</a><a href="/#gallery">Gallery</a><a href="/#contact">Contact</a>
-      </nav>
     </header>
 
     <main>
@@ -117,27 +127,27 @@
       <section class="therapy-list" aria-label="Panchakarma therapies">
         <article class="therapy-card">
           <div class="therapy-card__media"><img src="/images/vamana1.png" alt="Vamana therapeutic emesis therapy" /></div>
-          <div class="therapy-card__body"><p class="therapy-card__number">01</p><h2>Vamana</h2><p class="therapy-card__subtitle">Therapeutic Emesis</p><p class="therapy-card__description">A traditional Panchkarma therapy involving carefully supervised therapeutic emesis as part of a personalized Ayurvedic treatment plan.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Kapha-related congestion, recurrent respiratory concerns, and selected skin conditions after assessment.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Prepared in stages over several days; the main procedure is scheduled by the physician.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Individual assessment, preparation, supervised procedure, rest, and a graduated post-therapy diet.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Dosha-focused cleansing</li><li>Respiratory support</li><li>Guided recovery</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">01</p><h2>Vamana</h2><p class="therapy-card__subtitle">Therapeutic Emesis</p><p class="therapy-card__description">A traditional Panchkarma therapy involving carefully supervised therapeutic emesis as part of a personalized Ayurvedic treatment plan.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Kapha-related congestion, recurrent respiratory concerns, and selected skin conditions after assessment.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Prepared in stages over several days; the main procedure is scheduled by the physician.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Individual assessment, preparation, supervised procedure, rest, and a graduated post-therapy diet.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Dosha-focused cleansing</li><li>Respiratory support</li><li>Guided recovery</li></ul><a class="therapy-card__cta" href="/appointment.html#booking">Book This Therapy →</a></div>
         </article>
         <article class="therapy-card">
           <div class="therapy-card__media"><img src="/images/gurupad_ai_3.jpeg" alt="Virechana therapeutic Ayurvedic cleansing" /></div>
-          <div class="therapy-card__body"><p class="therapy-card__number">02</p><h2>Virechana</h2><p class="therapy-card__subtitle">Therapeutic Ayurvedic Cleansing</p><p class="therapy-card__description">A traditional Panchkarma therapy involving controlled therapeutic purgation to support the elimination of accumulated doshas.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Pitta-related digestive, skin, and metabolic concerns selected through consultation.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Preparation and recovery are planned around the individual; the active protocol is physician-directed.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Assessment, preparatory care, supervised cleansing, hydration, rest, and a structured return to food.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Digestive balance</li><li>Skin support</li><li>Personalized cleansing</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">02</p><h2>Virechana</h2><p class="therapy-card__subtitle">Therapeutic Ayurvedic Cleansing</p><p class="therapy-card__description">A traditional Panchkarma therapy involving controlled therapeutic purgation to support the elimination of accumulated doshas.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Pitta-related digestive, skin, and metabolic concerns selected through consultation.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Preparation and recovery are planned around the individual; the active protocol is physician-directed.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Assessment, preparatory care, supervised cleansing, hydration, rest, and a structured return to food.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Digestive balance</li><li>Skin support</li><li>Personalized cleansing</li></ul><a class="therapy-card__cta" href="/appointment.html#booking">Book This Therapy →</a></div>
         </article>
         <article class="therapy-card">
           <div class="therapy-card__media"><img src="/images/basti.png" alt="Basti medicated Ayurvedic therapy" /></div>
-          <div class="therapy-card__body"><p class="therapy-card__number">03</p><h2>Basti</h2><p class="therapy-card__subtitle">Medicated Ayurvedic Therapy</p><p class="therapy-card__description">A classical Panchkarma therapy using a physician-selected medicated oil or decoction protocol to support balance and comfort.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Lower-back and joint discomfort, digestive irregularity, and Vata-related concerns.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Delivered as a planned course; each session length depends on the selected protocol.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Clinical assessment, preparation, selected Basti sequence, observation, and follow-up guidance.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Vata balance</li><li>Joint comfort</li><li>Digestive support</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">03</p><h2>Basti</h2><p class="therapy-card__subtitle">Medicated Ayurvedic Therapy</p><p class="therapy-card__description">A classical Panchkarma therapy using a physician-selected medicated oil or decoction protocol to support balance and comfort.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Lower-back and joint discomfort, digestive irregularity, and Vata-related concerns.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Delivered as a planned course; each session length depends on the selected protocol.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Clinical assessment, preparation, selected Basti sequence, observation, and follow-up guidance.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Vata balance</li><li>Joint comfort</li><li>Digestive support</li></ul><a class="therapy-card__cta" href="/appointment.html#booking">Book This Therapy →</a></div>
         </article>
         <article class="therapy-card">
           <div class="therapy-card__media"><img src="/images/nasya.png" alt="Nasya nasal Ayurvedic therapy" /></div>
-          <div class="therapy-card__body"><p class="therapy-card__number">04</p><h2>Nasya</h2><p class="therapy-card__subtitle">Nasal Ayurvedic Therapy</p><p class="therapy-card__description">A traditional Ayurvedic therapy in which carefully selected medicated oils or preparations are administered through the nasal passages.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Head, neck, sinus, migraine, and upper respiratory concerns following assessment.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>A focused session with preparation and aftercare tailored to the selected medicine.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Face and sinus preparation, physician-selected nasal application, rest, and simple aftercare.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Head and sinus support</li><li>Relaxation</li><li>Clearer breathing</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">04</p><h2>Nasya</h2><p class="therapy-card__subtitle">Nasal Ayurvedic Therapy</p><p class="therapy-card__description">A traditional Ayurvedic therapy in which carefully selected medicated oils or preparations are administered through the nasal passages.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Head, neck, sinus, migraine, and upper respiratory concerns following assessment.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>A focused session with preparation and aftercare tailored to the selected medicine.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Face and sinus preparation, physician-selected nasal application, rest, and simple aftercare.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Head and sinus support</li><li>Relaxation</li><li>Clearer breathing</li></ul><a class="therapy-card__cta" href="/appointment.html#booking">Book This Therapy →</a></div>
         </article>
         <article class="therapy-card">
           <div class="therapy-card__media"><img src="/images/abhyanga.png" alt="Abhyanga Ayurvedic oil massage" /></div>
-          <div class="therapy-card__body"><p class="therapy-card__number">05</p><h2>Abhyanga</h2><p class="therapy-card__subtitle">Ayurvedic Oil Massage</p><p class="therapy-card__description">A traditional full-body Ayurvedic massage using warm herbal oils selected according to individual needs and Ayurvedic assessment.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Stress, stiffness, fatigue, dryness, and the need for restorative Ayurvedic body care.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Session duration and course frequency are selected according to the treatment plan.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Warm oil application, rhythmic massage, quiet rest, and post-treatment guidance.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Deep relaxation</li><li>Body nourishment</li><li>Mobility support</li></ul><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">05</p><h2>Abhyanga</h2><p class="therapy-card__subtitle">Ayurvedic Oil Massage</p><p class="therapy-card__description">A traditional full-body Ayurvedic massage using warm herbal oils selected according to individual needs and Ayurvedic assessment.</p><dl class="therapy-info"><div class="therapy-info__box"><dt>Indications / Conditions</dt><dd>Stress, stiffness, fatigue, dryness, and the need for restorative Ayurvedic body care.</dd></div><div class="therapy-info__box"><dt>Duration</dt><dd>Session duration and course frequency are selected according to the treatment plan.</dd></div><div class="therapy-info__box therapy-info__box--wide"><dt>Protocol</dt><dd>Warm oil application, rhythmic massage, quiet rest, and post-treatment guidance.</dd></div></dl><p class="benefits-title">Key benefits</p><ul class="benefits"><li>Deep relaxation</li><li>Body nourishment</li><li>Mobility support</li></ul><a class="therapy-card__cta" href="/appointment.html#booking">Book This Therapy →</a></div>
         </article>
         <article class="therapy-card">
           <div class="therapy-card__media"><img src="/images/raktamokshana.png" alt="Raktamokshana Ayurvedic bloodletting procedure" /></div>
-          <div class="therapy-card__body"><p class="therapy-card__number">06</p><h2>Raktamokshana</h2><p class="therapy-card__subtitle">Traditional Ayurvedic Bloodletting</p><p class="therapy-card__description">Raktamokshana is a traditional Ayurvedic bloodletting procedure used selectively in certain conditions, with the method and suitability determined by a qualified Ayurvedic practitioner.</p><a class="therapy-card__cta" href="/appointment.html">Book This Therapy →</a></div>
+          <div class="therapy-card__body"><p class="therapy-card__number">06</p><h2>Raktamokshana</h2><p class="therapy-card__subtitle">Traditional Ayurvedic Bloodletting</p><p class="therapy-card__description">Raktamokshana is a traditional Ayurvedic bloodletting procedure used selectively in certain conditions, with the method and suitability determined by a qualified Ayurvedic practitioner.</p><a class="therapy-card__cta" href="/appointment.html#booking">Book This Therapy →</a></div>
         </article>
       </section>
     </main>

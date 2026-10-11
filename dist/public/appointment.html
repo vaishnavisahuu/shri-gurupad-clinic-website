@@ -35,6 +35,20 @@
       .nav { display: flex; align-items: center; gap: 1.1rem; }
       .nav a { color: var(--muted); font-size: .72rem; font-weight: 800; text-decoration: none; }
       .nav .nav-cta { padding: .7rem 1rem; border-radius: 999px; background: var(--green); color: #fff; }
+      .clinic-site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(217,184,74,.15); background: linear-gradient(135deg, var(--deep), var(--teal)); color: #fff; }
+      .clinic-site-header__inner { display: grid; width: min(1200px, calc(100% - 3rem)); min-height: 4.8rem; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 1rem; margin: 0 auto; }
+      .clinic-site-header__brand { display: flex; min-width: 0; align-items: center; gap: .75rem; color: #fff; text-decoration: none; }
+      .clinic-site-header__brand img { display: block; width: 3.2rem; height: 3.2rem; flex: 0 0 auto; object-fit: contain; }
+      .clinic-site-header__brand strong, .clinic-site-header__brand small { display: block; white-space: nowrap; }
+      .clinic-site-header__brand strong { font-size: .95rem; font-weight: 800; letter-spacing: .04em; }
+      .clinic-site-header__brand small { margin-top: .2rem; color: #d9b84a; font-size: .62rem; font-weight: 800; letter-spacing: .08em; }
+      .clinic-site-header__nav { display: flex; min-width: 0; align-items: center; justify-content: flex-end; gap: clamp(.1rem, .5vw, .45rem); }
+      .clinic-site-header__nav a { padding: .65rem clamp(.25rem, .55vw, .55rem); border-radius: .5rem; color: #b8c0b6; font-size: clamp(.62rem, .78vw, .75rem); font-weight: 800; text-decoration: none; white-space: nowrap; transition: color .2s ease, background-color .2s ease; }
+      .clinic-site-header__nav a:hover, .clinic-site-header__nav a[aria-current="page"] { background: rgba(72,119,77,.35); color: #f2c861; }
+      .clinic-site-header__cta { display: inline-flex; min-height: 2.8rem; align-items: center; justify-content: center; padding: .75rem 1.1rem; border-radius: 999px; background: linear-gradient(135deg, #e5c65a, #cfa83d); color: #063a25; font-size: .74rem; font-weight: 800; text-decoration: none; white-space: nowrap; transition: background-color .2s ease; }
+      .clinic-site-header__cta:hover { background: #e5bf68; }
+      .clinic-site-header__phone { color: #e5bd58; font-size: .73rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
+      .clinic-site-header__toggle { display: none; }
       .hero { overflow: hidden; padding: clamp(3.5rem, 8vw, 7rem) 0; background: linear-gradient(135deg, var(--deep), var(--teal)); color: #fff; }
       .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(2rem, 7vw, 7rem); }
       .eyebrow { margin: 0 0 .8rem; color: #e4bd63; font-size: .7rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; }
@@ -49,11 +63,11 @@
       .button--green { background: var(--green); color: #fff; }
       .button--outline { border-color: var(--line); color: var(--green); }
       .hero-card { padding: clamp(1.3rem, 4vw, 2.5rem); border: 1px solid rgba(255,255,255,.2); border-radius: 1.5rem; background: rgba(255,255,255,.1); box-shadow: 0 1.5rem 3rem rgba(0,0,0,.15); }
-      .hero-card img { display: block; width: 100%; height: 18rem; object-fit: cover; object-position: center 35%; border-radius: 1rem; }
+      .hero-card img { display: block; width: 100%; height: 18rem; object-fit: cover; object-position: center bottom; border-radius: 1rem; }
       .hero-card h2 { margin: 1.2rem 0 .3rem; font-size: 2rem; }
       .hero-card p { margin: 0 !important; font-size: .82rem; }
-      section { padding: clamp(4rem, 8vw, 7rem) 0; }
-      .section-heading { max-width: 42rem; margin: 0 auto 2.5rem; text-align: center; }
+      section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+      .section-heading { max-width: 42rem; margin: 0 auto 1.75rem; text-align: center; }
       .section-heading .eyebrow { color: var(--gold); }
       .section-heading h2 { margin: 0; color: var(--green); font-size: clamp(2.2rem, 4vw, 3.7rem); line-height: 1; }
       .section-heading p { margin: 1rem auto 0; color: var(--muted); line-height: 1.7; }
@@ -102,7 +116,7 @@
       .form-note, .form-status { grid-column: 1 / -1; color: var(--muted); font-size: .75rem; line-height: 1.5; }
       .form-status { display: none; padding: .8rem; border-radius: .5rem; background: #e4eee3; color: var(--green); }
       .form-status.is-visible { display: block; }
-      .direct { padding: 3rem 0; background: var(--gold); color: var(--deep); text-align: center; }
+      .direct { padding: 2rem 0; background: var(--gold); color: var(--deep); text-align: center; }
       .direct h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); }
       .direct p { margin: .7rem 0 0; }
       .clinic-info { background: var(--paper); }
@@ -114,11 +128,22 @@
       details { border-bottom: 1px solid var(--line); }
       summary { padding: 1rem 0; color: var(--green); cursor: pointer; font-weight: 800; }
       details p { max-width: 48rem; margin: 0 0 1rem; color: var(--muted); font-size: .86rem; line-height: 1.65; }
-      .final-cta { padding: clamp(4rem, 8vw, 6rem) 0; background: var(--green); color: #fff; text-align: center; }
+      .final-cta { padding: clamp(3rem, 6vw, 4.5rem) 0; background: var(--green); color: #fff; text-align: center; }
       .final-cta h2 { margin: 0; font-size: clamp(2.4rem, 5vw, 4.5rem); }
       .final-cta p { color: #d6e4d7; }
       footer { padding: 2rem 0; background: var(--deep); color: #c8d5c9; font-size: .76rem; text-align: center; }
       @media (max-width: 800px) {
+        .clinic-site-header__inner { position: relative; width: min(100% - 1.5rem, 40rem); min-height: 4.5rem; grid-template-columns: minmax(0, 1fr) auto auto; gap: .5rem; }
+        .clinic-site-header__brand img { width: 2.8rem; height: 2.8rem; }
+        .clinic-site-header__brand strong { font-size: .78rem; }
+        .clinic-site-header__brand small { font-size: .53rem; }
+        .clinic-site-header__nav { position: absolute; top: 100%; right: -.75rem; left: -.75rem; display: none; align-items: stretch; gap: .15rem; padding: .65rem .9rem .9rem; border-top: 1px solid rgba(217,184,74,.15); background: linear-gradient(135deg, var(--deep), var(--teal)); box-shadow: 0 .7rem 1.2rem rgba(0,0,0,.18); }
+        .clinic-site-header__nav.is-open { display: grid; }
+        .clinic-site-header__nav a { padding: .75rem .7rem; border-radius: .5rem; font-size: .75rem; }
+        .clinic-site-header__cta { min-height: 2.55rem; padding: .65rem .9rem; font-size: .68rem; }
+        .clinic-site-header__phone { display: none; }
+        .clinic-site-header__toggle { display: flex; width: 2.65rem; height: 2.65rem; flex-direction: column; align-items: center; justify-content: center; gap: .28rem; padding: .4rem; border: 1px solid rgba(255,255,255,.2); border-radius: .7rem; background: rgba(255,255,255,.06); cursor: pointer; }
+        .clinic-site-header__toggle span { display: block; width: 1.25rem; height: 2px; border-radius: 1px; background: #fff; }
         .nav a:not(.nav-cta) { display: none; }
         .hero-grid, .about-grid, .booking-grid, .swarnaprashan-box { grid-template-columns: 1fr; }
         .hero-card { max-width: 32rem; }
@@ -139,15 +164,26 @@
     </style>
   </head>
   <body>
-    <header class="site-header">
-      <div class="container site-header__inner">
-        <a class="brand" href="/">
+    <header class="clinic-site-header">
+      <div class="clinic-site-header__inner">
+        <a class="clinic-site-header__brand" href="/" aria-label="Shri Gurupad home">
           <img src="/images/shri-gurupad-logo.png" alt="" />
-          <span><strong>SHRI GURUPAD</strong><small>CONSULTATION &amp; PANCHKARMA CENTER</small></span>
+          <span><strong>SHRI GURUPAD</strong><small>MULTISPECIALITY CLINIC</small></span>
         </a>
-        <nav class="nav" aria-label="Appointment page navigation">
-          <a href="#about">Doctor</a><a href="#conditions">Conditions</a><a href="#faq">FAQ</a><a class="nav-cta" href="#booking">Book Now</a>
+        <nav class="clinic-site-header__nav" id="primary-navigation" aria-label="Primary navigation">
+          <a href="/#top">Home</a>
+          <a href="/#about">About</a>
+          <a href="/treatments.html">Treatments</a>
+          <a href="/panchakarma.html">Panchkarma</a>
+          <a href="/#approach">Our approach</a>
+          <a href="/#gallery">Gallery</a>
+          <a href="/#contact">Contact</a>
         </nav>
+        <a class="clinic-site-header__cta" href="/appointment.html#booking" aria-current="page">Book Now</a>
+        <a class="clinic-site-header__phone" href="tel:7869869888" aria-label="Call +91 7869869888">+91 7869869888</a>
+        <button class="clinic-site-header__toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
 
@@ -287,7 +323,7 @@
       <section class="direct"><div class="container"><h2>Need Help Booking Your Appointment?</h2><p>Call or WhatsApp us directly to discuss your consultation.</p><div class="contact-actions" style="justify-content:center"><a class="button button--light" style="border-color:var(--deep);color:var(--deep)" href="tel:7869869888">Call 7869869888</a><a class="button button--light" style="border-color:var(--deep);color:var(--deep)" href="https://wa.me/917000944387" target="_blank" rel="noreferrer">WhatsApp 7000944387</a></div></div></section>
 
       <section class="clinic-info"><div class="container"><div class="section-heading"><p class="eyebrow">Clinic details</p><h2>Visit Shri Gurupad Multispeciality Clinic</h2></div><div class="info-grid">
-        <div class="info-item"><strong>Address</strong><span>245, Sector-G, Main Road, Silicon City, Indore - 452012</span></div><div class="info-item"><strong>OPD Timings</strong><span>Mon-Sat: 11:00 AM - 2:00 PM<br />5:00 PM - 9:30 PM</span></div><div class="info-item"><strong>Phone</strong><span><a href="tel:7869869888">7869869888</a></span></div><div class="info-item"><strong>WhatsApp</strong><span><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer">7000944387</a></span></div><div class="info-item"><strong>Google Maps</strong><span>[ADD GOOGLE MAP LINK]</span></div>
+        <div class="info-item"><strong>Address</strong><span>245, Sector-G, Main Road, Silicon City, Indore - 452012</span></div><div class="info-item"><strong>OPD Timings</strong><span>Mon-Sat: 11:00 AM - 2:00 PM<br />5:00 PM - 9:30 PM</span></div><div class="info-item"><strong>Phone</strong><span><a href="tel:7869869888">7869869888</a></span></div><div class="info-item"><strong>WhatsApp</strong><span><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer">7000944387</a></span></div>
       </div></div></section>
 
       <section id="faq" class="faq"><div class="container"><div class="section-heading"><p class="eyebrow">Questions</p><h2>Frequently Asked Questions</h2></div>
@@ -305,5 +341,20 @@
     </main>
     <footer><div class="container">Shri Gurupad Multispeciality Clinic · Consultation &amp; Panchkarma Center</div></footer>
     <script src="/booking-form.js"></script>
+    <script>
+      const menuButton = document.querySelector(".clinic-site-header__toggle");
+      const primaryNavigation = document.querySelector("#primary-navigation");
+      menuButton.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+        primaryNavigation.classList.toggle("is-open", !isOpen);
+      });
+      primaryNavigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation");
+        primaryNavigation.classList.remove("is-open");
+      }));
+    </script>
   </body>
 </html>

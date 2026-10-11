@@ -228,7 +228,7 @@
                 <h3>${treatment.name}</h3>
                 <h4>${treatment.subtitle}</h4>
                 <p>${treatment.description}</p>
-                <a href="#contact">Explore Treatment <span aria-hidden="true">→</span></a>
+                <a href="/panchakarma.html">Explore Treatment <span aria-hidden="true">→</span></a>
               </div>
             </article>`).join("")}
         </div>
@@ -320,7 +320,7 @@
         </form>
 
       </div>
-      <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7869869888" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic">☘ <span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
+      <div class="homepage-floating-actions" aria-label="Contact shortcuts"><a href="tel:7869869888" aria-label="Call Shri Gurupad Clinic">☎ <span>Call</span></a><a href="https://wa.me/917000944387" target="_blank" rel="noreferrer" aria-label="WhatsApp Shri Gurupad Clinic"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M20.52 3.48A11.78 11.78 0 0 0 12.12 0C5.57 0 .24 5.33.24 11.88c0 2.1.55 4.14 1.59 5.95L.14 24l6.31-1.65a11.87 11.87 0 0 0 5.67 1.45h.01c6.55 0 11.88-5.33 11.89-11.88a11.82 11.82 0 0 0-3.5-8.44ZM12.13 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.75.98 1-3.65-.24-.38a9.88 9.88 0 0 1-1.52-5.28c0-5.47 4.45-9.92 9.92-9.92a9.86 9.86 0 0 1 7.02 2.91 9.86 9.86 0 0 1 2.9 7.03c0 5.47-4.45 9.92-9.92 9.92Zm5.45-7.43c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.64.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.22 5.1 4.5.71.31 1.27.49 1.7.63.71.22 1.36.19 1.87.11.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.34Z"/></svg><span>WhatsApp</span></a><button type="button" aria-label="Back to top">↑</button></div>`;
     section.querySelector(".homepage-floating-actions button").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
     return section;
   };
@@ -344,7 +344,7 @@
         <div class="find-us-layout">
           <div class="find-us-map-wrap">
             <iframe title="Map showing Shri Gurupad Panchakarma in Pulak City, Silicon City, Indore" src="${mapUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <div class="find-us-map-actions"><a class="find-us-button" href="${directionsUrl}" target="_blank" rel="noreferrer">📍 Get Directions</a><a class="find-us-button find-us-button-secondary" href="#" data-placeholder-review title="Replace with the clinic's Google Business review URL">⭐ Write a Review</a></div>
+            <div class="find-us-map-actions"><a class="find-us-button" href="${directionsUrl}" target="_blank" rel="noreferrer">📍 Get Directions</a><a class="find-us-button find-us-button-secondary" href="https://www.google.com/search?q=Shri+Gurupad+Clinic" target="_blank" rel="noopener noreferrer">⭐ Write a Review</a></div>
           </div>
           <div class="find-us-cards">
             <article class="find-us-card"><span aria-hidden="true">📍</span><div><h3>Main Clinic — Silicon City</h3><address>245, Sector-G, Main Road,<br />Silicon City,<br />Indore - 452012</address><a href="${directionsUrl}" target="_blank" rel="noreferrer">Get Directions →</a></div></article>
@@ -352,7 +352,7 @@
             <article class="find-us-card"><span aria-hidden="true">📞</span><div><h3>Phone &amp; WhatsApp</h3><p><a href="tel:7869869888">+91 7869869888</a></p><a href="${whatsappUrl}" target="_blank" rel="noreferrer">WhatsApp →</a></div></article>
           </div>
         </div>
-        <div class="find-us-social"><p class="find-us-eyebrow">FOLLOW SHRI GURUPAD</p><div><a class="find-us-social-instagram" href="#" data-placeholder-social title="Add the clinic's Instagram URL"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="find-us-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a class="find-us-social-facebook" href="#" data-placeholder-social title="Add the clinic's Facebook URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.8l.4-3.1h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8z"></path></svg>Facebook</a><a class="find-us-social-youtube" href="#" data-placeholder-social title="Add the clinic's YouTube URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"></path></svg>YouTube</a><a class="find-us-social-whatsapp" href="${whatsappUrl}" target="_blank" rel="noreferrer" aria-label="Send an appointment enquiry on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4.1Z"></path><path d="M9 8.2c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.2 1.5 2.1 1.9.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1-.2-2.2-.7-3.5-1.9-1.4-1.2-2.2-2.7-2.4-3.7-.2-.9 0-1.6.6-2.4Z"></path></svg>WhatsApp</a></div></div>
+        <div class="find-us-social"><p class="find-us-eyebrow">FOLLOW SHRI GURUPAD</p><div><a class="find-us-social-instagram" href="https://www.instagram.com/sgpanchakarma?dlrf=NjZ0cjBicWplOTVt&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Follow Shri Gurupad on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="find-us-social-icon-dot" cx="17.5" cy="6.5" r="1"></circle></svg>Instagram</a><a class="find-us-social-facebook" href="#" data-placeholder-social title="Add the clinic's Facebook URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.8l.4-3.1h-3.2v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8z"></path></svg>Facebook</a><a class="find-us-social-youtube" href="#" data-placeholder-social title="Add the clinic's YouTube URL"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"></path></svg>YouTube</a><a class="find-us-social-whatsapp" href="${whatsappUrl}" target="_blank" rel="noreferrer" aria-label="Send an appointment enquiry on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7a8.5 8.5 0 1 1 16.1-4.1Z"></path><path d="M9 8.2c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7.5.9 1.2 1.5 2.1 1.9.3.1.5.1.7-.1l.8-.9c.2.2.4-.2.7-.1l1.7.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1-.2-2.2-.7-3.5-1.9-1.4-1.2-2.2-2.7-2.4-3.7-.2-.9 0-1.6.6-2.4Z"></path></svg>WhatsApp</a></div></div>
         <a class="find-us-full-contact" href="#contact">📍 Full Contact Page &amp; Directions →</a>
       </div>`;
     return section;
@@ -629,7 +629,7 @@
               </article>
             </div>
             <div class="clinic-cta-actions" aria-label="Profile and appointment actions">
-              <a class="clinic-cta clinic-cta-profile" href="#about">Full Profile <span aria-hidden="true">→</span></a>
+              <a class="clinic-cta clinic-cta-profile" href="/appointment.html">Full Profile <span aria-hidden="true">→</span></a>
               <button class="clinic-cta clinic-cta-book" type="button">Book Now</button>
             </div>
           </div>
@@ -674,8 +674,9 @@
   style.textContent = `
     .restored-clinic-intro { padding: 0 1.25rem clamp(4rem, 10vw, 6rem) !important; }
     .uploaded-gallery { padding-bottom: 0 !important; opacity: 0; transform: translateY(5rem); }
-    .show-all-treatments { display: block; width: fit-content; margin: 1.5rem auto 0; padding: .75rem 1.2rem; border: 1px solid #174d36; border-radius: 999px; background: #174d36; color: #fff; font: 700 .78rem/1 Manrope, sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .2s ease, transform .2s ease; }
+    .show-all-treatments { display: block; width: fit-content; margin: 2.25rem auto 2.75rem; padding: .75rem 1.2rem; border: 1px solid #174d36; border-radius: 999px; background: #174d36; color: #fff; font: 700 .78rem/1 Manrope, sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .2s ease, transform .2s ease; }
     .show-all-treatments:hover { background: #b0802d; transform: translateY(-2px); }
+    .show-all-treatments + .panchkarma-journey { margin-top: 0; }
     .treatments-section.section-pad { padding-bottom: clamp(3rem, 6vw, 5rem) !important; }
     #approach.approach-section { padding-bottom: 3rem !important; }
     #gallery.gallery-section { padding-top: 3rem !important; }
@@ -1333,7 +1334,7 @@
     .homepage-appointment-inner, .homepage-appointment-form-wrap { width: min(100%, 78rem); margin: 0 auto; }
     .homepage-appointment-eyebrow { display: flex; align-items: center; gap: .7rem; margin: 0 0 1rem; color: #d9ae4f; font: 800 .68rem/1.3 Manrope, sans-serif; letter-spacing: .2em; }
     .homepage-appointment-eyebrow span { display: inline-block; width: 2.4rem; height: 1px; background: #d9ae4f; }
-    .homepage-appointment h2 { margin: 0; font: 400 clamp(2.8rem, 7vw, 5.8rem)/.95 "DM Serif Display", Georgia, serif; }
+    .homepage-appointment h2 { margin: 0; color: #d9ae4f; font: 400 clamp(2.8rem, 7vw, 5.8rem)/.95 "DM Serif Display", Georgia, serif; }
     .homepage-appointment h2 em { color: #d9ae4f; }
     .homepage-appointment-lead { max-width: 42rem; margin: 1.5rem 0 2.5rem; color: #d9e7dd; font: 1rem/1.7 Manrope, sans-serif; }
     .homepage-appointment-info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; }
@@ -1360,6 +1361,7 @@
     .homepage-floating-actions { position: fixed; right: 1rem; bottom: 1rem; z-index: 20; display: grid; gap: .55rem; }
     .homepage-floating-actions a, .homepage-floating-actions button { display: grid; min-width: 3rem; min-height: 3rem; place-items: center; padding: .4rem .65rem; border: 0; border-radius: 999px; background: #174d35; color: #fff; box-shadow: 0 .4rem 1rem rgba(0,0,0,.18); cursor: pointer; font: 800 .68rem Manrope, sans-serif; text-decoration: none; }
     .homepage-floating-actions a:nth-child(2) { background: #1c6849; }
+    .homepage-floating-actions a:nth-child(2) svg { display: block; width: 1.25rem; height: 1.25rem; }
     .homepage-floating-actions span { display: none; }
     @media (min-width: 901px) {
       .homepage-appointment { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); align-items: stretch; background: #fffdf9; }
@@ -1528,6 +1530,7 @@
     .panchkarma-stage-copy h3 { margin: 0; color: #174d35; font: 400 clamp(1.6rem, 3vw, 2.45rem)/1 "DM Serif Display", Georgia, serif; letter-spacing: .04em; }
     .panchkarma-stage-copy h4 { margin: .55rem 0 .7rem; color: #52645a; font: 800 clamp(.8rem, 1.4vw, .95rem)/1.35 Manrope, sans-serif; }
     .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { max-width: 26rem; margin: 0 0 1rem; color: #718078; font: clamp(.82rem, 1.4vw, .94rem)/1.65 Manrope, sans-serif; }
+    .panchkarma-stage:nth-of-type(even) .panchkarma-stage-copy > p:not(.panchkarma-stage-number) { margin-left: auto; }
     .panchkarma-stage-copy a { color: #174d35; font: 800 .76rem/1 Manrope, sans-serif; letter-spacing: .05em; text-decoration: none; }
     .panchkarma-stage-copy a span { margin-left: .3rem; transition: margin-left .2s ease; }
     .panchkarma-stage-copy a:hover span { margin-left: .55rem; }
@@ -1605,6 +1608,9 @@
     );
     conditionsHeading?.querySelector("br")?.remove();
     addTreatmentsButton();
+    document.querySelectorAll("#treatments .treatment-card__link").forEach((link) => {
+      link.href = "#homepage-appointment";
+    });
     addPanchkarmaJourney();
     const gallery = document.querySelector(".uploaded-gallery");
     const doctorInfo = document.querySelector(".restored-clinic-intro");
