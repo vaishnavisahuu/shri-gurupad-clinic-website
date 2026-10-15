@@ -150,7 +150,7 @@
     if (header.dataset.desktopEnhanced === "true") return;
     header.dataset.desktopEnhanced = "true";
     const inner = header.querySelector(".site-header__inner");
-    if (inner && window.matchMedia("(min-width: 701px)").matches) inner.appendChild(nav);
+    if (inner && window.matchMedia("(min-width: 901px)").matches) inner.appendChild(nav);
     const home = document.createElement("a");
     home.className = "desktop-header-home";
     home.href = "#";
@@ -163,12 +163,18 @@
     inner?.appendChild(phone);
     const logo = header.querySelector(".site-header__logo img");
     const originalLogoSrc = logo?.getAttribute("src");
+    const clinicName = header.querySelector(".site-header__clinic-name");
+    const clinicSubtitle = header.querySelector(".site-header__clinic-subtitle");
+    const originalClinicName = clinicName?.textContent ?? "";
+    const originalClinicSubtitle = clinicSubtitle?.textContent ?? "";
     const updateLogoForViewport = () => {
-      if (!logo || !originalLogoSrc) return;
-      const logoSrc = window.matchMedia("(min-width: 701px)").matches
-        ? "/images/shri-gurupad-logo-desktop.png"
-        : originalLogoSrc;
-      if (logo.getAttribute("src") !== logoSrc) logo.setAttribute("src", logoSrc);
+      const isDesktop = window.matchMedia("(min-width: 901px)").matches;
+      if (logo && originalLogoSrc) {
+        const logoSrc = isDesktop ? "/images/shri-gurupad-logo-desktop.png" : originalLogoSrc;
+        if (logo.getAttribute("src") !== logoSrc) logo.setAttribute("src", logoSrc);
+      }
+      if (clinicName) clinicName.textContent = isDesktop ? originalClinicName : "SHRI GURUPAD MULTISPECIALITY CLINIC";
+      if (clinicSubtitle) clinicSubtitle.textContent = isDesktop ? originalClinicSubtitle : "Dr. Ashish Choyal - MD Panchkarma";
     };
     updateLogoForViewport();
     window.addEventListener("resize", updateLogoForViewport, { passive: true });
@@ -1430,7 +1436,7 @@
     .find-us-full-contact { width: 100%; margin-top: 1.25rem; }
     @media (max-width: 900px) { .find-us-layout { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .find-us-section { padding-inline: 1rem; } .find-us-map-wrap iframe { height: 20rem; } .find-us-map-actions > * { flex: 1 1 10rem; } .find-us-whatsapp { align-items: flex-start; flex-wrap: wrap; } .find-us-whatsapp .find-us-button { width: 100%; margin-left: 0; } .find-us-social { align-items: center; flex-direction: column; } }
-    @media (min-width: 701px) {
+    @media (min-width: 901px) {
       .site-header {
         position: absolute !important;
         top: 0;
@@ -1470,13 +1476,26 @@
       .site-header__cta { order: 3; }
       .desktop-header-phone { order: 4; }
     }
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .site-header { background: #0F3C24 !important; }
       .desktop-header-home, .desktop-header-phone { display: none !important; }
+      .site-header__inner { justify-content: space-between !important; gap: .5rem !important; }
+      .site-header__brand { flex: 1 1 auto !important; min-width: 0 !important; gap: .65rem !important; align-items: center !important; }
+      .site-header__logo { display: grid !important; width: clamp(3.5rem, 9vw, 4.5rem) !important; height: clamp(3.5rem, 9vw, 4.5rem) !important; flex: 0 0 clamp(3.5rem, 9vw, 4.5rem) !important; align-self: center !important; place-items: center; overflow: hidden !important; border-radius: 50% !important; }
+      .site-header__logo img { display: block !important; width: 100% !important; height: 100% !important; margin: 0 !important; border-radius: 50% !important; object-fit: cover !important; object-position: center center !important; }
+      .site-header__clinic-info { flex: 1 1 auto; min-width: 0; justify-content: center !important; gap: .2rem !important; }
+      .site-header__clinic-name, .site-header__clinic-subtitle { overflow: hidden; text-overflow: clip; white-space: nowrap; }
+      .site-header__clinic-name { color: #fff !important; font-family: Manrope, sans-serif !important; font-size: clamp(7px, calc(4.4vw - 6.64px), 18px) !important; font-weight: 800 !important; line-height: 1.15 !important; letter-spacing: -.015em !important; }
+      .site-header__clinic-subtitle { margin-top: .2rem !important; color: #E2C56B !important; font-family: Manrope, sans-serif !important; font-size: clamp(7px, calc(4vw - 5.5px), 15px) !important; font-weight: 600 !important; line-height: 1.15 !important; letter-spacing: .015em !important; }
+      .site-header__menu-btn span { background: #fff !important; }
+      .site-header__cta { display: none !important; }
+      .site-header__nav { background: #0F3C24 !important; }
+      .site-header__nav a { justify-content: center !important; border: 0 !important; box-shadow: none !important; color: #fff !important; font-size: clamp(1.25rem, 5vw, 2rem) !important; font-weight: 900 !important; text-align: center !important; }
     }
-    @media (min-width: 701px) {
+    @media (min-width: 901px) {
       .site-header__brand { gap: 1.8rem !important; }
     }
-    @media (min-width: 701px) and (max-width: 1200px) {
+    @media (min-width: 901px) and (max-width: 1200px) {
       .site-header__inner { width: calc(100% - 2rem) !important; gap: .5rem !important; padding: 0 !important; }
       .site-header__brand { min-width: 10rem; gap: 1.5rem !important; align-items: center !important; }
       .site-header__logo, .site-header__logo img { width: 3rem !important; height: 3rem !important; max-width: 3rem !important; max-height: 3rem !important; object-fit: contain !important; }
@@ -1616,9 +1635,8 @@
     const doctorInfo = document.querySelector(".restored-clinic-intro");
     if (gallery && doctorInfo && gallery.parentElement === doctorInfo.parentElement) {
       const main = gallery.parentElement;
-      const desktopOrder = window.matchMedia("(min-width: 701px)").matches;
-      const firstSection = desktopOrder ? doctorInfo : gallery;
-      const secondSection = desktopOrder ? gallery : doctorInfo;
+      const firstSection = doctorInfo;
+      const secondSection = gallery;
       if (firstSection.nextElementSibling !== secondSection) main.insertBefore(firstSection, secondSection);
     }
     const appointmentSection = document.querySelector("#homepage-appointment");
